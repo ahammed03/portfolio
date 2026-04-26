@@ -1,24 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
+import ExperienceSection from './components/ExperienceSection'
 import ContactSection from './components/ContactSection'
 import ProjectsSection from './components/ProjectsSection'
 import Footer from './components/Footer'
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme) {
+      return savedTheme
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark'))
+  }
+
   return (
-    <>
-      <Navbar></Navbar>
+    <div className={theme === 'dark' ? 'dark min-h-screen bg-black text-zinc-100' : 'min-h-screen bg-neutral-50 text-zinc-950'}>
+      <Navbar theme={theme} onThemeToggle={toggleTheme}></Navbar>
       <HeroSection></HeroSection>
       <AboutSection></AboutSection>
+      <ExperienceSection></ExperienceSection>
       <ProjectsSection></ProjectsSection>
       <ContactSection></ContactSection>
       <Footer></Footer>
-    </>
+    </div>
   )
 }
 

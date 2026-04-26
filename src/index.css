@@ -1,3 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: #fafafa;
+  color: #09090b;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+a {
+  transition-duration: 180ms;
+}

@@ -1,23 +1,38 @@
-import AboutMe from "../assets/images/about-me.jpg"
-"https://images.unsplash.com/photo-1528747045269-390fe33c19f2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YWJvdXQlMjBtZXxlbnwwfHwwfHx8MA%3D%3D"
-
 export default function AboutSection() {
 
     return (
-        <div className="w-full  flex flex-col md:flex-row justify-center items-center gap-4 p-5" >
-            <img className="w-72" src={AboutMe} alt="" />
-            <div className=" md:w-[50vw] flex flex-col gap-1">
-                <p>
-                    Hey there! I'm Ahammed Ali Shaik, a software enthusiast based in Bengaluru. I completed my Bachelor's degree (BTech) from MITS, where I discovered my passion for building software.
+        <section id="about" className="w-full border-b border-zinc-200 bg-white px-5 py-20 dark:border-zinc-800 dark:bg-zinc-950" >
+            <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr]">
+            <div className="flex flex-col gap-4">
+                <p className="font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">About</p>
+                <h2 className="text-3xl font-semibold leading-tight text-zinc-950 dark:text-white md:text-4xl">Backend-leaning product engineer focused on scale, reliability, and clean execution.</h2>
+                <p className="leading-8 text-zinc-700 dark:text-zinc-400">
+                    I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of experience building B2B SaaS systems end to end. My strongest work is in backend engineering, data-heavy APIs, distributed task execution, and turning product requirements into systems that are maintainable in production.
                 </p>
-                <p>
-                    I love diving into coding challenges and crafting solutions that make a difference. From writing elegant code to designing user-friendly interfaces, I enjoy every aspect of software development.
+                <p className="leading-8 text-zinc-700 dark:text-zinc-400">
+                    At Kipplo Technologies, I work across FastAPI services, PostgreSQL/Citus databases, Redis Streams workers, CSV ingestion, email infrastructure, Stripe billing, scraping pipelines, React interfaces, and deployment workflows. I care about API correctness, idempotency, data consistency, observability, and practical performance.
                 </p>
-                <p>
-                    I'm excited about the possibilities that software brings and look forward to contributing my skills to building innovative projects and collaborating with like-minded individuals. Let's create something amazing together!
+                <p className="leading-8 text-zinc-700 dark:text-zinc-400">
+                    I am targeting strong product engineering teams where backend fundamentals, system design, data structures, ownership, and production thinking matter.
                 </p>
 
             </div>
-        </div>
+            <div className="grid gap-3">
+                <div className="rounded-md border border-zinc-200 bg-neutral-50 p-5 dark:border-zinc-800 dark:bg-black">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Location</p>
+                    <p className="mt-2 text-xl font-semibold text-zinc-950 dark:text-white">Bengaluru, India</p>
+                </div>
+                <div className="rounded-md border border-zinc-200 bg-neutral-50 p-5 dark:border-zinc-800 dark:bg-black">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Education</p>
+                    <p className="mt-2 text-xl font-semibold text-zinc-950 dark:text-white">BTech, Mechanical Engineering</p>
+                    <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-500">Madanapalle Institute of Technology & Sciences</p>
+                </div>
+                <div className="rounded-md border border-zinc-200 bg-neutral-50 p-5 dark:border-zinc-800 dark:bg-black">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Coding Profile</p>
+                    <a className="mt-2 block break-words text-xl font-semibold text-zinc-950 hover:text-zinc-600 dark:text-white dark:hover:text-zinc-400" href="https://leetcode.com/u/ahammed03/">leetcode.com/u/ahammed03</a>
+                </div>
+            </div>
+            </div>
+        </section>
     )
 }

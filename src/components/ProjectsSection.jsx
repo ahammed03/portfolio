@@ -1,4 +1,4 @@
-import GitHub from '../assets/icons/icons8-github-30.png'
+import { GitBranch } from 'lucide-react'
 import chatBotImg1 from '../assets/projectsImages/ChatBot.png'
 import tailorFlowImg from '../assets/projectsImages/TailorFlow.png'
 import githubExplorerImg from '../assets/projectsImages/githubExplorer.png'
@@ -7,30 +7,26 @@ export default function ProjectsSection() {
 
     const projectsData = [
         {
+            'title': 'Kipplo Chrome Extension',
+            'description': `React browser extension with 700+ installs that surfaces verified B2B contact intelligence on LinkedIn profiles, connecting frontend workflows with production enrichment APIs.`,
+            'codeLink': 'https://github.com/ahammed03',
+            'imageLink': githubExplorerImg
+        },
+        {
             'title': 'GitHub Explorer',
-            'description': ` A GitHub Explorer application using React.js, Recoil for state management and GitHub API.
-                            Implemented features to display user repositories, views, forks, followers etc.
-                            `,
+            'description': `React application using the GitHub API to explore user profiles, repositories, followers, forks, and project details with clean API-driven state and search behavior.`,
             'codeLink': 'https://github.com/ahammed03/GithubExplorer.git',
             'imageLink': githubExplorerImg
         }, 
         {
             'title': 'Chatbot using Gemini AI',
-            'description': `
-                            Utilizing Gemini AI's powerful capabilities, our chatbot delivers intelligent responses and personalized interactions. 
-                            Supported by a robust Django backend, it seamlessly integrates with various systems, providing efficient communication and 
-                            enhancing user experiences
-                            `,
+            'description': `Gemini AI chatbot backed by Django, focused on request handling, backend integration, and a practical conversational workflow.`,
             'codeLink': 'https://github.com/ahammed03/chatbot.git',
             'imageLink': chatBotImg1
         },
         {
             'title': 'TailorFlow',
-            'description': `
-                            TailorFlow streamlines tailor operations by efficiently managing orders and customer data. With its intuitive dashboard, 
-                            tailors can easily track daily orders and analyze trends. Built on the Django framework, it offers a robust and customizable
-                            solution for tailoring businesses, optimizing their workflow and enhancing customer satisfaction.
-                            `,
+            'description': `Django-based operations dashboard for order, customer, and daily workflow management, built as a CRUD-heavy business application with practical reporting needs.`,
             'codeLink': 'https://github.com/ahammed03/TailorFlow1.git',
             'imageLink': tailorFlowImg
         },
@@ -40,27 +36,27 @@ export default function ProjectsSection() {
 
     return (
 
-        <div className='bg-gray-100 flex flex-col gap-5 items-center  p-4'>
-            <h2 className='text-2xl font-bold'>Projects</h2>
+        <section id="projects" className='flex flex-col items-center gap-6 border-b border-zinc-200 bg-white px-5 py-20 dark:border-zinc-800 dark:bg-zinc-950'>
+            <div className="w-full max-w-6xl">
+                <p className="font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">Projects</p>
+                <h2 className='mt-3 text-3xl font-semibold text-zinc-950 dark:text-white md:text-4xl'>Selected Work</h2>
+            </div>
             {
-                projectsData.map((project, index) => (
-                    <ProjectComponent key={index} title={project.title} description={project.description} codeLink={project.codeLink} imageLink={project.imageLink} />
+                projectsData.map((project) => (
+                    <div key={project.title} className="grid w-full max-w-6xl gap-5 rounded-md border border-zinc-200 bg-neutral-50 p-4 dark:border-zinc-800 dark:bg-black md:grid-cols-[0.8fr_1.2fr] md:p-5">
+                        <img className='aspect-video w-full rounded-md object-cover shadow-sm' src={project.imageLink} alt={`${project.title} preview`} />
+                        <div className="space-y-3">
+                            <h3 className="text-xl font-semibold text-zinc-950 dark:text-white">{project.title}</h3>
+                            <p className='leading-7 text-zinc-700 dark:text-zinc-400'>{project.description}</p>
+                            <a href={project.codeLink} className='inline-flex items-center gap-2 font-medium text-zinc-950 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400'>
+                                <GitBranch className="h-5 w-5" aria-hidden="true" />
+                                View code
+                            </a>
+                        </div>
+                    </div>
                 ))
             }
 
-        </div>
-    )
-}
-
-function ProjectComponent({ title, description, codeLink, imageLink }) {
-    return (
-        <div className="flex-col md:flex-row flex md:h-[40vh] lg:h-auto gap-5 items-center w-[80%] p-3 border-b-2 mb-1">
-            <img className='h-[95%] md:w-[40%] rounded-md' src={imageLink} alt="" />
-            <div className="space-y-1.5">
-                <h3 className="text-xl font-semibold text-blue-600">{title}</h3>
-                <p className='text-justify'>{description}</p>
-                <a href={codeLink} className='flex gap-1 items-center font-semibold'><img src={GitHub} alt="GitHubIcon" /></a>
-            </div>
-        </div>
+        </section>
     )
 }
