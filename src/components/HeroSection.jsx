@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react"
+import { memo } from "react"
 import pythonPng from "../assets/icons/icons8-python-48.png"
 import javaScriptPng from "../assets/icons/icons8-javascript-48.png"
 import reactPng from "../assets/icons/icons8-react-40.png"
@@ -8,8 +8,6 @@ import mySQLPng from "../assets/icons/icons8-mysql-50.png"
 import tailwindPng from "../assets/icons/icons8-tailwind-css-48.png"
 import djangoPng from "../assets/icons/icons8-django-50.png"
 
-const titles = ["Software Engineer", "Backend Engineer", "FastAPI Developer", "Data Platform Engineer"]
-
 const metrics = [
     { value: "2+", label: "Years experience" },
     { value: "300M+", label: "Records handled" },
@@ -17,16 +15,6 @@ const metrics = [
 ]
 
 export default function HeroSection() {
-    const [title, setTitle] = useState("Software Engineer")
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setTitle(titles[Math.floor(Math.random() * titles.length)])
-        }, 3000)
-        return () => clearInterval(intervalId)
-    }, [])
-
-
     return (
 
         <section id="home" className="relative min-h-[90vh] overflow-hidden border-b border-zinc-200 bg-neutral-50 px-5 py-14 dark:border-zinc-800 dark:bg-black">
@@ -36,7 +24,7 @@ export default function HeroSection() {
                     <p className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-zinc-600 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">Bengaluru based</p>
                     <div>
                         <h1 className="text-4xl font-semibold leading-tight text-zinc-950 dark:text-white md:text-6xl">Ahammed Ali Shaik</h1>
-                        <h2 className="mt-3 text-2xl font-semibold text-zinc-700 dark:text-zinc-300 md:text-3xl">{title}</h2>
+                        <h2 className="mt-3 text-2xl font-semibold text-zinc-700 dark:text-zinc-300 md:text-3xl">Software Engineer</h2>
                     </div>
                     <p className="text-lg leading-8 text-zinc-700 dark:text-zinc-400">
                         I build production B2B SaaS systems across backend, data pipelines, APIs, browser extensions, and infrastructure. My recent work spans 300M+ record PostgreSQL/Citus systems, Redis Streams workers, Stripe billing, and React product delivery.
