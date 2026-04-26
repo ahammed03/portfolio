@@ -24,28 +24,28 @@ const skills = [
 
 export default function ExperienceSection() {
     return (
-        <section id="experience" className="bg-slate-50 px-5 py-20 dark:bg-slate-950">
+        <section id="experience" className="border-b border-zinc-200 bg-neutral-50 px-5 py-20 dark:border-zinc-800 dark:bg-black">
             <div className="mx-auto max-w-6xl">
-                <p className="font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-cyan-300">Experience</p>
+                <p className="font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">Experience</p>
                 <div className="mt-3 flex flex-col justify-between gap-4 md:flex-row md:items-end">
                     <div>
-                        <h2 className="text-3xl font-bold text-slate-950 dark:text-white md:text-4xl">Kipplo Technologies</h2>
-                        <p className="mt-2 text-lg font-semibold text-slate-700 dark:text-slate-300">Software Engineer - May 2024 to Present</p>
+                        <h2 className="text-3xl font-semibold text-zinc-950 dark:text-white md:text-4xl">Kipplo Technologies</h2>
+                        <p className="mt-2 text-lg font-medium text-zinc-700 dark:text-zinc-400">Software Engineer - May 2024 to Present</p>
                     </div>
-                    <p className="max-w-xl text-slate-600 dark:text-slate-400">B2B account intelligence platform for contact and company data at production scale.</p>
+                    <p className="max-w-xl text-zinc-600 dark:text-zinc-500">B2B account intelligence platform for contact and company data at production scale.</p>
                 </div>
 
                 <div className="mt-8 grid gap-4 md:grid-cols-2">
                     {highlights.map((highlight) => (
-                        <div key={highlight} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                            <p className="leading-7 text-slate-700 dark:text-slate-300">{highlight}</p>
+                        <div key={highlight} className="rounded-md border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
+                            <p className="leading-7 text-zinc-700 dark:text-zinc-400">{highlight}</p>
                         </div>
                     ))}
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-3">
                     {skills.map((skill) => (
-                        <span key={skill} className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">
+                        <span key={skill} className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm font-medium text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200">
                             {skill}
                         </span>
                     ))}

@@ -9,8 +9,10 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background: #f8fafc;
-  color: #111827;
+  background: #fafafa;
+  color: #09090b;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 button,

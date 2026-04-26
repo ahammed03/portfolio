@@ -25,7 +25,7 @@ function App() {
   }
 
   return (
-    <div className={theme === 'dark' ? 'dark min-h-screen bg-slate-950 text-slate-100' : 'min-h-screen bg-slate-50 text-slate-950'}>
+    <div className={theme === 'dark' ? 'dark min-h-screen bg-black text-zinc-100' : 'min-h-screen bg-neutral-50 text-zinc-950'}>
       <Navbar theme={theme} onThemeToggle={toggleTheme}></Navbar>
       <HeroSection></HeroSection>
       <AboutSection></AboutSection>

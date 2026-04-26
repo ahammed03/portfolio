@@ -36,19 +36,19 @@ export default function ProjectsSection() {
 
     return (
 
-        <section id="projects" className='flex flex-col items-center gap-6 bg-white px-5 py-20 dark:bg-slate-900'>
+        <section id="projects" className='flex flex-col items-center gap-6 border-b border-zinc-200 bg-white px-5 py-20 dark:border-zinc-800 dark:bg-zinc-950'>
             <div className="w-full max-w-6xl">
-                <p className="font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-cyan-300">Projects</p>
-                <h2 className='mt-3 text-3xl font-bold text-slate-950 dark:text-white md:text-4xl'>Selected Work</h2>
+                <p className="font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">Projects</p>
+                <h2 className='mt-3 text-3xl font-semibold text-zinc-950 dark:text-white md:text-4xl'>Selected Work</h2>
             </div>
             {
                 projectsData.map((project) => (
-                    <div key={project.title} className="grid w-full max-w-6xl gap-5 rounded-lg border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:grid-cols-[0.8fr_1.2fr] md:p-5">
+                    <div key={project.title} className="grid w-full max-w-6xl gap-5 rounded-md border border-zinc-200 bg-neutral-50 p-4 dark:border-zinc-800 dark:bg-black md:grid-cols-[0.8fr_1.2fr] md:p-5">
                         <img className='aspect-video w-full rounded-md object-cover shadow-sm' src={project.imageLink} alt={`${project.title} preview`} />
                         <div className="space-y-3">
-                            <h3 className="text-xl font-semibold text-slate-950 dark:text-white">{project.title}</h3>
-                            <p className='leading-7 text-slate-700 dark:text-slate-300'>{project.description}</p>
-                            <a href={project.codeLink} className='inline-flex items-center gap-2 font-semibold text-blue-600 hover:text-blue-700 dark:text-cyan-300 dark:hover:text-cyan-200'>
+                            <h3 className="text-xl font-semibold text-zinc-950 dark:text-white">{project.title}</h3>
+                            <p className='leading-7 text-zinc-700 dark:text-zinc-400'>{project.description}</p>
+                            <a href={project.codeLink} className='inline-flex items-center gap-2 font-medium text-zinc-950 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400'>
                                 <img className="h-6 w-6" src={GitHub} alt="" />
                                 View code
                             </a>
