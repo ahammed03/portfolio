@@ -1,5 +1,4 @@
 import { memo, useEffect, useState } from "react"
-import profilePhoto from "../assets/images/Profile.jpg"
 import pythonPng from "../assets/icons/icons8-python-48.png"
 import javaScriptPng from "../assets/icons/icons8-javascript-48.png"
 import reactPng from "../assets/icons/icons8-react-40.png"
@@ -55,8 +54,22 @@ export default function HeroSection() {
                         ))}
                     </div>
                 </div>
-                <div className="rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950">
-                    <img className="aspect-square w-64 rounded-md object-cover md:w-80" src={profilePhoto} alt="Ahammed Ali Shaik" />
+                <div className="w-full max-w-sm rounded-md border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
+                    <p className="text-sm font-medium uppercase tracking-[0.18em] text-zinc-500">Current Focus</p>
+                    <div className="mt-5 space-y-4">
+                        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+                            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Backend</p>
+                            <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">FastAPI, async APIs, background jobs</p>
+                        </div>
+                        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+                            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Data</p>
+                            <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">PostgreSQL, Citus, Redis Streams</p>
+                        </div>
+                        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+                            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Delivery</p>
+                            <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">Docker, CI/CD, production systems</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             

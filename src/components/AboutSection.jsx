@@ -1,13 +1,8 @@
-import AboutMe from "../assets/images/about-me.jpg"
-
 export default function AboutSection() {
 
     return (
         <section id="about" className="w-full border-b border-zinc-200 bg-white px-5 py-20 dark:border-zinc-800 dark:bg-zinc-950" >
-            <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[0.85fr_1.15fr]">
-            <div className="rounded-md border border-zinc-200 bg-neutral-50 p-2 dark:border-zinc-800 dark:bg-black">
-                <img className="aspect-[4/5] w-full rounded-md object-cover" src={AboutMe} alt="Ahammed working on software" />
-            </div>
+            <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr]">
             <div className="flex flex-col gap-4">
                 <p className="font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">About</p>
                 <h2 className="text-3xl font-semibold leading-tight text-zinc-950 dark:text-white md:text-4xl">Software engineer building practical, production-ready systems.</h2>
@@ -21,6 +16,21 @@ export default function AboutSection() {
                     I completed my BTech in Mechanical Engineering from Madanapalle Institute of Technology & Sciences with an 8.65 CGPA, then moved deeply into software through hands-on product engineering.
                 </p>
 
+            </div>
+            <div className="grid gap-3">
+                <div className="rounded-md border border-zinc-200 bg-neutral-50 p-5 dark:border-zinc-800 dark:bg-black">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Location</p>
+                    <p className="mt-2 text-xl font-semibold text-zinc-950 dark:text-white">Bengaluru, India</p>
+                </div>
+                <div className="rounded-md border border-zinc-200 bg-neutral-50 p-5 dark:border-zinc-800 dark:bg-black">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Education</p>
+                    <p className="mt-2 text-xl font-semibold text-zinc-950 dark:text-white">BTech, Mechanical Engineering</p>
+                    <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-500">Madanapalle Institute of Technology & Sciences</p>
+                </div>
+                <div className="rounded-md border border-zinc-200 bg-neutral-50 p-5 dark:border-zinc-800 dark:bg-black">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Product Scope</p>
+                    <p className="mt-2 text-xl font-semibold text-zinc-950 dark:text-white">Backend, data, frontend, infrastructure</p>
+                </div>
             </div>
             </div>
         </section>
