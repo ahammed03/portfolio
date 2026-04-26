@@ -8,25 +8,25 @@ export default function ProjectsSection() {
     const projectsData = [
         {
             'title': 'Kipplo Chrome Extension',
-            'description': `React browser extension with 700+ installs that helps sales teams discover verified B2B contact intelligence directly from LinkedIn profiles, reducing manual prospecting work.`,
+            'description': `React browser extension with 700+ installs that surfaces verified B2B contact intelligence on LinkedIn profiles, connecting frontend workflows with production enrichment APIs.`,
             'codeLink': 'https://github.com/ahammed03',
             'imageLink': githubExplorerImg
         },
         {
             'title': 'GitHub Explorer',
-            'description': `A React application using the GitHub API to explore user profiles, repositories, followers, forks, and project details with a clean searchable interface.`,
+            'description': `React application using the GitHub API to explore user profiles, repositories, followers, forks, and project details with clean API-driven state and search behavior.`,
             'codeLink': 'https://github.com/ahammed03/GithubExplorer.git',
             'imageLink': githubExplorerImg
         }, 
         {
             'title': 'Chatbot using Gemini AI',
-            'description': `A Gemini AI chatbot supported by a Django backend for intelligent responses, system integration, and smoother user communication workflows.`,
+            'description': `Gemini AI chatbot backed by Django, focused on request handling, backend integration, and a practical conversational workflow.`,
             'codeLink': 'https://github.com/ahammed03/chatbot.git',
             'imageLink': chatBotImg1
         },
         {
             'title': 'TailorFlow',
-            'description': `A Django-based tailor operations dashboard for managing orders, customers, daily work, and business trends in one practical workflow.`,
+            'description': `Django-based operations dashboard for order, customer, and daily workflow management, built as a CRUD-heavy business application with practical reporting needs.`,
             'codeLink': 'https://github.com/ahammed03/TailorFlow1.git',
             'imageLink': tailorFlowImg
         },

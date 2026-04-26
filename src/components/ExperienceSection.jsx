@@ -2,8 +2,10 @@ const highlights = [
     "Architected Kipplo's Reveal System for real-time, bulk, API, and CSV-based enrichment across a 300M+ record PostgreSQL database distributed with Citus.",
     "Built high-throughput ingestion pipelines for 1M+ row CSV files using Polars and Pandas with size-based chunking to reduce memory overhead.",
     "Designed Redis Streams workers with consumer groups for ordered, fault-tolerant async enrichment jobs across distributed workers.",
+    "Developed async FastAPI endpoints with idempotency, Redis caching, and negative caching to reduce redundant database reads under concurrent traffic.",
+    "Built email pattern discovery tooling that generates, ranks, verifies, and classifies domain-based email patterns to improve enrichment quality.",
     "Integrated Stripe subscriptions with webhook processing, idempotency, and failure recovery to protect payment events from data loss.",
-    "Shipped a React Chrome Extension with 700+ installs to surface verified B2B contact intelligence directly from LinkedIn profiles.",
+    "Built scraping pipelines with Selenium, proxy rotation, Pandas cleaning, multiprocessing, and bulk PostgreSQL inserts.",
     "Managed deployments for 10+ services across VPS and bare metal servers using Docker, GitLab CI/CD, Nginx, and Apache.",
 ]
 
@@ -12,13 +14,16 @@ const skills = [
     "FastAPI",
     "PostgreSQL",
     "Citus",
+    "PgBouncer",
     "Redis Streams",
     "Polars",
     "Pandas",
+    "Selenium",
     "React",
     "Redux",
     "Stripe",
     "Docker",
+    "pytest",
     "GitLab CI/CD",
 ]
 
@@ -32,7 +37,7 @@ export default function ExperienceSection() {
                         <h2 className="text-3xl font-semibold text-zinc-950 dark:text-white md:text-4xl">Kipplo Technologies</h2>
                         <p className="mt-2 text-lg font-medium text-zinc-700 dark:text-zinc-400">Software Engineer - May 2024 to Present</p>
                     </div>
-                    <p className="max-w-xl text-zinc-600 dark:text-zinc-500">B2B account intelligence platform for contact and company data at production scale.</p>
+                    <p className="max-w-xl text-zinc-600 dark:text-zinc-500">B2B account intelligence platform with contact and company enrichment across 300M+ records.</p>
                 </div>
 
                 <div className="mt-8 grid gap-4 md:grid-cols-2">
