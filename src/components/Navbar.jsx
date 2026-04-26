@@ -11,7 +11,7 @@ export default function Navbar({ theme, onThemeToggle }) {
     return (
         <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/90 px-5 py-4 backdrop-blur-xl dark:border-zinc-800 dark:bg-black/85 md:px-12">
             <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4">
-            <a href="#home" className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-white md:text-xl">Ahammed Ali Shaik</a>
+            <a href="#home" className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-white md:text-xl">Ahammed</a>
             <ul className="hidden items-center gap-7 text-sm font-medium text-zinc-600 dark:text-zinc-400 md:flex">
                 {navItems.map((item) => (
                     <li key={item.href}>

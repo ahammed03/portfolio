@@ -47,9 +47,8 @@ export default function HeroSection() {
             <div className="absolute inset-x-0 top-0 h-px bg-zinc-950/10 dark:bg-white/20"></div>
             <div className="relative mx-auto flex max-w-6xl flex-col-reverse items-center justify-between gap-12 md:min-h-[72vh] md:flex-row">
                 <div className="flex max-w-3xl flex-col items-start gap-6">
-                    <p className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-zinc-600 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">Bengaluru based</p>
                     <div>
-                        <h1 className="text-4xl font-semibold leading-tight text-zinc-950 dark:text-white md:text-6xl">Ahammed Ali Shaik</h1>
+                        <h1 className="text-4xl font-semibold leading-tight text-zinc-950 dark:text-white md:text-6xl">Ahammed</h1>
                         <h2 className="mt-3 text-2xl font-semibold text-zinc-700 dark:text-zinc-300 md:text-3xl">Software Engineer</h2>
                     </div>
                     <p className="text-lg leading-8 text-zinc-700 dark:text-zinc-400">

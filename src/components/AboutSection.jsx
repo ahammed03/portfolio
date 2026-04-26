@@ -7,7 +7,7 @@ export default function AboutSection() {
                 <p className="font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-500">About</p>
                 <h2 className="text-3xl font-semibold leading-tight text-zinc-950 dark:text-white md:text-4xl">Backend-leaning product engineer focused on scale, reliability, and clean execution.</h2>
                 <p className="leading-8 text-zinc-700 dark:text-zinc-400">
-                    I am Ahammed Ali Shaik, a Software Engineer based in Bengaluru with 2+ years of experience building B2B SaaS systems end to end. My strongest work is in backend engineering, data-heavy APIs, distributed task execution, and turning product requirements into systems that are maintainable in production.
+                    I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of experience building B2B SaaS systems end to end. My strongest work is in backend engineering, data-heavy APIs, distributed task execution, and turning product requirements into systems that are maintainable in production.
                 </p>
                 <p className="leading-8 text-zinc-700 dark:text-zinc-400">
                     At Kipplo Technologies, I work across FastAPI services, PostgreSQL/Citus databases, Redis Streams workers, CSV ingestion, email infrastructure, Stripe billing, scraping pipelines, React interfaces, and deployment workflows. I care about API correctness, idempotency, data consistency, observability, and practical performance.
