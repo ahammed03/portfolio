@@ -1,4 +1,4 @@
-import GitHub from '../assets/icons/icons8-github-30.png'
+import { GitBranch } from 'lucide-react'
 import chatBotImg1 from '../assets/projectsImages/ChatBot.png'
 import tailorFlowImg from '../assets/projectsImages/TailorFlow.png'
 import githubExplorerImg from '../assets/projectsImages/githubExplorer.png'
@@ -49,7 +49,7 @@ export default function ProjectsSection() {
                             <h3 className="text-xl font-semibold text-zinc-950 dark:text-white">{project.title}</h3>
                             <p className='leading-7 text-zinc-700 dark:text-zinc-400'>{project.description}</p>
                             <a href={project.codeLink} className='inline-flex items-center gap-2 font-medium text-zinc-950 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400'>
-                                <img className="h-6 w-6" src={GitHub} alt="" />
+                                <GitBranch className="h-5 w-5" aria-hidden="true" />
                                 View code
                             </a>
                         </div>

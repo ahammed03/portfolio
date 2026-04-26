@@ -20,14 +20,16 @@ export default function Navbar({ theme, onThemeToggle }) {
                 ))}
             </ul>
             <button
-                className="rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
+                className="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-100 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:hover:bg-zinc-900"
                 type="button"
                 onClick={onThemeToggle}
                 aria-label="Toggle color theme"
             >
+                {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
                 {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
             </nav>
         </header>
     )
 }
+import { Moon, Sun } from "lucide-react"

@@ -1,18 +1,43 @@
 import { memo } from "react"
-import pythonPng from "../assets/icons/icons8-python-48.png"
-import javaScriptPng from "../assets/icons/icons8-javascript-48.png"
-import reactPng from "../assets/icons/icons8-react-40.png"
-import mangoDBPng from "../assets/icons/icons8-mongodb-48.png"
-import postgressPng from "../assets/icons/icons8-postgresql-48.png"
-import mySQLPng from "../assets/icons/icons8-mysql-50.png"
-import tailwindPng from "../assets/icons/icons8-tailwind-css-48.png"
-import djangoPng from "../assets/icons/icons8-django-50.png"
+import { Braces, Boxes, Code2, Database, GitBranch, Layers3, ServerCog, Workflow, Zap } from "lucide-react"
 
 const metrics = [
     { value: "2+", label: "Years experience" },
     { value: "300M+", label: "Records handled" },
     { value: "1M+", label: "Row CSV pipelines" },
     { value: "10+", label: "Production services" },
+]
+
+const focusAreas = [
+    {
+        label: "Backend",
+        value: "FastAPI, idempotent APIs, background jobs",
+        icon: ServerCog,
+    },
+    {
+        label: "Data",
+        value: "PostgreSQL/Citus, Redis Streams, Polars",
+        icon: Database,
+    },
+    {
+        label: "Systems",
+        value: "Caching, queues, billing, deployments",
+        icon: Workflow,
+    },
+]
+
+const techStack = [
+    { label: "Python", icon: Code2 },
+    { label: "JavaScript", icon: Braces },
+    { label: "Django", icon: Layers3 },
+    { label: "FastAPI", icon: Zap },
+    { label: "Redis", icon: Workflow },
+    { label: "React", icon: Boxes },
+    { label: "Tailwind CSS", icon: Layers3 },
+    { label: "PostgreSQL", icon: Database },
+    { label: "MySQL", icon: Database },
+    { label: "MongoDB", icon: Database },
+    { label: "Git", icon: GitBranch },
 ]
 
 export default function HeroSection() {
@@ -47,18 +72,18 @@ export default function HeroSection() {
                 <div className="w-full max-w-sm rounded-md border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950">
                     <p className="text-sm font-medium uppercase tracking-[0.18em] text-zinc-500">Engineering Focus</p>
                     <div className="mt-5 space-y-4">
-                        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-                            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Backend</p>
-                            <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">FastAPI, idempotent APIs, background jobs</p>
-                        </div>
-                        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-                            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Data</p>
-                            <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">PostgreSQL/Citus, Redis Streams, Polars</p>
-                        </div>
-                        <div className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
-                            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">Systems</p>
-                            <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">Caching, queues, billing, deployments</p>
-                        </div>
+                        {focusAreas.map((area) => {
+                            const Icon = area.icon
+                            return (
+                                <div key={area.label} className="rounded-md border border-zinc-200 p-4 dark:border-zinc-800">
+                                    <div className="flex items-center gap-2">
+                                        <Icon className="h-4 w-4 text-zinc-500" aria-hidden="true" />
+                                        <p className="text-sm font-medium text-zinc-500 dark:text-zinc-500">{area.label}</p>
+                                    </div>
+                                    <p className="mt-1 text-lg font-semibold text-zinc-950 dark:text-white">{area.value}</p>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
@@ -76,16 +101,15 @@ const TechStack = memo(function TechStack(){
         <div className="relative mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-4 border-t border-zinc-200 pt-8 dark:border-zinc-800 md:justify-start">
                 <h2 className="text-lg font-semibold text-zinc-900 dark:text-white">Core Stack</h2>
                 <ul className="flex flex-wrap gap-3">
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={pythonPng} alt="Python" />
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={javaScriptPng} alt="JavaScript" />
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={djangoPng} alt="Django" />
-                    <span className="flex h-12 items-center rounded-md border border-zinc-200 bg-white px-3 text-sm font-semibold text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100">FastAPI</span>
-                    <span className="flex h-12 items-center rounded-md border border-zinc-200 bg-white px-3 text-sm font-semibold text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100">Redis</span>
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={reactPng} alt="React" />
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={tailwindPng} alt="Tailwind CSS" />
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={postgressPng} alt="PostgreSQL" />
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={mySQLPng} alt="MySQL" />
-                    <img className="h-12 w-12 rounded-md border border-zinc-200 bg-white p-2 dark:border-zinc-800 dark:bg-zinc-950" src={mangoDBPng} alt="MongoDB" />
+                    {techStack.map((tech) => {
+                        const Icon = tech.icon
+                        return (
+                            <li key={tech.label} className="flex h-12 items-center gap-2 rounded-md border border-zinc-200 bg-white px-3 text-sm font-semibold text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100">
+                                <Icon className="h-4 w-4 text-zinc-500" aria-hidden="true" />
+                                {tech.label}
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
     )
