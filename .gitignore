@@ -8,6 +8,12 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.next
+out
+coverage
+.turbo
+.vercel
+*.tsbuildinfo
 dist
 dist-ssr
 *.local
@@ -24,3 +30,4 @@ dist-ssr
 *.sw?
 
 node_modules
+About_me.md
