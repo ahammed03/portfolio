@@ -4,31 +4,33 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --max-warnings 0",
-    "preview": "npm run build && wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
+    "@radix-ui/react-separator": "^1.1.9",
+    "@radix-ui/react-tabs": "^1.1.14",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "^25.9.3",
+    "framer-motion": "^12.40.0",
     "lucide-react": "^1.11.0",
+    "next": "^15.4.6",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.40.2",
     "@eslint/js": "^9.39.4",
-    "@tailwindcss/vite": "^4.2.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.7.0",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
-    "tailwindcss": "^4.2.4",
-    "vite": "^6.4.2",
-    "wrangler": "^4.100.0"
+    "tailwindcss": "^4.2.4"
   }
 }
