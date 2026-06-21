@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 const Cal = dynamic(() => import('@calcom/embed-react'), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-650">
+    <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-500">
       Loading calendar widget...
     </div>
   ),
@@ -117,10 +117,10 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mx-auto max-w-2xl relative group rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 shadow-md backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-750"
+          className="mx-auto max-w-2xl relative group rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 shadow-md backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-700/80"
         >
           {/* Top Window Control Bar */}
-          <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-150 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/90 select-none">
+          <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/90 select-none">
             {/* macOS control dots */}
             <div className="flex gap-1.5 items-center">
               <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-rose-400" />
@@ -150,7 +150,7 @@ export default function ContactSection() {
               />
             ) : (
               /* Loading screen before loading Cal widget */
-              <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-650">
+              <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-500">
                 Scroll to view calendar...
               </div>
             )}

@@ -98,7 +98,7 @@ export default function Navbar() {
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a 
-                    className="block rounded-lg px-4 py-2.5 text-sm font-medium text-zinc-650 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+                    className="block rounded-lg px-4 py-2.5 text-sm font-medium text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
                     href={item.href}
                     onClick={closeMenu}
                   >

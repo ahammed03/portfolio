@@ -115,10 +115,10 @@ export default function ProjectsSection() {
                 <div className="space-y-4">
                   {/* Category, Icon & Header */}
                   <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-650 dark:bg-zinc-800 dark:text-zinc-300">
+                    <span className="inline-flex items-center rounded-full bg-zinc-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
                       {project.category}
                     </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-150 bg-zinc-50 text-indigo-600 transition-colors group-hover:bg-indigo-50/50 dark:border-zinc-850 dark:bg-zinc-950 dark:text-indigo-400 dark:group-hover:bg-indigo-950/30">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200/80 bg-zinc-50 text-indigo-600 transition-colors group-hover:bg-indigo-50/50 dark:border-zinc-800/80 dark:bg-zinc-950 dark:text-indigo-400 dark:group-hover:bg-indigo-950/30">
                       <Icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                   </div>
@@ -136,7 +136,7 @@ export default function ProjectsSection() {
                   {/* Highlights Bullet List */}
                   <ul className="space-y-2 pt-2 border-t border-zinc-100 dark:border-zinc-800/60">
                     {project.highlights.map((highlight) => (
-                      <li key={highlight} className="flex items-start gap-2 text-xs font-semibold text-zinc-550 dark:text-zinc-400 leading-relaxed">
+                      <li key={highlight} className="flex items-start gap-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400 leading-relaxed">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500/80 dark:bg-indigo-400/80" />
                         <span>{highlight}</span>
                       </li>
