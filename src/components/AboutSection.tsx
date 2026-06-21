@@ -14,16 +14,21 @@ const skillGroups = [
     items: ['FastAPI', 'Django', 'PostgreSQL (Citus)', 'Redis Streams', 'Elasticsearch', 'PgBouncer'],
   },
   {
+    title: 'Frontend & CMS',
+    items: ['React.js', 'Redux', 'Next.js', 'Payload CMS'],
+  },
+  {
     title: 'Data & Infrastructure',
-    items: ['Polars', 'Pandas', 'Playwright', 'Selenium', 'Docker', 'GitLab CI/CD', 'Nginx/Apache'],
+    items: ['AWS (S3/EC2/RDS)', 'Polars/Pandas', 'Playwright', 'Docker', 'GitLab CI/CD', 'Nginx/Apache'],
   },
 ]
 
 const focusPoints = [
   'Distributed systems & event-driven architecture',
-  'High-throughput data ingestion pipelines (Polars)',
+  'High-throughput ingestion & web scraping (Playwright)',
   'Database sharding & optimization (Citus, Redis)',
   'Stripe subscription billing workflows',
+  'Programmatic SEO & secure directories (Next.js/FastAPI)',
 ]
 
 export default function AboutSection() {
@@ -98,7 +103,7 @@ export default function AboutSection() {
               </Tabs.Trigger>
             </Tabs.List>
 
-            <Tabs.Content value="overview" className="pt-4.5 outline-none">
+            <Tabs.Content value="overview" className="pt-[18px] outline-none">
               <motion.div 
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -106,16 +111,16 @@ export default function AboutSection() {
                 className="space-y-3"
               >
                 <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Location</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Location</p>
                   <p className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Bengaluru, India</p>
                 </div>
                 <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Education</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Education</p>
                   <p className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200 font-sans">BTech, Mechanical Engineering</p>
                   <p className="mt-0.5 text-xs text-zinc-400 dark:text-zinc-500">Madanapalle Institute of Technology & Sciences (CGPA: 8.65)</p>
                 </div>
                 <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Coding Profile</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Coding Profile</p>
                   <a className="mt-1 block text-sm font-semibold text-zinc-800 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50 underline decoration-zinc-200/80 dark:decoration-zinc-800 underline-offset-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 rounded outline-none" href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)">
                     leetcode.com/u/ahammed03
                   </a>
@@ -123,7 +128,7 @@ export default function AboutSection() {
               </motion.div>
             </Tabs.Content>
 
-            <Tabs.Content value="stack" className="pt-4.5 outline-none">
+            <Tabs.Content value="stack" className="pt-[18px] outline-none">
               <motion.div 
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -133,10 +138,10 @@ export default function AboutSection() {
                 {skillGroups.map((group, index) => (
                   <div key={group.title}>
                     {index > 0 ? <Separator.Root className="my-4 h-px bg-zinc-100 dark:bg-zinc-800" decorative /> : null}
-                    <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{group.title}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{group.title}</p>
                     <div className="mt-2.5 flex flex-wrap gap-1.5">
                       {group.items.map((item) => (
-                        <span key={item} className="rounded-md border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-300">
+                        <span key={item} className="badge-pill">
                           {item}
                         </span>
                       ))}
@@ -146,14 +151,14 @@ export default function AboutSection() {
               </motion.div>
             </Tabs.Content>
 
-            <Tabs.Content value="approach" className="pt-4.5 outline-none">
+            <Tabs.Content value="approach" className="pt-[18px] outline-none">
               <motion.div 
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
                 className="space-y-3"
               >
-                <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Working Style</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Working Style</p>
                 <ul className="space-y-3.5 text-sm font-semibold text-zinc-600 dark:text-zinc-400">
                   <li className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
                     I prefer clear boundaries, simple APIs, and production decisions backed by measurable signals.

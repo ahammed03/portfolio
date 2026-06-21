@@ -3,33 +3,31 @@
 import { motion } from 'framer-motion'
 
 const highlights = [
-  'Architected the Reveal System — Kipplo’s core data enrichment engine — enabling real-time, bulk, API, and CSV-based enrichment across a 300M+ record Citus-sharded PostgreSQL database.',
-  'Engineered high-throughput data ingestion pipelines capable of processing 1M+ row CSVs with size-based chunking using Polars and Pandas, reducing memory overhead and failure rate.',
-  'Designed event-driven async task workers leveraging Redis Streams and consumer groups for ordered, fault-tolerant execution of enrichment jobs across distributed workers.',
-  'Developed high-performance async REST APIs in FastAPI with Redis caching and negative caching, cutting redundant database queries and improving response reliability.',
-  'Integrated Stripe subscription billing end-to-end including webhook processing, transactional workflows, and failure recovery — ensuring zero data loss across all payment events.',
-  'Automated email pattern discovery and SMTP delivery infrastructure with SPF, DKIM, DMARC, warm-up scheduling, and provider-level limits to maximize deliverability.',
-  'Shipped Kipplo’s React Chrome Extension with 700+ installs, enabling sales teams to surface verified B2B contact intelligence directly from LinkedIn profiles.',
-  'Built large-scale web scraping pipelines using Selenium in headless mode with proxy rotation, processing data with Pandas and bulk-inserting records via multiprocessing.',
-  'Streamlined production deployments across 10+ services on VPS and bare metal servers using Docker, GitLab CI/CD, Nginx, and Apache, maintaining consistent uptime.'
+  'Architected the Reveal System — Kipplo’s core data enrichment engine — enabling real-time, bulk, API, and CSV-based enrichment across a sharded 300M+ record PostgreSQL database.',
+  'Engineered high-throughput data ingestion pipelines capable of processing 1M+ row CSVs using Polars, and built distributed web scrapers using Playwright with rotating proxy layers.',
+  'Designed event-driven background workers leveraging Redis Streams and consumer groups to ensure ordered, fault-tolerant execution of enrichment queues.',
+  'Developed high-performance async REST APIs in FastAPI with Redis caching and negative caching, implementing secure authentication and user logins.',
+  'Integrated Stripe subscription billing, enforcing strict concurrency locks and idempotency controls to prevent duplicate transactions and ensure billing reliability.',
+  'Built Kipplo’s programmatic SEO Discover pages (discover.kipplo.com) with Next.js, Payload CMS, and FastAPI, integrating strict security validations for public directories.',
+  'Developed and shipped Kipplo’s browser extension (700+ installs) and core web dashboard (app.kipplo.com) using React.js with Redux for state management.',
+  'Engineered a distributed email verification system checking SMTP mailboxes and MX records, configuring SPF/DKIM/DMARC to optimize domain reputation.',
+  'Configured AWS S3 for secure file storage and AWS Route 53 for domain DNS, deploying 10+ Dockerized services across dedicated Ubuntu VPS instances.'
 ]
 
 const skills = [
-  'Python',
-  'FastAPI',
-  'PostgreSQL',
-  'Citus',
-  'Redis Streams',
+  'Python (FastAPI/Django)',
+  'JavaScript/TypeScript',
+  'React.js (Redux)',
+  'Next.js (Payload CMS)',
+  'PostgreSQL (Citus)',
+  'Redis Streams & Cache',
   'Elasticsearch',
-  'Polars/Pandas',
-  'Stripe Payments',
-  'React',
-  'Chrome Extensions',
-  'Docker',
-  'GitLab CI/CD',
-  'Nginx/Apache',
-  'Selenium',
-  'Email Systems (SPF/DKIM)'
+  'AWS (S3/EC2/Route53)',
+  'Playwright Scrapers',
+  'Stripe Integration',
+  'Email Systems (SMTP)',
+  'Docker & GitLab CI/CD',
+  'Nginx & Ubuntu VPS'
 ]
 
 const containerVariants = {
@@ -84,17 +82,17 @@ export default function ExperienceSection() {
             transition={{ duration: 0.6 }}
             className="h-fit rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 backdrop-blur-sm"
           >
-            <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Core Stack</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Core Stack</p>
             <div className="mt-3 flex flex-wrap gap-1.5">
               {skills.map((skill) => (
-                <span key={skill} className="rounded-md border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs font-semibold text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-300">
+                <span key={skill} className="badge-pill shadow-sm">
                   {skill}
                 </span>
               ))}
             </div>
             
-            <div className="mt-6 rounded-lg border border-zinc-100 bg-zinc-50/50 p-4.5 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-              <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">What I Optimize For</p>
+            <div className="mt-6 rounded-lg border border-zinc-100 bg-zinc-50/50 p-[18px] dark:border-zinc-800/50 dark:bg-zinc-900/20">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">What I Optimize For</p>
               <p className="mt-1.5 text-xs font-semibold leading-relaxed text-zinc-500 dark:text-zinc-400">
                 Correctness, throughput, observability, and maintainability across systems that are expected to work under production load.
               </p>
@@ -113,10 +111,10 @@ export default function ExperienceSection() {
               <motion.div 
                 key={highlight} 
                 variants={itemVariants}
-                className="group rounded-xl border border-zinc-200 bg-white p-4.5 shadow-sm transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-zinc-700"
+                className="group rounded-xl border border-zinc-200 bg-white p-[18px] shadow-sm transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-zinc-700"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-zinc-200 bg-zinc-50 text-2xs font-extrabold text-zinc-450 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-500">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-zinc-200 bg-zinc-50 text-[11px] font-extrabold text-zinc-450 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-500">
                     0{index + 1}
                   </div>
                   <p className="text-sm font-semibold leading-relaxed text-zinc-700 dark:text-zinc-400">{highlight}</p>

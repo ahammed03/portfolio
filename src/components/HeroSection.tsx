@@ -6,9 +6,9 @@ import type { LucideIcon } from 'lucide-react'
 
 const metrics = [
   { value: '2+', label: 'Years Experience' },
-  { value: '300M+', label: 'Contact Records' },
-  { value: 'Redis', label: 'Streams Workers' },
-  { value: 'Stripe', label: 'Billing System' },
+  { value: '300M+', label: 'Contacts' },
+  { value: '1M+', label: 'CSV Rows Pipeline' },
+  { value: '700+', label: 'Chrome Installs' },
 ]
 
 type FocusArea = {
@@ -20,17 +20,17 @@ type FocusArea = {
 const focusAreas: FocusArea[] = [
   {
     label: 'Backend',
-    value: 'FastAPI, high-performance REST APIs, Async task workers',
+    value: 'FastAPI APIs, Elasticsearch indexing, Redis Streams queue',
     icon: ServerCog,
   },
   {
     label: 'Data',
-    value: 'PostgreSQL (Citus sharding), Polars, Pandas',
+    value: 'PostgreSQL (Citus sharding), Polars, Playwright scrapers',
     icon: Database,
   },
   {
     label: 'Systems',
-    value: 'Docker, Nginx, GitLab CI/CD, VPS deployments',
+    value: 'Docker, Nginx, Dedicated Ubuntu VPS, AWS Cloud',
     icon: Workflow,
   },
 ]
@@ -43,12 +43,14 @@ type Tech = {
 const techStack: Tech[] = [
   { label: 'Python', icon: Code2 },
   { label: 'FastAPI', icon: Zap },
+  { label: 'Next.js', icon: Layers3 },
   { label: 'Django', icon: Layers3 },
   { label: 'PostgreSQL', icon: Database },
   { label: 'Citus', icon: Database },
   { label: 'Redis Streams', icon: Workflow },
   { label: 'Elasticsearch', icon: Database },
   { label: 'React', icon: Boxes },
+  { label: 'AWS Cloud', icon: ServerCog },
   { label: 'Polars/Pandas', icon: Layers3 },
   { label: 'Playwright', icon: Workflow },
   { label: 'Selenium', icon: Workflow },
@@ -115,10 +117,10 @@ export default function HeroSection() {
           <div className="space-y-4">
             <motion.p variants={itemVariants} className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Ahammed Ali Shaik</motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl font-extrabold leading-[1.1] tracking-tight text-zinc-950 dark:text-white sm:text-5xl md:text-6xl">
-              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Software Engineer</span> building reliable systems for real product load.
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Software Engineer</span> building reliable systems for production-scale workloads.
             </motion.h1>
             <motion.p variants={itemVariants} className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400 md:text-lg">
-              I design <span className="font-semibold text-zinc-900 dark:text-zinc-100">distributed backend systems</span>, <span className="font-semibold text-zinc-900 dark:text-zinc-100">data-heavy APIs</span>, and <span className="font-semibold text-zinc-900 dark:text-zinc-100">observability-focused workflows</span> in Python, FastAPI, PostgreSQL, Redis Streams, and React. The work I ship is optimized for scale, correctness, and production visibility.
+              I design distributed backend architectures, high-performance APIs, and responsive frontends using Python (FastAPI), React, Next.js, and PostgreSQL. The systems I ship are optimized for concurrency, scale, and production reliability.
             </motion.p>
           </div>
           
@@ -137,7 +139,7 @@ export default function HeroSection() {
           
           <motion.div variants={itemVariants} className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4 pt-4">
             {metrics.map((metric) => (
-              <div key={metric.label} className="rounded-xl border border-zinc-200 bg-white/70 p-4.5 shadow-sm backdrop-blur-sm dark:border-zinc-800/80 dark:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 group">
+              <div key={metric.label} className="rounded-xl border border-zinc-200 bg-white/70 p-[18px] shadow-sm backdrop-blur-sm dark:border-zinc-800/80 dark:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 group">
                 <p className="text-xl font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">{metric.value}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{metric.label}</p>
               </div>
@@ -149,7 +151,7 @@ export default function HeroSection() {
           <div className="relative rounded-xl border border-zinc-200 bg-white p-5 shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 backdrop-blur-sm">
             <div className="flex items-center justify-between border-b border-zinc-200/80 pb-4 mb-4 dark:border-zinc-800/80">
               <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Engineering Focus</p>
-              <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-3xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Active</span>
+              <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Active</span>
             </div>
             
             <div className="space-y-3">

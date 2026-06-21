@@ -129,7 +129,7 @@ export default function ContactSection() {
             </div>
             
             {/* Centered Calendar Status */}
-            <div className="flex items-center gap-1.5 text-3xs font-extrabold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+            <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
               cal.com/ahammed-dev
             </div>
             
@@ -165,7 +165,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4.5">Or connect on other networks</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-[18px]">Or connect on other networks</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {socialLinks.map((link, index) => {
               const Icon = link.icon
