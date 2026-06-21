@@ -1,16 +1,83 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import Cal, { getCalApi } from '@calcom/embed-react'
+import React, { useEffect, useState, useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { useTheme } from './theme'
 import { Mail, UserRound, GitBranch, Code2, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion'
 
+// Dynamic import with loading state skeleton to prevent layout shift
+const Cal = dynamic(() => import('@calcom/embed-react'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-500">
+      Loading calendar widget...
+    </div>
+  ),
+})
+
+// Social Links array matching the resume information
+const socialLinks = [
+  {
+    label: 'Email',
+    href: 'mailto:ahammeddev03@gmail.com',
+    value: 'ahammeddev03@gmail.com',
+    icon: Mail,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/ahammed03/',
+    value: 'linkedin.com/in/ahammed03',
+    icon: UserRound,
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/ahammed03',
+    value: 'github.com/ahammed03',
+    icon: GitBranch,
+  },
+  {
+    label: 'LeetCode',
+    href: 'https://leetcode.com/u/ahammed03/',
+    value: 'leetcode.com/u/ahammed03',
+    icon: Code2,
+  },
+]
+
 export default function ContactSection() {
   const { theme } = useTheme()
+  const [hasIntersected, setHasIntersected] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // Only load Cal.com when the section enters the viewport to optimize initial load
+  useEffect(() => {
+    const currentContainer = containerRef.current
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasIntersected(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px' }
+    )
+
+    if (currentContainer) {
+      observer.observe(currentContainer)
+    }
+
+    return () => {
+      if (currentContainer) {
+        observer.disconnect()
+      }
+    }
+  }, [])
 
   useEffect(() => {
-    (async function () {
+    if (!hasIntersected) return
+
+    ;(async function () {
+      const { getCalApi } = await import('@calcom/embed-react')
       const cal = await getCalApi()
       if (cal) {
         cal("ui", {
@@ -21,35 +88,7 @@ export default function ContactSection() {
         })
       }
     })()
-  }, [theme])
-
-  // Social Links array matching the resume information
-  const socialLinks = [
-    {
-      label: 'Email',
-      href: 'mailto:ahammeddev03@gmail.com',
-      value: 'ahammeddev03@gmail.com',
-      icon: Mail,
-    },
-    {
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/ahammed03/',
-      value: 'linkedin.com/in/ahammed03',
-      icon: UserRound,
-    },
-    {
-      label: 'GitHub',
-      href: 'https://github.com/ahammed03',
-      value: 'github.com/ahammed03',
-      icon: GitBranch,
-    },
-    {
-      label: 'LeetCode',
-      href: 'https://leetcode.com/u/ahammed03/',
-      value: 'leetcode.com/u/ahammed03',
-      icon: Code2,
-    },
-  ]
+  }, [theme, hasIntersected])
 
   return (
     <section id="contact" className="relative px-4 py-24 bg-zinc-50/40 dark:bg-zinc-950 overflow-hidden border-t border-zinc-200/60 dark:border-zinc-800/40">
@@ -78,10 +117,10 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mx-auto max-w-2xl relative group rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 shadow-md backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-750"
+          className="mx-auto max-w-2xl relative group rounded-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-zinc-900/60 shadow-md backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-700/80"
         >
           {/* Top Window Control Bar */}
-          <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-150 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/90 select-none">
+          <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/90 select-none">
             {/* macOS control dots */}
             <div className="flex gap-1.5 items-center">
               <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-rose-400" />
@@ -90,7 +129,7 @@ export default function ContactSection() {
             </div>
             
             {/* Centered Calendar Status */}
-            <div className="flex items-center gap-1.5 text-3xs font-extrabold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+            <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
               cal.com/ahammed-dev
             </div>
             
@@ -99,20 +138,22 @@ export default function ContactSection() {
           </div>
 
           {/* Cal.com Embed Screen */}
-          <div className="w-full min-h-[500px] bg-white dark:bg-zinc-950/80 relative">
-            {/* Subtle loading fallback layout */}
-            <div className="absolute inset-0 flex items-center justify-center -z-10 bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-600">
-              Loading calendar widget...
-            </div>
-            
-            <Cal
-              calLink="ahammed-dev"
-              style={{ width: "100%", height: "100%", minHeight: "500px" }}
-              config={{ 
-                layout: "month_view",
-                theme: theme === 'dark' ? 'dark' : 'light'
-              }}
-            />
+          <div ref={containerRef} className="w-full min-h-[500px] bg-white dark:bg-zinc-950/80 relative">
+            {hasIntersected ? (
+              <Cal
+                calLink="ahammed-dev"
+                style={{ width: "100%", height: "100%", minHeight: "500px" }}
+                config={{ 
+                  layout: "month_view",
+                  theme: theme === 'dark' ? 'dark' : 'light'
+                }}
+              />
+            ) : (
+              /* Loading screen before loading Cal widget */
+              <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 dark:bg-zinc-950 font-semibold text-xs text-zinc-400 dark:text-zinc-500">
+                Scroll to view calendar...
+              </div>
+            )}
           </div>
         </motion.div>
 
@@ -124,7 +165,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4.5">Or connect on other networks</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-[18px]">Or connect on other networks</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {socialLinks.map((link, index) => {
               const Icon = link.icon
@@ -134,11 +175,12 @@ export default function ContactSection() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Connect with Ahammed via ${link.label} (opens in a new tab)`}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: 0.35 + index * 0.08 }}
-                  className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2 text-xs font-bold text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
+                  className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2 text-xs font-bold text-zinc-700 shadow-xs hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
                 >
                   <Icon className="h-4 w-4 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
                   <span>{link.label}</span>

@@ -1,14 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Braces, Boxes, Code2, Database, GitBranch, Layers3, ServerCog, Workflow, Zap } from 'lucide-react'
+import { ArrowRight, Boxes, Code2, Database, GitBranch, Layers3, ServerCog, Workflow, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 const metrics = [
-  { value: '2+', label: 'Years Experience' },
-  { value: '300M+', label: 'Contact Records' },
-  { value: 'Redis', label: 'Streams Workers' },
-  { value: 'Stripe', label: 'Billing System' },
+  { value: '2+', label: 'Years of Production-Scale Experience' },
+  { value: '300M+', label: 'Contacts' },
+  { value: '1M+', label: 'CSV Rows Pipeline' },
+  { value: '700+', label: 'Chrome Installs' },
 ]
 
 type FocusArea = {
@@ -20,17 +20,17 @@ type FocusArea = {
 const focusAreas: FocusArea[] = [
   {
     label: 'Backend',
-    value: 'FastAPI, high-performance REST APIs, Async task workers',
+    value: 'FastAPI APIs, Elasticsearch indexing, Redis Streams queue',
     icon: ServerCog,
   },
   {
     label: 'Data',
-    value: 'PostgreSQL (Citus sharding), Polars, Pandas',
+    value: 'PostgreSQL (Citus sharding), Polars, Playwright scrapers',
     icon: Database,
   },
   {
     label: 'Systems',
-    value: 'Docker, Nginx, GitLab CI/CD, VPS deployments',
+    value: 'Docker, Nginx, Dedicated Ubuntu VPS, AWS Cloud',
     icon: Workflow,
   },
 ]
@@ -40,7 +40,7 @@ type Tech = {
   icon: LucideIcon
 }
 
-const techStack: Tech[] = [
+const coreStack: Tech[] = [
   { label: 'Python', icon: Code2 },
   { label: 'FastAPI', icon: Zap },
   { label: 'Django', icon: Layers3 },
@@ -48,12 +48,17 @@ const techStack: Tech[] = [
   { label: 'Citus', icon: Database },
   { label: 'Redis Streams', icon: Workflow },
   { label: 'Elasticsearch', icon: Database },
+  { label: 'Next.js', icon: Layers3 },
   { label: 'React', icon: Boxes },
+]
+
+const toolingStack: Tech[] = [
+  { label: 'Docker', icon: ServerCog },
+  { label: 'GitLab CI/CD', icon: GitBranch },
+  { label: 'AWS Cloud', icon: ServerCog },
   { label: 'Polars/Pandas', icon: Layers3 },
   { label: 'Playwright', icon: Workflow },
   { label: 'Selenium', icon: Workflow },
-  { label: 'Docker', icon: ServerCog },
-  { label: 'GitLab CI/CD', icon: GitBranch },
   { label: 'Stripe', icon: Zap },
 ]
 
@@ -115,30 +120,30 @@ export default function HeroSection() {
           <div className="space-y-4">
             <motion.p variants={itemVariants} className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Ahammed Ali Shaik</motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl font-extrabold leading-[1.1] tracking-tight text-zinc-950 dark:text-white sm:text-5xl md:text-6xl">
-              Software engineer building reliable systems for real product load.
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Software Engineer</span> building reliable systems for production-scale workloads.
             </motion.h1>
             <motion.p variants={itemVariants} className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400 md:text-lg">
-              I design distributed backend systems, data-heavy APIs, and observability-focused workflows in Python, FastAPI, PostgreSQL, Redis Streams, and React. The work I ship is optimized for scale, correctness, and production visibility.
+              I design distributed backend architectures, high-performance APIs, and responsive frontends using Python (FastAPI), React, Next.js, and PostgreSQL. The systems I ship are optimized for concurrency, scale, and production reliability.
             </motion.p>
           </div>
           
           <motion.div variants={itemVariants} className="flex flex-wrap gap-3 pt-2">
-            <a href="#contact" className="inline-flex h-11 items-center justify-center rounded-lg bg-zinc-950 px-5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 transition-colors">
+            <a href="#contact" className="inline-flex h-11 items-center justify-center rounded-lg bg-zinc-950 px-5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98] dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none">
               Book Intro Call
-              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="ml-2 h-4 w-4 animate-pulse" aria-hidden="true" />
             </a>
-            <a href="#projects" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+            <a href="#projects" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.98] dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none">
               Explore Projects
             </a>
-            <a href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+            <a href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.98] dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none">
               LeetCode
             </a>
           </motion.div>
           
           <motion.div variants={itemVariants} className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4 pt-4">
             {metrics.map((metric) => (
-              <div key={metric.label} className="rounded-xl border border-zinc-200 bg-white/70 p-4.5 shadow-sm backdrop-blur-sm dark:border-zinc-800/80 dark:bg-zinc-900/40">
-                <p className="text-xl font-bold text-zinc-900 dark:text-zinc-50">{metric.value}</p>
+              <div key={metric.label} className="rounded-xl border border-zinc-200 bg-white/70 p-[18px] shadow-sm backdrop-blur-sm dark:border-zinc-800/80 dark:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 group">
+                <p className="text-xl font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">{metric.value}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{metric.label}</p>
               </div>
             ))}
@@ -149,7 +154,7 @@ export default function HeroSection() {
           <div className="relative rounded-xl border border-zinc-200 bg-white p-5 shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 backdrop-blur-sm">
             <div className="flex items-center justify-between border-b border-zinc-200/80 pb-4 mb-4 dark:border-zinc-800/80">
               <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Engineering Focus</p>
-              <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-3xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Active</span>
+              <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Hiring? Let's Talk</span>
             </div>
             
             <div className="space-y-3">
@@ -170,7 +175,7 @@ export default function HeroSection() {
             <div className="mt-4 rounded-lg border border-zinc-100 bg-zinc-50/50 p-3.5 dark:border-zinc-800/50 dark:bg-zinc-900/20">
               <p className="text-xs font-bold text-zinc-400 uppercase tracking-wider dark:text-zinc-500">Current Focus</p>
               <p className="mt-1.5 text-xs font-medium leading-relaxed text-zinc-500 dark:text-zinc-400">
-                Building systems that stay correct under concurrency, expose clear telemetry, and keep data workflows fast at scale.
+                Optimizing systems for high concurrency, real-time telemetry, and performant data processing at scale.
               </p>
             </div>
           </div>
@@ -188,20 +193,37 @@ function TechStack() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="relative mx-auto mt-12 flex max-w-7xl flex-wrap items-center justify-center gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80 md:justify-start"
+      className="relative mx-auto mt-12 flex flex-col gap-6 max-w-7xl border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80"
     >
-      <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Core Stack</h2>
-      <ul className="flex flex-wrap gap-2">
-        {techStack.map((tech) => {
-          const Icon = tech.icon
-          return (
-            <li key={tech.label} className="flex h-9 items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-semibold text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
-              <Icon className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
-              {tech.label}
-            </li>
-          )
-        })}
-      </ul>
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 md:w-28 md:shrink-0">Core Stack</h2>
+        <ul className="flex flex-wrap gap-2">
+          {coreStack.map((tech) => {
+            const Icon = tech.icon
+            return (
+              <li key={tech.label} className="flex h-9 items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-semibold text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
+                <Icon className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+                {tech.label}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 md:w-28 md:shrink-0">Tooling</h2>
+        <ul className="flex flex-wrap gap-2">
+          {toolingStack.map((tech) => {
+            const Icon = tech.icon
+            return (
+              <li key={tech.label} className="flex h-8 items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50/50 px-2.5 text-[11px] font-semibold text-zinc-600 dark:border-zinc-800/50 dark:bg-zinc-900/10 dark:text-zinc-400">
+                <Icon className="h-3 w-3 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+                {tech.label}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </motion.div>
   )
 }
