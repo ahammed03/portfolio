@@ -51,7 +51,7 @@ export default function AboutSection() {
             </h2>
           </div>
           <p className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">
-            I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of experience. I believe code is only as good as its production reliability, test coverage, and telemetry. Having worked in a fast-paced startup (Kipplo), I collaborate closely with product managers, designers, and developers to ship features that work correctly under concurrency, remain observable in real-time, and scale with direct business value.
+            I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of production-scale experience. I believe code is only as good as its production reliability, test coverage, and telemetry. Having worked in a fast-paced startup (Kipplo), I collaborate closely with product managers, designers, and developers to ship features that work correctly under concurrency, remain observable in real-time, and scale with direct business value.
           </p>
           <p className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">
             My work spans building concurrent Stripe billing engines, Citus-sharded PostgreSQL databases, and programmatic SEO directories. I focus on high-throughput data pipelines, test-driven backend reliability, and distributed tracing to ensure operational visibility at scale.

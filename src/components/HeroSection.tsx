@@ -5,7 +5,7 @@ import { ArrowRight, Boxes, Code2, Database, GitBranch, Layers3, ServerCog, Work
 import type { LucideIcon } from 'lucide-react'
 
 const metrics = [
-  { value: '2+', label: 'Years Experience' },
+  { value: '2+', label: 'Years of Production-Scale Experience' },
   { value: '300M+', label: 'Contacts' },
   { value: '1M+', label: 'CSV Rows Pipeline' },
   { value: '700+', label: 'Chrome Installs' },
@@ -40,22 +40,25 @@ type Tech = {
   icon: LucideIcon
 }
 
-const techStack: Tech[] = [
+const coreStack: Tech[] = [
   { label: 'Python', icon: Code2 },
   { label: 'FastAPI', icon: Zap },
-  { label: 'Next.js', icon: Layers3 },
   { label: 'Django', icon: Layers3 },
   { label: 'PostgreSQL', icon: Database },
   { label: 'Citus', icon: Database },
   { label: 'Redis Streams', icon: Workflow },
   { label: 'Elasticsearch', icon: Database },
+  { label: 'Next.js', icon: Layers3 },
   { label: 'React', icon: Boxes },
+]
+
+const toolingStack: Tech[] = [
+  { label: 'Docker', icon: ServerCog },
+  { label: 'GitLab CI/CD', icon: GitBranch },
   { label: 'AWS Cloud', icon: ServerCog },
   { label: 'Polars/Pandas', icon: Layers3 },
   { label: 'Playwright', icon: Workflow },
   { label: 'Selenium', icon: Workflow },
-  { label: 'Docker', icon: ServerCog },
-  { label: 'GitLab CI/CD', icon: GitBranch },
   { label: 'Stripe', icon: Zap },
 ]
 
@@ -190,20 +193,37 @@ function TechStack() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="relative mx-auto mt-12 flex max-w-7xl flex-wrap items-center justify-center gap-4 border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80 md:justify-start"
+      className="relative mx-auto mt-12 flex flex-col gap-6 max-w-7xl border-t border-zinc-200/80 pt-8 dark:border-zinc-800/80"
     >
-      <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Core Stack</h2>
-      <ul className="flex flex-wrap gap-2">
-        {techStack.map((tech) => {
-          const Icon = tech.icon
-          return (
-            <li key={tech.label} className="flex h-9 items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-semibold text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
-              <Icon className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
-              {tech.label}
-            </li>
-          )
-        })}
-      </ul>
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 md:w-28 md:shrink-0">Core Stack</h2>
+        <ul className="flex flex-wrap gap-2">
+          {coreStack.map((tech) => {
+            const Icon = tech.icon
+            return (
+              <li key={tech.label} className="flex h-9 items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-semibold text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200">
+                <Icon className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+                {tech.label}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+
+      <div className="flex flex-col gap-3 md:flex-row md:items-center">
+        <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 md:w-28 md:shrink-0">Tooling</h2>
+        <ul className="flex flex-wrap gap-2">
+          {toolingStack.map((tech) => {
+            const Icon = tech.icon
+            return (
+              <li key={tech.label} className="flex h-8 items-center gap-1.5 rounded-lg border border-zinc-200 bg-zinc-50/50 px-2.5 text-[11px] font-semibold text-zinc-600 dark:border-zinc-800/50 dark:bg-zinc-900/10 dark:text-zinc-400">
+                <Icon className="h-3 w-3 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+                {tech.label}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </motion.div>
   )
 }

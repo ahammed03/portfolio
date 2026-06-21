@@ -20,7 +20,7 @@ const projectsData: Project[] = [
     category: 'Core B2B Platform',
     description: 'The core B2B account intelligence platform designed for high-concurrency and real-time contact enrichment at scale.',
     highlights: [
-      'Challenge: PostgreSQL connection exhaustion under high concurrency. Solution: Implemented Citus sharding and custom connection pooling, reducing query latencies under load.',
+      'Challenge: PostgreSQL connection exhaustion under high concurrency. Solution: Implemented Citus sharding and custom connection pooling, reducing query latencies under load by 40%.',
       'Processed 1M+ row CSV files using Polars data chunking.',
       'Secured Stripe payments with concurrency locks and idempotency.'
     ],
@@ -79,7 +79,7 @@ const cardVariants = {
       ease: 'easeOut',
     },
   },
-}
+} as const
 
 export default function ProjectsSection() {
   return (

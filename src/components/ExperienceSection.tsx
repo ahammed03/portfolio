@@ -75,7 +75,7 @@ const itemVariants = {
       ease: 'easeOut',
     },
   },
-}
+} as const
 
 export default function ExperienceSection() {
   return (
