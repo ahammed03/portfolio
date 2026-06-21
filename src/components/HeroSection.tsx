@@ -151,7 +151,7 @@ export default function HeroSection() {
           <div className="relative rounded-xl border border-zinc-200 bg-white p-5 shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 backdrop-blur-sm">
             <div className="flex items-center justify-between border-b border-zinc-200/80 pb-4 mb-4 dark:border-zinc-800/80">
               <p className="text-xs font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Engineering Focus</p>
-              <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Active</span>
+              <span className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">Hiring? Let's Talk</span>
             </div>
             
             <div className="space-y-3">
@@ -172,7 +172,7 @@ export default function HeroSection() {
             <div className="mt-4 rounded-lg border border-zinc-100 bg-zinc-50/50 p-3.5 dark:border-zinc-800/50 dark:bg-zinc-900/20">
               <p className="text-xs font-bold text-zinc-400 uppercase tracking-wider dark:text-zinc-500">Current Focus</p>
               <p className="mt-1.5 text-xs font-medium leading-relaxed text-zinc-500 dark:text-zinc-400">
-                Building systems that stay correct under concurrency, expose clear telemetry, and keep data workflows fast at scale.
+                Optimizing systems for high concurrency, real-time telemetry, and performant data processing at scale.
               </p>
             </div>
           </div>

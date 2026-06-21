@@ -2,16 +2,39 @@
 
 import { motion } from 'framer-motion'
 
-const highlights = [
-  'Architected the Reveal System — Kipplo’s core data enrichment engine — enabling real-time, bulk, API, and CSV-based enrichment across a sharded 300M+ record PostgreSQL database.',
-  'Engineered high-throughput data ingestion pipelines capable of processing 1M+ row CSVs using Polars, and built distributed web scrapers using Playwright with rotating proxy layers.',
-  'Designed event-driven background workers leveraging Redis Streams and consumer groups to ensure ordered, fault-tolerant execution of enrichment queues.',
-  'Developed high-performance async REST APIs in FastAPI with Redis caching and negative caching, implementing secure authentication and user logins.',
-  'Integrated Stripe subscription billing, enforcing strict concurrency locks and idempotency controls to prevent duplicate transactions and ensure billing reliability.',
-  'Built Kipplo’s programmatic SEO Discover pages (discover.kipplo.com) with Next.js, Payload CMS, and FastAPI, integrating strict security validations for public directories.',
-  'Developed and shipped Kipplo’s browser extension (700+ installs) and core web dashboard (app.kipplo.com) using React.js with Redux for state management.',
-  'Engineered a distributed email verification system checking SMTP mailboxes and MX records, configuring SPF/DKIM/DMARC to optimize domain reputation.',
-  'Configured AWS S3 for secure file storage and AWS Route 53 for domain DNS, deploying 10+ Dockerized services across dedicated Ubuntu VPS instances.'
+type HighlightGroup = {
+  title: string
+  points: string[]
+}
+
+const experiencePillars: HighlightGroup[] = [
+  {
+    title: 'Core Architecture & Distributed Systems',
+    points: [
+      'Architected the Reveal System — Kipplo’s core data enrichment engine — enabling real-time, bulk, API, and CSV-based enrichment across a sharded 300M+ record PostgreSQL database.',
+      'Designed event-driven background workers leveraging Redis Streams and consumer groups to ensure ordered, fault-tolerant execution of enrichment queues.',
+      'Developed high-performance async REST APIs in FastAPI with Redis caching and negative caching, implementing secure authentication and user logins.',
+      'Integrated Stripe subscription billing, enforcing strict concurrency locks and idempotency controls to prevent duplicate transactions and ensure billing reliability.'
+    ]
+  },
+  {
+    title: 'Data Pipelines & Web Scraping',
+    points: [
+      'Engineered high-throughput data ingestion pipelines capable of processing 1M+ row CSVs using Polars, and built distributed web scrapers using Playwright with rotating proxy layers.',
+      'Engineered a distributed email verification system checking SMTP mailboxes and MX records, configuring SPF/DKIM/DMARC to optimize domain reputation.'
+    ]
+  },
+  {
+    title: 'Product Engineering & Operations',
+    points: [
+      'Built Kipplo’s programmatic SEO Discover pages (discover.kipplo.com) with Next.js, Payload CMS, and FastAPI, integrating strict security validations for public directories.',
+      'Developed and shipped Kipplo’s browser extension (700+ installs) and core web dashboard (app.kipplo.com) using React.js with Redux for state management.',
+      'Enforced reliability by implementing comprehensive integration and unit testing suites in Pytest, ensuring zero-downtime deployments for critical APIs.',
+      'Collaborated closely with product managers and frontend developers to define technical specifications, translate user stories into robust databases, and ship cohesive B2B products.',
+      'Instrumented distributed tracing and APM using OpenTelemetry and self-hosted SigNoz, cutting production debugging times and tracking latency bottlenecks.',
+      'Configured AWS S3 for secure file storage and AWS Route 53 for domain DNS, deploying 10+ Dockerized services across dedicated Ubuntu VPS instances.'
+    ]
+  }
 ]
 
 const skills = [
@@ -25,6 +48,8 @@ const skills = [
   'AWS (S3/EC2/Route53)',
   'Playwright Scrapers',
   'Stripe Integration',
+  'Pytest (TDD)',
+  'OpenTelemetry (SigNoz)',
   'Email Systems (SMTP)',
   'Docker & GitLab CI/CD',
   'Nginx & Ubuntu VPS'
@@ -35,7 +60,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
+      staggerChildren: 0.1,
     },
   },
 }
@@ -99,26 +124,31 @@ export default function ExperienceSection() {
             </div>
           </motion.div>
 
-          {/* Right: Highlights List with staggered entry on scroll */}
+          {/* Right: Highlights List grouped by pillars */}
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="space-y-3"
+            className="space-y-4"
           >
-            {highlights.map((highlight, index) => (
+            {experiencePillars.map((pillar) => (
               <motion.div 
-                key={highlight} 
+                key={pillar.title} 
                 variants={itemVariants}
-                className="group rounded-xl border border-zinc-200 bg-white p-[18px] shadow-sm transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-zinc-700"
+                className="group rounded-xl border border-zinc-200 bg-white p-[18px] shadow-sm transition-all duration-300 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-zinc-700 dark:hover:shadow-zinc-950/50"
               >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-zinc-200 bg-zinc-50 text-[11px] font-extrabold text-zinc-450 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-500">
-                    0{index + 1}
-                  </div>
-                  <p className="text-sm font-semibold leading-relaxed text-zinc-700 dark:text-zinc-400">{highlight}</p>
-                </div>
+                <h3 className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 border-b border-zinc-100 dark:border-zinc-800/80 pb-2 mb-3">
+                  {pillar.title}
+                </h3>
+                <ul className="space-y-3.5 mt-3">
+                  {pillar.points.map((point, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500/30 dark:bg-indigo-400/30" />
+                      <p className="text-sm font-semibold leading-relaxed text-zinc-700 dark:text-zinc-400">{point}</p>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </motion.div>

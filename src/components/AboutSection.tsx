@@ -47,14 +47,14 @@ export default function AboutSection() {
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">About Me</p>
             <h2 className="mt-3 text-3xl font-extrabold leading-tight text-zinc-950 dark:text-white md:text-4xl">
-              Focused on backend systems that need to be dependable, observable, and easy to scale.
+              Building reliable systems that solve business problems and scale under production load.
             </h2>
           </div>
           <p className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">
-            I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of experience building production systems end to end. My strongest work is in Python, FastAPI, Redis Streams, PostgreSQL, and API design for systems that need to stay correct under real load.
+            I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of experience. I believe code is only as good as its production reliability, test coverage, and telemetry. Having worked in a fast-paced startup (Kipplo), I collaborate closely with product managers, designers, and developers to ship features that work correctly under concurrency, remain observable in real-time, and scale with direct business value.
           </p>
           <p className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">
-            My recent work includes distributed email verification, large-scale data processing, and observability with OpenTelemetry and SigNoz. I care about reliability, fault tolerance, data consistency, and practical performance improvements that show up in production.
+            My work spans building concurrent Stripe billing engines, Citus-sharded PostgreSQL databases, and programmatic SEO directories. I focus on high-throughput data pipelines, test-driven backend reliability, and distributed tracing to ensure operational visibility at scale.
           </p>
           
           <div className="grid gap-3 pt-2 sm:grid-cols-2">
@@ -124,6 +124,10 @@ export default function AboutSection() {
                   <a className="mt-1 block text-sm font-semibold text-zinc-800 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50 underline decoration-zinc-200/80 dark:decoration-zinc-800 underline-offset-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 rounded outline-none" href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)">
                     leetcode.com/u/ahammed03
                   </a>
+                </div>
+                <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Currently Exploring</p>
+                  <p className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Rust (for low-latency systems) & AWS Serverless (for scale-to-zero compute)</p>
                 </div>
               </motion.div>
             </Tabs.Content>

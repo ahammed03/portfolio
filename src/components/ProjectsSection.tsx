@@ -20,8 +20,8 @@ const projectsData: Project[] = [
     category: 'Core B2B Platform',
     description: 'The core B2B account intelligence platform designed for high-concurrency and real-time contact enrichment at scale.',
     highlights: [
+      'Challenge: PostgreSQL connection exhaustion under high concurrency. Solution: Implemented Citus sharding and custom connection pooling, reducing query latencies under load.',
       'Processed 1M+ row CSV files using Polars data chunking.',
-      'Queried a sharded 300M+ record PostgreSQL database with Citus.',
       'Secured Stripe payments with concurrency locks and idempotency.'
     ],
     link: 'https://app.kipplo.com?utm_source=ahammed.xyz',
@@ -34,8 +34,8 @@ const projectsData: Project[] = [
     category: 'Browser Utility',
     description: 'React-based browser extension surfacing verified B2B contact intelligence directly on LinkedIn profiles.',
     highlights: [
+      'Challenge: LinkedIn profile DOM parsing breaking due to dynamic page updates. Solution: Built resilient mutation observer trees combined with Redux client caching to reduce API overhead.',
       'Grew active customer base to 700+ installs in production.',
-      'Constructed robust local state management using Redux.',
       'Integrated asynchronous backend pipelines for rapid search.'
     ],
     link: 'https://chromewebstore.google.com/detail/kipplo-an-ai-powered-inte/mfilcfngbefbaeggcglepgdklgdffeih?utm_source=ahammed.xyz',
@@ -48,8 +48,8 @@ const projectsData: Project[] = [
     category: 'Programmatic SEO Directory',
     description: 'Public-facing B2B directory indexing companies and professionals for search engine optimization.',
     highlights: [
+      'Challenge: Protecting public directories against scraping abuses while maintaining fast page speed. Solution: Implemented reverse-proxy caching layers, IP-based rate limiting, and FastAPI validations.',
       'Engineered dynamic pages using Next.js, Payload CMS, and FastAPI.',
-      'Added strict validation to secure public directories.',
       'Optimized page loads and caching using Nginx reverse proxies.'
     ],
     link: 'https://discover.kipplo.com?utm_source=ahammed.xyz',
