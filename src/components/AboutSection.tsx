@@ -79,19 +79,19 @@ export default function AboutSection() {
           <Tabs.Root defaultValue="overview" className="w-full">
             <Tabs.List className="flex gap-1 border-b border-zinc-200 pb-2.5 dark:border-zinc-800">
               <Tabs.Trigger 
-                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200" 
+                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none" 
                 value="overview"
               >
                 Overview
               </Tabs.Trigger>
               <Tabs.Trigger 
-                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200" 
+                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none" 
                 value="stack"
               >
                 Stack
               </Tabs.Trigger>
               <Tabs.Trigger 
-                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200" 
+                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none" 
                 value="approach"
               >
                 Approach
@@ -116,7 +116,7 @@ export default function AboutSection() {
                 </div>
                 <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
                   <p className="text-3xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Coding Profile</p>
-                  <a className="mt-1 block text-sm font-semibold text-zinc-800 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50 underline decoration-zinc-200/80 dark:decoration-zinc-800 underline-offset-4 cursor-pointer" href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer">
+                  <a className="mt-1 block text-sm font-semibold text-zinc-800 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50 underline decoration-zinc-200/80 dark:decoration-zinc-800 underline-offset-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 rounded outline-none" href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)">
                     leetcode.com/u/ahammed03
                   </a>
                 </div>

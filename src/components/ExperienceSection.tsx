@@ -32,6 +32,28 @@ const skills = [
   'Email Systems (SPF/DKIM)'
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: 'easeOut',
+    },
+  },
+}
+
 export default function ExperienceSection() {
   return (
     <section id="experience" className="border-b border-zinc-200/80 px-4 py-20 dark:border-zinc-800/80 md:px-8 bg-white dark:bg-zinc-950">
@@ -80,14 +102,17 @@ export default function ExperienceSection() {
           </motion.div>
 
           {/* Right: Highlights List with staggered entry on scroll */}
-          <div className="space-y-3">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="space-y-3"
+          >
             {highlights.map((highlight, index) => (
               <motion.div 
                 key={highlight} 
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
+                variants={itemVariants}
                 className="group rounded-xl border border-zinc-200 bg-white p-4.5 shadow-sm transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60 dark:hover:border-zinc-700"
               >
                 <div className="flex items-start gap-4">
@@ -98,7 +123,7 @@ export default function ExperienceSection() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -14,24 +14,24 @@ type Project = {
   imageLink: StaticImageData
 }
 
-export default function ProjectsSection() {
-  const projectsData: Project[] = [
-    {
-      title: 'Kipplo Web Application',
-      description: 'The core web platform for B2B account intelligence and contact enrichment. Handles real-time, bulk searches and CSV processing across a sharded 300M+ contact database. Powers enrichment pipelines with Polars, async task workers, and end-to-end Stripe billing integrations.',
-      link: 'https://app.kipplo.com?utm_source=ahammed.xyz',
-      linkLabel: 'Open Application',
-      imageLink: kipploWebImg,
-    },
-    {
-      title: 'Kipplo Chrome Extension',
-      description: 'React-based browser extension with 700+ installs that surfaces verified B2B contact intelligence directly on LinkedIn profiles, connecting sales workflows with production enrichment APIs.',
-      link: 'https://chromewebstore.google.com/detail/kipplo-an-ai-powered-inte/mfilcfngbefbaeggcglepgdklgdffeih?utm_source=ahammed.xyz',
-      linkLabel: 'View on Web Store',
-      imageLink: kipploExtImg,
-    },
-  ]
+const projectsData: Project[] = [
+  {
+    title: 'Kipplo Web Application',
+    description: 'The core web platform for B2B account intelligence and contact enrichment. Handles real-time, bulk searches and CSV processing across a sharded 300M+ contact database. Powers enrichment pipelines with Polars, async task workers, and end-to-end Stripe billing integrations.',
+    link: 'https://app.kipplo.com?utm_source=ahammed.xyz',
+    linkLabel: 'Open Application',
+    imageLink: kipploWebImg,
+  },
+  {
+    title: 'Kipplo Chrome Extension',
+    description: 'React-based browser extension with 700+ installs that surfaces verified B2B contact intelligence directly on LinkedIn profiles, connecting sales workflows with production enrichment APIs.',
+    link: 'https://chromewebstore.google.com/detail/kipplo-an-ai-powered-inte/mfilcfngbefbaeggcglepgdklgdffeih?utm_source=ahammed.xyz',
+    linkLabel: 'View on Web Store',
+    imageLink: kipploExtImg,
+  },
+]
 
+export default function ProjectsSection() {
   return (
     <section id="projects" className="border-b border-zinc-200/80 px-4 py-20 dark:border-zinc-800/80 md:px-8 bg-zinc-50/30 dark:bg-zinc-950/20">
       <div className="mx-auto max-w-7xl">
@@ -98,7 +98,6 @@ export default function ProjectsSection() {
                           alt={`${project.title} preview`} 
                           fill 
                           sizes="(max-width: 1024px) 100vw, 50vw" 
-                          priority
                         />
                       </div>
                     </div>
@@ -119,7 +118,8 @@ export default function ProjectsSection() {
                       href={project.link} 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-9 items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 text-xs font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
+                      aria-label={`Open ${project.title} in a new tab`}
+                      className="inline-flex h-9 items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 text-xs font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
                     >
                       <ExternalLink className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
                       {project.linkLabel}

@@ -4,6 +4,7 @@ import ExperienceSection from '@/components/ExperienceSection'
 import HeroSection from '@/components/HeroSection'
 import Navbar from '@/components/Navbar'
 import ProjectsSection from '@/components/ProjectsSection'
+import Footer from '@/components/Footer'
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <ExperienceSection />
       <ProjectsSection />
       <ContactSection />
+      <Footer />
     </main>
   )
 }

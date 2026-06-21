@@ -61,11 +61,42 @@ const themeInitScript = `
 })();
 `
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Ahammed Ali Shaik',
+  url: 'https://ahammed.xyz',
+  jobTitle: 'Software Engineer',
+  knowsAbout: [
+    'Software Engineering',
+    'Distributed Systems',
+    'Python',
+    'FastAPI',
+    'Django',
+    'PostgreSQL',
+    'Citus',
+    'Redis Streams',
+    'Elasticsearch',
+    'React',
+    'Chrome Extensions',
+    'Docker'
+  ],
+  sameAs: [
+    'https://github.com/ahammed03',
+    'https://www.linkedin.com/in/ahammed03/',
+    'https://leetcode.com/u/ahammed03/'
+  ]
+}
+
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="antialiased">
         <ThemeProvider>{children}</ThemeProvider>

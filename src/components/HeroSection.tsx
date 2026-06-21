@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Braces, Boxes, Code2, Database, GitBranch, Layers3, ServerCog, Workflow, Zap } from 'lucide-react'
+import { ArrowRight, Boxes, Code2, Database, GitBranch, Layers3, ServerCog, Workflow, Zap } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 const metrics = [
@@ -115,30 +115,30 @@ export default function HeroSection() {
           <div className="space-y-4">
             <motion.p variants={itemVariants} className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Ahammed Ali Shaik</motion.p>
             <motion.h1 variants={itemVariants} className="text-4xl font-extrabold leading-[1.1] tracking-tight text-zinc-950 dark:text-white sm:text-5xl md:text-6xl">
-              Software engineer building reliable systems for real product load.
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400">Software Engineer</span> building reliable systems for real product load.
             </motion.h1>
             <motion.p variants={itemVariants} className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400 md:text-lg">
-              I design distributed backend systems, data-heavy APIs, and observability-focused workflows in Python, FastAPI, PostgreSQL, Redis Streams, and React. The work I ship is optimized for scale, correctness, and production visibility.
+              I design <span className="font-semibold text-zinc-900 dark:text-zinc-100">distributed backend systems</span>, <span className="font-semibold text-zinc-900 dark:text-zinc-100">data-heavy APIs</span>, and <span className="font-semibold text-zinc-900 dark:text-zinc-100">observability-focused workflows</span> in Python, FastAPI, PostgreSQL, Redis Streams, and React. The work I ship is optimized for scale, correctness, and production visibility.
             </motion.p>
           </div>
           
           <motion.div variants={itemVariants} className="flex flex-wrap gap-3 pt-2">
-            <a href="#contact" className="inline-flex h-11 items-center justify-center rounded-lg bg-zinc-950 px-5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 transition-colors">
+            <a href="#contact" className="inline-flex h-11 items-center justify-center rounded-lg bg-zinc-950 px-5 text-sm font-semibold text-white shadow-sm hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98] dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none">
               Book Intro Call
-              <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              <ArrowRight className="ml-2 h-4 w-4 animate-pulse" aria-hidden="true" />
             </a>
-            <a href="#projects" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+            <a href="#projects" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.98] dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none">
               Explore Projects
             </a>
-            <a href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors">
+            <a href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-200 bg-white px-5 text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.98] dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none">
               LeetCode
             </a>
           </motion.div>
           
           <motion.div variants={itemVariants} className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4 pt-4">
             {metrics.map((metric) => (
-              <div key={metric.label} className="rounded-xl border border-zinc-200 bg-white/70 p-4.5 shadow-sm backdrop-blur-sm dark:border-zinc-800/80 dark:bg-zinc-900/40">
-                <p className="text-xl font-bold text-zinc-900 dark:text-zinc-50">{metric.value}</p>
+              <div key={metric.label} className="rounded-xl border border-zinc-200 bg-white/70 p-4.5 shadow-sm backdrop-blur-sm dark:border-zinc-800/80 dark:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 group">
+                <p className="text-xl font-bold text-zinc-900 dark:text-zinc-50 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">{metric.value}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">{metric.label}</p>
               </div>
             ))}
