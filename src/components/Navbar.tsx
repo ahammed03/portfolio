@@ -6,11 +6,12 @@ import { useTheme } from './theme'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Schedule', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/#about' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Learnings', href: '/learnings' },
+  { label: 'Schedule', href: '/#contact' },
 ]
 
 export default function Navbar() {

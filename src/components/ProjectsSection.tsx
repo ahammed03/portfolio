@@ -1,9 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Terminal, Puzzle, Globe, Search, ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+import { Terminal, Puzzle, Globe, Search, ArrowUpRight, BookOpen } from 'lucide-react'
 
 type Project = {
+  slug: string
   title: string
   category: string
   description: string
@@ -18,6 +20,7 @@ type Project = {
 
 const projects: Project[] = [
   {
+    slug: 'kipplo-b2b-data-tools',
     title: 'Kipplo B2B Data Tools',
     category: 'Full-Stack Suite (Frontend & Backend)',
     description:
@@ -28,13 +31,14 @@ const projects: Project[] = [
       'Engineered low-latency Elasticsearch search indices querying across 250M+ profiles, 60M+ companies, and 73M+ phone records.',
     ],
     link: 'https://www.kipplo.com/b2b-data-tools/?utm_source=ahammed.xyz',
-    linkLabel: 'Open B2B Data Tools',
+    linkLabel: 'Open Data Tools',
     tags: ['Next.js', 'FastAPI', 'Elasticsearch', 'Redis', 'Tailwind CSS'],
     icon: Search,
     accentText: 'text-indigo-600 dark:text-indigo-400',
     accentBadge: 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/60',
   },
   {
+    slug: 'kipplo-web-app',
     title: 'Kipplo Web Application',
     category: 'Core B2B Platform',
     description:
@@ -52,6 +56,7 @@ const projects: Project[] = [
     accentBadge: 'bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 border-violet-100 dark:border-violet-900/60',
   },
   {
+    slug: 'kipplo-chrome-extension',
     title: 'Kipplo Chrome Extension',
     category: 'Browser Utility',
     description:
@@ -68,6 +73,7 @@ const projects: Project[] = [
     accentBadge: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-900/60',
   },
   {
+    slug: 'kipplo-discover',
     title: 'Kipplo Discover Directory',
     category: 'Programmatic SEO',
     description:
@@ -98,21 +104,26 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="px-4 py-20 md:px-8 bg-white dark:bg-zinc-900/20">
       <div className="mx-auto max-w-7xl">
-        <motion.p {...fadeUp(0)} className="bento-label mb-8 text-center">
-          Selected Work &amp; Projects
-        </motion.p>
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <motion.p {...fadeUp(0)} className="bento-label mb-2">
+            Selected Work &amp; Case Studies
+          </motion.p>
+          <motion.h2 {...fadeUp(0.04)} className="text-2xl md:text-3xl font-extrabold text-zinc-950 dark:text-white">
+            Engineering Projects &amp; Deep-Dive Learnings
+          </motion.h2>
+          <motion.p {...fadeUp(0.08)} className="mt-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+            Click any project's Case Study to read problems faced, architectural solutions, trade-offs, and key learnings.
+          </motion.p>
+        </div>
 
         <div className="grid grid-cols-12 gap-3">
           {projects.map((project, i) => {
             const Icon = project.icon
-            const isFeatured = i === 0 || i === 1
-            const spanClass = isFeatured ? 'col-span-12 md:col-span-6' : 'col-span-12 md:col-span-6'
-
             return (
               <motion.article
                 key={project.title}
                 {...fadeUp(0.05 + i * 0.06)}
-                className={`bento-card group flex flex-col justify-between p-6 md:p-7 ${spanClass}`}
+                className="bento-card group col-span-12 md:col-span-6 flex flex-col justify-between p-6 md:p-7"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -152,15 +163,25 @@ export default function ProjectsSection() {
                       <span key={tag} className="tech-tag">{tag}</span>
                     ))}
                   </div>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open ${project.title} in a new tab`}
-                    className="inline-flex h-9 items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-4 text-xs font-bold text-zinc-700 outline-none transition-all hover:bg-zinc-50 hover:text-zinc-950 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white focus-visible:ring-2 focus-visible:ring-indigo-500"
-                  >
-                    {project.linkLabel} <ArrowUpRight className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-                  </a>
+
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex h-9 items-center gap-1.5 rounded-xl bg-zinc-900 px-3.5 text-xs font-bold text-white transition-all hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-950 dark:hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                    >
+                      <BookOpen className="h-3.5 w-3.5" /> Read Case Study &amp; Learnings
+                    </Link>
+
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.title} live product`}
+                      className="inline-flex h-9 items-center gap-1 rounded-xl border border-zinc-200 bg-white px-3 text-xs font-semibold text-zinc-700 outline-none transition-all hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/60 dark:text-zinc-300 dark:hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                    >
+                      Live <ArrowUpRight className="h-3 w-3 text-zinc-400" aria-hidden="true" />
+                    </a>
+                  </div>
                 </div>
               </motion.article>
             )
