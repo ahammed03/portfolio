@@ -1,8 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import * as Separator from '@radix-ui/react-separator'
-import * as Tabs from '@radix-ui/react-tabs'
+import { MapPin, GraduationCap, Code2, Rocket } from 'lucide-react'
 
 const skillGroups = [
   {
@@ -10,7 +9,7 @@ const skillGroups = [
     items: ['Python', 'JavaScript', 'TypeScript', 'SQL'],
   },
   {
-    title: 'Backend & Databases',
+    title: 'Backend & DB',
     items: ['FastAPI', 'Django', 'PostgreSQL (Citus)', 'Redis Streams', 'Elasticsearch', 'PgBouncer'],
   },
   {
@@ -18,8 +17,16 @@ const skillGroups = [
     items: ['React.js', 'Redux', 'Next.js', 'Payload CMS'],
   },
   {
-    title: 'Data & Infrastructure',
-    items: ['AWS (S3/EC2/RDS)', 'Polars/Pandas', 'Playwright', 'Docker', 'GitLab CI/CD', 'Nginx/Apache'],
+    title: 'Data & Scraping',
+    items: ['Polars', 'Pandas', 'Playwright', 'Selenium', 'curl_cffi'],
+  },
+  {
+    title: 'Cloud & DevOps',
+    items: ['AWS (S3/EC2/RDS)', 'Docker', 'GitLab CI/CD', 'Nginx', 'Ubuntu VPS'],
+  },
+  {
+    title: 'Payments & Email',
+    items: ['Stripe (Subscriptions)', 'Webhook Idempotency', 'SMTP', 'DKIM/SPF/DMARC'],
   },
 ]
 
@@ -31,153 +38,151 @@ const focusPoints = [
   'Programmatic SEO & secure directories (Next.js/FastAPI)',
 ]
 
+const infoCards = [
+  {
+    label: 'Location',
+    icon: MapPin,
+    color: 'text-indigo-500 dark:text-indigo-400',
+    content: (
+      <p className="text-sm font-bold text-zinc-900 dark:text-white">Bengaluru, India</p>
+    ),
+  },
+  {
+    label: 'Education',
+    icon: GraduationCap,
+    color: 'text-violet-500 dark:text-violet-400',
+    content: (
+      <div>
+        <p className="text-sm font-bold text-zinc-900 dark:text-white">BTech, Mech. Engineering</p>
+        <p className="mt-0.5 text-[10px] text-zinc-400 dark:text-zinc-500">MITS · CGPA 8.65 · May 2023</p>
+        <p className="mt-2 text-[11px] leading-snug text-zinc-400 dark:text-zinc-500">
+          Transitioned into software engineering through deep self-learning and production work at a startup.
+        </p>
+      </div>
+    ),
+  },
+  {
+    label: 'Coding Profile',
+    icon: Code2,
+    color: 'text-emerald-500 dark:text-emerald-400',
+    content: (
+      <a
+        href="https://leetcode.com/u/ahammed03/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)"
+        className="text-sm font-bold text-zinc-900 underline decoration-zinc-200 underline-offset-4 transition-colors hover:text-indigo-600 dark:text-white dark:decoration-zinc-700 dark:hover:text-indigo-400"
+      >
+        leetcode.com/u/ahammed03
+      </a>
+    ),
+  },
+  {
+    label: 'Currently Exploring',
+    icon: Rocket,
+    color: 'text-pink-500 dark:text-pink-400',
+    content: (
+      <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
+        Rust for low-latency systems & AWS Serverless for scale-to-zero compute
+      </p>
+    ),
+  },
+]
+
+function fadeUp(delay = 0) {
+  return {
+    initial: { opacity: 0, y: 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: '-60px' },
+    transition: { duration: 0.5, delay, ease: 'easeOut' as const },
+  }
+}
+
 export default function AboutSection() {
   return (
-    <section id="about" className="border-b border-zinc-200/80 px-4 py-20 dark:border-zinc-800/80 md:px-8 bg-zinc-50/30 dark:bg-zinc-950/20">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_1fr]">
-        
-        {/* Left Column: text and focus areas with scroll-reveal */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
-        >
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">About Me</p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight text-zinc-950 dark:text-white md:text-4xl">
+    <section id="about" className="px-4 py-20 md:px-8 bg-white dark:bg-zinc-900/20">
+      <div className="mx-auto max-w-7xl">
+        <motion.p {...fadeUp(0)} className="bento-label mb-8 text-center">
+          About Me
+        </motion.p>
+
+        <div className="grid grid-cols-12 gap-3">
+
+          {/* ── About Text Card ───────────────────────────── */}
+          <motion.div
+            {...fadeUp(0.05)}
+            className="bento-card col-span-12 p-7 md:col-span-8 md:p-9"
+          >
+            <h2 className="mb-5 text-2xl font-extrabold leading-tight text-zinc-950 dark:text-white md:text-3xl">
               Building reliable systems that solve business problems and scale under production load.
             </h2>
-          </div>
-          <p className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">
-            I am Ahammed, a Software Engineer based in Bengaluru with 2+ years of production-scale experience. I believe code is only as good as its production reliability, test coverage, and telemetry. Having worked in a fast-paced startup (Kipplo), I collaborate closely with product managers, designers, and developers to ship features that work correctly under concurrency, remain observable in real-time, and scale with direct business value.
-          </p>
-          <p className="max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-400">
-            My work spans building concurrent Stripe billing engines, Citus-sharded PostgreSQL databases, and programmatic SEO directories. I focus on high-throughput data pipelines, test-driven backend reliability, and distributed tracing to ensure operational visibility at scale.
-          </p>
-          
-          <div className="grid gap-3 pt-2 sm:grid-cols-2">
-            {focusPoints.map((point, index) => (
-              <motion.div 
-                key={point} 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="rounded-xl border border-zinc-200 bg-white p-4 text-xs font-semibold text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-300"
-              >
-                {point}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+            <p className="mb-4 text-sm leading-8 text-zinc-600 dark:text-zinc-400">
+              I'm Ahammed, a Backend / Full-Stack Engineer based in Bengaluru with 2+ years of production-scale experience at Kipplo Technologies — a B2B account intelligence startup. I build systems that are correct under concurrency, observable in real-time, and scale with direct business value.
+            </p>
+            <p className="mb-4 text-sm leading-8 text-zinc-600 dark:text-zinc-400">
+              After graduating with a BTech in Mechanical Engineering (CGPA 8.65, May 2023), I spent a year doing intensive self-directed learning in backend systems, distributed architectures, and system design — building projects, solving DSA on LeetCode, and studying production engineering patterns before joining Kipplo in May 2024.
+            </p>
+            <p className="mb-6 text-sm leading-8 text-zinc-600 dark:text-zinc-400">
+              My work at Kipplo spans concurrent Stripe billing engines, Citus-sharded PostgreSQL databases handling 300M+ records, distributed web scrapers, and programmatic SEO directories. The engineering challenges I've solved are documented as STAR case studies in the Experience section.
+            </p>
 
-        {/* Right Column: Tabs card with scroll-reveal */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/60 backdrop-blur-sm"
-        >
-          <Tabs.Root defaultValue="overview" className="w-full">
-            <Tabs.List className="flex gap-1 border-b border-zinc-200 pb-2.5 dark:border-zinc-800">
-              <Tabs.Trigger 
-                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none" 
-                value="overview"
-              >
-                Overview
-              </Tabs.Trigger>
-              <Tabs.Trigger 
-                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none" 
-                value="stack"
-              >
-                Stack
-              </Tabs.Trigger>
-              <Tabs.Trigger 
-                className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-400 transition-all cursor-pointer hover:text-zinc-900 data-[state=active]:bg-zinc-100 data-[state=active]:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-200 dark:data-[state=active]:bg-zinc-800 dark:data-[state=active]:text-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none" 
-                value="approach"
-              >
-                Approach
-              </Tabs.Trigger>
-            </Tabs.List>
+            <p className="bento-label mb-3">What I Focus On</p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {focusPoints.map((point) => (
+                <div
+                  key={point}
+                  className="flex items-start gap-2.5 rounded-xl border border-zinc-100 bg-zinc-50 p-3 dark:border-zinc-800/60 dark:bg-zinc-800/50"
+                >
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500" />
+                  <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">{point}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-            <Tabs.Content value="overview" className="pt-[18px] outline-none">
-              <motion.div 
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-3"
-              >
-                <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Location</p>
-                  <p className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Bengaluru, India</p>
-                </div>
-                <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Education</p>
-                  <p className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200 font-sans">BTech, Mechanical Engineering</p>
-                  <p className="mt-0.5 text-xs text-zinc-400 dark:text-zinc-500">Madanapalle Institute of Technology & Sciences (CGPA: 8.65)</p>
-                </div>
-                <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Coding Profile</p>
-                  <a className="mt-1 block text-sm font-semibold text-zinc-800 hover:text-zinc-900 dark:text-zinc-200 dark:hover:text-zinc-50 underline decoration-zinc-200/80 dark:decoration-zinc-800 underline-offset-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-indigo-500 rounded outline-none" href="https://leetcode.com/u/ahammed03/" target="_blank" rel="noopener noreferrer" aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)">
-                    leetcode.com/u/ahammed03
-                  </a>
-                </div>
-                <div className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Currently Exploring</p>
-                  <p className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">Rust (for low-latency systems) & AWS Serverless (for scale-to-zero compute)</p>
-                </div>
-              </motion.div>
-            </Tabs.Content>
-
-            <Tabs.Content value="stack" className="pt-[18px] outline-none">
-              <motion.div 
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-4"
-              >
-                {skillGroups.map((group, index) => (
-                  <div key={group.title}>
-                    {index > 0 ? <Separator.Root className="my-4 h-px bg-zinc-100 dark:bg-zinc-800" decorative /> : null}
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">{group.title}</p>
-                    <div className="mt-2.5 flex flex-wrap gap-1.5">
-                      {group.items.map((item) => (
-                        <span key={item} className="badge-pill">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+          {/* ── Quick Info Cards Column ───────────────────── */}
+          <div className="col-span-12 flex flex-col gap-3 md:col-span-4">
+            {infoCards.map((card, i) => {
+              const Icon = card.icon
+              return (
+                <motion.div
+                  key={card.label}
+                  {...fadeUp(0.1 + i * 0.06)}
+                  className="bento-card p-5"
+                >
+                  <div className="mb-2 flex items-center gap-2">
+                    <Icon className={`h-4 w-4 shrink-0 ${card.color}`} aria-hidden="true" />
+                    <p className="bento-label">{card.label}</p>
                   </div>
-                ))}
-              </motion.div>
-            </Tabs.Content>
+                  {card.content}
+                </motion.div>
+              )
+            })}
+          </div>
 
-            <Tabs.Content value="approach" className="pt-[18px] outline-none">
-              <motion.div 
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-3"
-              >
-                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Working Style</p>
-                <ul className="space-y-3.5 text-sm font-semibold text-zinc-600 dark:text-zinc-400">
-                  <li className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                    I prefer clear boundaries, simple APIs, and production decisions backed by measurable signals.
-                  </li>
-                  <li className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                    I focus on reliability first, then performance, then polish, because the order matters in live systems.
-                  </li>
-                  <li className="rounded-lg border border-zinc-100 bg-zinc-50/50 p-4 dark:border-zinc-800/50 dark:bg-zinc-900/20">
-                    I like systems with strong observability, because debugging time is part of the product cost.
-                  </li>
-                </ul>
-              </motion.div>
-            </Tabs.Content>
-          </Tabs.Root>
-        </motion.div>
+          {/* ── Skills Grid Card ──────────────────────────── */}
+          <motion.div
+            {...fadeUp(0.28)}
+            className="bento-card col-span-12 p-6 md:p-7"
+          >
+            <p className="bento-label mb-5">Technical Skills</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {skillGroups.map((group) => (
+                <div key={group.title}>
+                  <p className="mb-2.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                    {group.title}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.items.map((item) => (
+                      <span key={item} className="badge-pill">{item}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   )

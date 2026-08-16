@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { useTheme } from './theme'
-import { Mail, UserRound, GitBranch, Code2, ExternalLink } from 'lucide-react'
+import { Mail, UserRound, GitBranch, Code2, ExternalLink, Copy, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 // Dynamic import with loading state skeleton to prevent layout shift
@@ -43,6 +43,42 @@ const socialLinks = [
     icon: Code2,
   },
 ]
+
+function EmailCopyBadge({ email }: { email: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy email: ', err)
+    }
+  }
+
+  return (
+    <button
+      onClick={handleCopy}
+      type="button"
+      className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-white px-2.5 py-2 text-xs font-bold text-zinc-700 shadow-xs hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
+      aria-label="Copy email address"
+      title="Copy email to clipboard"
+    >
+      {copied ? (
+        <>
+          <Check className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
+          <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
+        </>
+      ) : (
+        <>
+          <Copy className="h-3.5 w-3.5 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+          <span>Copy</span>
+        </>
+      )}
+    </button>
+  )
+}
 
 export default function ContactSection() {
   const { theme } = useTheme()
@@ -169,23 +205,26 @@ export default function ContactSection() {
           <div className="flex flex-wrap items-center justify-center gap-3">
             {socialLinks.map((link, index) => {
               const Icon = link.icon
+              const isEmail = link.label === 'Email'
               return (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Connect with Ahammed via ${link.label} (opens in a new tab)`}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: 0.35 + index * 0.08 }}
-                  className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2 text-xs font-bold text-zinc-700 shadow-xs hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  <Icon className="h-4 w-4 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
-                  <span>{link.label}</span>
-                  <ExternalLink className="h-3 w-3 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
-                </motion.a>
+                <div key={link.href} className="flex items-center gap-1">
+                  <motion.a
+                    href={link.href}
+                    target={isEmail ? undefined : "_blank"}
+                    rel={isEmail ? undefined : "noopener noreferrer"}
+                    aria-label={`Connect with Ahammed via ${link.label}`}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: 0.35 + index * 0.08 }}
+                    className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3.5 py-2 text-xs font-bold text-zinc-700 shadow-xs hover:bg-zinc-50 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-200 dark:hover:bg-zinc-800 transition-colors"
+                  >
+                    <Icon className="h-4 w-4 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+                    <span>{link.label}</span>
+                    <ExternalLink className="h-3 w-3 text-zinc-400 dark:text-zinc-500" aria-hidden="true" />
+                  </motion.a>
+                  {isEmail && <EmailCopyBadge email={link.value} />}
+                </div>
               )
             })}
           </div>
