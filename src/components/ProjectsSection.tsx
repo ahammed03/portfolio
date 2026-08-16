@@ -23,7 +23,7 @@ const projects: Project[] = [
     description:
       'Suite of free, instant B2B lookup tools for discovering LinkedIn profiles, verified emails, phone numbers, and company SIC/NAICS codes without login.',
     highlights: [
-      'Designed and built 100% of both the responsive Next.js frontend and high-speed FastAPI backend endpoints.',
+      'Engineered both the responsive Next.js frontend and high-speed FastAPI backend endpoints.',
       'Implemented Redis-backed rate limiting (3 free daily lookups per IP/fingerprint) with anti-abuse protection.',
       'Engineered low-latency Elasticsearch search indices querying across 250M+ profiles, 60M+ companies, and 73M+ phone records.',
     ],

@@ -31,7 +31,7 @@ const pillars = [
       {
         star: true,
         label: 'Reveal System — 300M+ Record Enrichment Engine',
-        text: 'Challenge: PostgreSQL connection exhaustion and query timeouts at peak concurrency on a 300M+ record dataset. Solution: Migrated to Citus horizontal sharding + PgBouncer connection pooling with tuned worker node affinity. Result: ~40% reduction in p95 query latency under sustained high-concurrency load with zero downtime migration.',
+        text: 'Challenge: PostgreSQL connection exhaustion and query timeouts at peak concurrency on a 300M+ record dataset. Solution: Migrated to Citus horizontal sharding + PgBouncer connection pooling with tuned worker node affinity. Result: ~40% reduction in p95 query latency under sustained high-concurrency load, achieved with zero-downtime migration.',
       },
       {
         star: true,
@@ -58,12 +58,12 @@ const pillars = [
       {
         star: true,
         label: '1M+ Row CSV Ingestion — OOM Fix',
-        text: 'Challenge: Pandas-based CSV processing caused Out-of-Memory (OOM) crashes on large imports (>500MB files), halting the enrichment pipeline. Solution: Replaced Pandas with Polars streaming engine using size-based chunking — reading and processing data in fixed-memory windows rather than loading the entire file. Result: Eliminated OOM crashes entirely; memory footprint remained flat regardless of file size, enabling reliable processing of multi-million row files.',
+        text: 'Challenge: Pandas-based CSV processing caused Out-of-Memory (OOM) crashes on large imports (>500MB files), halting the enrichment pipeline. Solution: Replaced Pandas with the Polars streaming engine using size-based chunking — reading and processing data in fixed-memory windows rather than loading the entire file. Result: Eliminated OOM crashes entirely; memory footprint remained flat regardless of file size, enabling reliable processing of multi-million row files.',
       },
       {
         star: true,
         label: 'Distributed Web Scraping Infrastructure',
-        text: 'Challenge: Anti-bot systems were blocking single-IP scrapers used to feed the data pipeline. Solution: Built distributed Playwright scrapers with rotating proxy pools, headless fingerprint randomisation, and curl_cffi for TLS mimicry, orchestrated via Python multiprocessing for bulk-insert batching. Result: Reliable, large-scale data harvesting into PostgreSQL with significantly reduced block rates.',
+        text: 'Challenge: Anti-bot systems were blocking single-IP scrapers used to feed the data pipeline. Solution: Built distributed Playwright scrapers with rotating proxy pools, headless fingerprint randomization, and curl_cffi for TLS mimicry, orchestrated via Python multiprocessing for bulk-insert batching. Result: Reliable, large-scale data harvesting into PostgreSQL with significantly reduced block rates.',
       },
       {
         star: false,
@@ -90,7 +90,7 @@ const pillars = [
       {
         star: true,
         label: 'Kipplo B2B Data Tools (Full-Stack Suite)',
-        text: 'Designed and engineered 100% of both the frontend (Next.js/Tailwind CSS) and backend (FastAPI/Elasticsearch/Redis) for Kipplo B2B Data Tools (kipplo.com/b2b-data-tools/) — powered by low-latency Elasticsearch search indices and Redis-backed rate limiting for public, instant lookups across 250M+ profiles and 60M+ companies.',
+        text: 'Engineered both the frontend (Next.js/Tailwind CSS) and backend (FastAPI/Elasticsearch/Redis) for Kipplo B2B Data Tools (kipplo.com/b2b-data-tools/) — powered by low-latency Elasticsearch search indices and Redis-backed rate limiting for public, instant lookups across 250M+ profiles and 60M+ companies.',
       },
       {
         star: false,
@@ -170,7 +170,7 @@ export default function ExperienceSection() {
             </div>
 
             <div className="mt-5 rounded-xl border border-zinc-100 bg-zinc-50/80 p-4 dark:border-zinc-800/60 dark:bg-zinc-800/40">
-              <p className="bento-label mb-1.5">Optimisation Priorities</p>
+              <p className="bento-label mb-1.5">Optimization Priorities</p>
               <p className="text-xs font-semibold leading-relaxed text-zinc-500 dark:text-zinc-400">
                 Correctness under concurrency → throughput at scale → observability → maintainability. In that order — because the sequence matters in live systems.
               </p>
