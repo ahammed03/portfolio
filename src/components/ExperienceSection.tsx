@@ -88,6 +88,11 @@ const pillars = [
         text: 'Instrumented distributed tracing and APM using OpenTelemetry + self-hosted SigNoz across all microservices, enabling latency bottleneck identification and cutting mean production debugging time significantly.',
       },
       {
+        star: true,
+        label: 'Kipplo B2B Data Tools (Full-Stack Suite)',
+        text: 'Designed and engineered 100% of both the frontend (Next.js/Tailwind CSS) and backend (FastAPI/Elasticsearch/Redis) for Kipplo B2B Data Tools (kipplo.com/b2b-data-tools/) — powered by low-latency Elasticsearch search indices and Redis-backed rate limiting for public, instant lookups across 250M+ profiles and 60M+ companies.',
+      },
+      {
         star: false,
         label: null,
         text: "Built Kipplo's programmatic SEO Discover pages (discover.kipplo.com) with Next.js, Payload CMS, and FastAPI — with reverse-proxy Nginx caching and IP-based rate limiting against scraping abuse.",
