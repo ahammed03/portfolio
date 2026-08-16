@@ -8,7 +8,7 @@ export type TechLearning = {
   topResources: {
     title: string
     authorOrPlatform: string
-    type: 'Book' | 'Documentation' | 'Course' | 'Article'
+    type: 'Book' | 'Documentation' | 'Course' | 'YouTube' | 'Article'
     link: string
     whyItMatters: string
   }[]
@@ -26,11 +26,11 @@ export const learningsData: Record<string, TechLearning> = {
   'python-fastapi': {
     slug: 'python-fastapi',
     title: 'Python, Async I/O & FastAPI',
-    subtitle: 'High-concurrency backend services, asynchronous task queues & pydantic data validation',
+    subtitle: 'High-concurrency backend services, asynchronous task queues & Pydantic data validation',
     category: 'Backend Development',
     iconName: 'ServerCog',
     howILearned:
-      'I mastered Python and async backend engineering through deep hands-on project building after graduating with a Mechanical Engineering degree. I studied Python internals, the asyncio event loop, and FastAPI source patterns while building real production services at Kipplo.',
+      'I transitioned from Mechanical Engineering into software engineering through self-directed learning — studying Python internals, async event loops, and REST API design patterns. I built hands-on projects, read primary documentation, and applied these learnings directly to build production backend microservices at Kipplo.',
     topResources: [
       {
         title: 'FastAPI Official Documentation & Tutorial',
@@ -47,18 +47,18 @@ export const learningsData: Record<string, TechLearning> = {
         whyItMatters: 'Deep dive into Python data model, generators, coroutines, and GIL/multiprocessing concurrency.',
       },
       {
-        title: 'Python Concurrency with asyncio',
-        authorOrPlatform: 'Matthew Fowler (Manning)',
-        type: 'Book',
-        link: 'https://www.manning.com/books/python-concurrency-with-asyncio',
-        whyItMatters: 'Teaches non-blocking event loops, async database drivers (asyncpg/aioredis), and async pool management.',
+        title: 'Backend Engineering & System Design Series',
+        authorOrPlatform: 'Harkirat Singh (YouTube)',
+        type: 'YouTube',
+        link: 'https://www.youtube.com/@harkirat1',
+        whyItMatters: 'Practical real-world explanations of HTTP servers, async queues, DB connections, and backend scalability.',
       },
     ],
     coreMentalModels: [
       {
         concept: 'The asyncio Event Loop vs Threads',
         explanation:
-          'Async I/O in Python is single-threaded cooperative multitasking. You yield control back to the event loop using `await` during I/O operations (network, DB queries). Blocking synchronous functions (like regular file reads) block the entire thread and must be offloaded to worker pools via `run_in_executor`.',
+          'Async I/O in Python is single-threaded cooperative multitasking. You yield control back to the event loop using `await` during I/O operations (network, DB queries). Blocking synchronous functions block the thread and must be offloaded to worker pools.',
       },
       {
         concept: 'Dependency Injection in FastAPI',
@@ -74,6 +74,52 @@ export const learningsData: Record<string, TechLearning> = {
     ],
   },
 
+  'redis-streams': {
+    slug: 'redis-streams',
+    title: 'Redis Streams, Caching & Distributed Locking',
+    subtitle: 'Event-driven job queues, consumer groups, pub/sub & mutex locks',
+    category: 'Caching & Messaging',
+    iconName: 'Workflow',
+    howILearned:
+      'Learned in-memory architectures by studying Redis documentation, distributed systems papers, and online queue architecture tutorials, then applying them to implement high-throughput background enrichment pipelines at Kipplo — using Redis Streams for ordered worker queues and Redlock for distributed idempotency.',
+    topResources: [
+      {
+        title: 'Redis Official Documentation & Data Types Guide',
+        authorOrPlatform: 'Redis.io',
+        type: 'Documentation',
+        link: 'https://redis.io/docs/',
+        whyItMatters: 'Covers in-memory data structures, streams consumer groups, eviction policies (LRU/LFU), and persistence (RDB/AOF).',
+      },
+      {
+        title: 'Distributed Locks with Redis (Redlock Algorithm)',
+        authorOrPlatform: 'Salvatore Sanfilippo (antirez)',
+        type: 'Article',
+        link: 'https://redis.io/topics/distlock',
+        whyItMatters: 'Explains mutex locking, lease time renewal, and idempotency guarantees in distributed applications.',
+      },
+      {
+        title: 'Redis Streams & Pub/Sub Queue Deep Dive',
+        authorOrPlatform: 'Harkirat Singh (YouTube)',
+        type: 'YouTube',
+        link: 'https://www.youtube.com/@harkirat1',
+        whyItMatters: 'Practical walkthrough of message queues, worker consumer groups, and managing state in Redis.',
+      },
+    ],
+    coreMentalModels: [
+      {
+        concept: 'Redis Streams Consumer Groups',
+        explanation:
+          'Streams provide log-based message persistence. Consumer groups distribute incoming messages across worker nodes, tracking pending acknowledgments (`XACK`) to prevent job loss on node failures.',
+      },
+    ],
+    productionLessons: [
+      {
+        pitfall: 'Cache stampede (thundering herd) when a popular key expires simultaneously.',
+        solution: 'Implement probabilistic early expiration (XFetch) or short mutex locks during cache miss re-computation.',
+      },
+    ],
+  },
+
   'postgresql-citus': {
     slug: 'postgresql-citus',
     title: 'PostgreSQL, Citus Sharding & Database Tuning',
@@ -81,7 +127,7 @@ export const learningsData: Record<string, TechLearning> = {
     category: 'Database Systems',
     iconName: 'Database',
     howILearned:
-      'Learned relational database internals by optimizing heavy analytical and transactional workloads at Kipplo — migrating single-node PostgreSQL databases to sharded Citus clusters and tuning PgBouncer pools under high concurrency.',
+      'Learned relational database internals by reading foundational database literature, studying EXPLAIN query plans, and migrating single-node PostgreSQL databases to sharded Citus clusters at Kipplo.',
     topResources: [
       {
         title: 'Designing Data-Intensive Applications',
@@ -104,6 +150,13 @@ export const learningsData: Record<string, TechLearning> = {
         link: 'https://use-the-index-luke.com/',
         whyItMatters: 'Practical guide to SQL indexing, B-Tree lookups, partial index optimization, and EXPLAIN ANALYZE interpretation.',
       },
+      {
+        title: 'Postgres Indexing & Database Architecture',
+        authorOrPlatform: 'Harkirat Singh (YouTube)',
+        type: 'YouTube',
+        link: 'https://www.youtube.com/@harkirat1',
+        whyItMatters: 'Clear breakdown of database indexing, query execution, connection pools, and raw SQL performance.',
+      },
     ],
     coreMentalModels: [
       {
@@ -125,41 +178,41 @@ export const learningsData: Record<string, TechLearning> = {
     ],
   },
 
-  'redis-streams': {
-    slug: 'redis-streams',
-    title: 'Redis Streams, Caching & Distributed Locking',
-    subtitle: 'Event-driven job queues, consumer groups, pub/sub & mutex locks',
-    category: 'Caching & Messaging',
-    iconName: 'Workflow',
+  'docker-devops': {
+    slug: 'docker-devops',
+    title: 'Docker, Ubuntu VPS & CI/CD Pipelines',
+    subtitle: 'Containerization, Nginx reverse proxying, GitLab CI/CD & zero-downtime deployments',
+    category: 'DevOps & Cloud Systems',
+    iconName: 'ShieldCheck',
     howILearned:
-      'Mastered Redis through implementing high-throughput background enrichment pipelines at Kipplo — using Redis Streams for ordered worker queues, Redlock for distributed idempotency, and negative caching to protect PostgreSQL.',
+      'Mastered containerization and VPS deployments through Docker documentation, Linux administration guides, hands-on building, and managing production services across Ubuntu VPS servers at Kipplo.',
     topResources: [
       {
-        title: 'Redis Official Documentation & Data Types Guide',
-        authorOrPlatform: 'Redis.io',
+        title: 'Docker Official Documentation & Best Practices',
+        authorOrPlatform: 'Docker Inc.',
         type: 'Documentation',
-        link: 'https://redis.io/docs/',
-        whyItMatters: 'Covers in-memory data structures, streams consumer groups, eviction policies (LRU/LFU), and persistence (RDB/AOF).',
+        link: 'https://docs.docker.com/',
+        whyItMatters: 'Multi-stage Dockerfile builds, layer caching, non-root security containers, and Docker Compose networking.',
       },
       {
-        title: 'Distributed Locks with Redis (Redlock Algorithm)',
-        authorOrPlatform: 'Salvatore Sanfilippo (antirez)',
-        type: 'Article',
-        link: 'https://redis.io/topics/distlock',
-        whyItMatters: 'Explains mutex locking, lease time renewal, and idempotency guarantees in distributed applications.',
+        title: 'Complete Docker & DevOps Masterclass',
+        authorOrPlatform: 'Harkirat Singh (YouTube)',
+        type: 'YouTube',
+        link: 'https://www.youtube.com/@harkirat1',
+        whyItMatters: 'Step-by-step tutorials on Docker, Nginx reverse proxies, SSL certificates, and deploying apps on Linux VPS.',
       },
     ],
     coreMentalModels: [
       {
-        concept: 'Redis Streams Consumer Groups',
+        concept: 'Immutable Infrastructure & Staged Deployment',
         explanation:
-          'Streams provide log-based message persistence. Consumer groups distribute incoming messages across worker nodes, tracking pending acknowledgments (`XACK`) to prevent job loss on node failures.',
+          'Containers guarantee that the exact binary/code tested in CI runs identically in production, removing "works on my machine" bugs.',
       },
     ],
     productionLessons: [
       {
-        pitfall: 'Cache stampede (thundering herd) when a popular key expires simultaneously.',
-        solution: 'Implement probabilistic early expiration (XFetch) or short mutex locks during cache miss re-computation.',
+        pitfall: 'Bloated Docker images causing slow deployment rollouts.',
+        solution: 'Use multi-stage builds (`golang:alpine` or `python:slim`) and leverage Docker layer cache during CI steps.',
       },
     ],
   },
@@ -171,7 +224,7 @@ export const learningsData: Record<string, TechLearning> = {
     category: 'Data Engineering',
     iconName: 'Table',
     howILearned:
-      'Discovered Polars while fixing Out-of-Memory (OOM) crashes in Kipplo\'s lead import pipeline. Replaced Pandas eager memory allocation with Polars lazy streaming, cutting execution time and stabilizing memory footprint.',
+      'Discovered Polars while fixing Out-of-Memory (OOM) crashes in Kipplo\'s lead import pipeline. Studied Apache Arrow memory concepts and Polars docs to replace Pandas eager memory allocation with Polars lazy streaming.',
     topResources: [
       {
         title: 'Polars Official Book & User Guide',
@@ -228,38 +281,6 @@ export const learningsData: Record<string, TechLearning> = {
     ],
   },
 
-  'docker-devops': {
-    slug: 'docker-devops',
-    title: 'Docker, Ubuntu VPS & CI/CD Pipelines',
-    subtitle: 'Containerization, Nginx reverse proxying, GitLab CI/CD & zero-downtime deployments',
-    category: 'DevOps & Cloud Systems',
-    iconName: 'ShieldCheck',
-    howILearned:
-      'Built and managed production infrastructure deploying 10+ microservices across dedicated Ubuntu VPS servers via GitLab CI/CD, Nginx SSL reverse proxies, and systemd process management.',
-    topResources: [
-      {
-        title: 'Docker Official Documentation & Best Practices',
-        authorOrPlatform: 'Docker Inc.',
-        type: 'Documentation',
-        link: 'https://docs.docker.com/',
-        whyItMatters: 'Multi-stage Dockerfile builds, layer caching, non-root security containers, and Docker Compose networking.',
-      },
-    ],
-    coreMentalModels: [
-      {
-        concept: 'Immutable Infrastructure & Staged Deployment',
-        explanation:
-          'Containers guarantee that the exact binary/code tested in CI runs identically in production, removing "works on my machine" bugs.',
-      },
-    ],
-    productionLessons: [
-      {
-        pitfall: 'Bloated Docker images causing slow deployment rollouts.',
-        solution: 'Use multi-stage builds (`golang:alpine` or `python:slim`) and leverage Docker layer cache during CI steps.',
-      },
-    ],
-  },
-
   'react-nextjs': {
     slug: 'react-nextjs',
     title: 'React, Next.js & Frontend Architecture',
@@ -267,7 +288,7 @@ export const learningsData: Record<string, TechLearning> = {
     category: 'Frontend Engineering',
     iconName: 'Code2',
     howILearned:
-      'Developed Kipplo\'s core B2B dashboard, Chrome Extension UI, and programmatic SEO Discover pages using React, Redux Toolkit, Next.js App Router, and Tailwind CSS.',
+      'Developed Kipplo\'s core B2B dashboard, Chrome Extension UI, and programmatic SEO Discover pages using React, Redux Toolkit, Next.js App Router, and Tailwind CSS. Learned modern full-stack web patterns through official Next.js documentation and online engineering tutorials.',
     topResources: [
       {
         title: 'Next.js Official Documentation (App Router)',
@@ -275,6 +296,13 @@ export const learningsData: Record<string, TechLearning> = {
         type: 'Documentation',
         link: 'https://nextjs.org/docs',
         whyItMatters: 'Covers React Server Components, Streaming SSR, dynamic routing, metadata API, and static site generation.',
+      },
+      {
+        title: '100xDevs Full Stack & Web Architecture Series',
+        authorOrPlatform: 'Harkirat Singh (YouTube)',
+        type: 'YouTube',
+        link: 'https://www.youtube.com/@harkirat1',
+        whyItMatters: 'Comprehensive practical tutorials on Next.js App Router, state management, monorepos, and full-stack deployment.',
       },
     ],
     coreMentalModels: [

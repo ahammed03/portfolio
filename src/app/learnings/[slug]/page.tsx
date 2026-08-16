@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { learningsData } from '@/data/learningsData'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { ArrowLeft, BookOpen, ExternalLink, Lightbulb, AlertTriangle, GraduationCap, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, BookOpen, ExternalLink, Lightbulb, AlertTriangle, GraduationCap, CheckCircle2, Youtube } from 'lucide-react'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -86,7 +86,12 @@ export default async function LearningDetailPage({ params }: Props) {
               >
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="rounded-md bg-indigo-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400">
+                    <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                      res.type === 'YouTube'
+                        ? 'bg-red-50 text-red-600 dark:bg-red-950/60 dark:text-red-400 border border-red-200 dark:border-red-900/60'
+                        : 'bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900/60'
+                    }`}>
+                      {res.type === 'YouTube' && <Youtube className="h-3 w-3 text-red-500" />}
                       {res.type}
                     </span>
                     <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
