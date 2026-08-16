@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Code2, Moon, Sun, Menu, X } from 'lucide-react'
+import { Code2, Moon, Sun, Menu, X, GitBranch } from 'lucide-react'
 import { useTheme } from './theme'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -39,8 +39,8 @@ export default function Navbar() {
         <ul className="hidden items-center gap-1.5 rounded-lg border border-zinc-200/80 bg-zinc-50/50 p-1 text-sm font-medium text-zinc-600 shadow-sm dark:border-zinc-800/80 dark:bg-zinc-900/50 dark:text-zinc-400 md:flex">
           {navItems.map((item) => (
             <li key={item.href}>
-              <a 
-                className="rounded-md px-3.5 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50" 
+              <a
+                className="rounded-md px-3.5 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
                 href={item.href}
               >
                 {item.label}
@@ -51,6 +51,17 @@ export default function Navbar() {
 
         {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* GitHub Link */}
+          <a
+            href="https://github.com/ahammed03"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit Ahammed's GitHub profile (opens in a new tab)"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-700 shadow-sm hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none transition-colors"
+          >
+            <GitBranch className="h-4 w-4" aria-hidden="true" />
+          </a>
+
           {/* Theme Switcher */}
           <button
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none"
@@ -60,7 +71,7 @@ export default function Navbar() {
           >
             {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
           </button>
-          
+
           {/* Desktop Schedule Button */}
           <a
             href="#contact"
@@ -76,7 +87,7 @@ export default function Navbar() {
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-800 md:hidden focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
           </button>
@@ -97,7 +108,7 @@ export default function Navbar() {
             <ul className="flex flex-col gap-1 border-t border-zinc-200/60 mt-3 pt-3 dark:border-zinc-800/60">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a 
+                  <a
                     className="block rounded-lg px-4 py-2.5 text-sm font-medium text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
                     href={item.href}
                     onClick={closeMenu}
@@ -106,7 +117,18 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
-              <li className="mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-900 sm:hidden">
+              <li className="mt-2 pt-2 border-t border-zinc-100 dark:border-zinc-900">
+                <a
+                  href="https://github.com/ahammed03"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMenu}
+                  className="flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-zinc-200 bg-white text-sm font-semibold text-zinc-800 shadow-sm hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
+                >
+                  <GitBranch className="h-4 w-4" aria-hidden="true" /> GitHub
+                </a>
+              </li>
+              <li className="sm:hidden">
                 <a
                   href="#contact"
                   onClick={closeMenu}
