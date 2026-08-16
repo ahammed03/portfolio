@@ -12,3 +12,8 @@ This is a personal portfolio built with Next.js.
 - `npm run build` - create a production build
 - `npm run start` - run the production server
 - `npm run lint` - run ESLint
+
+## Deployment
+
+Automated deployment via Cloudflare Workers / Workers Assets integrated with GitHub (`main` branch).
+
