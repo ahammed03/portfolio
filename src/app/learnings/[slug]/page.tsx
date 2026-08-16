@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { learningsData } from '@/data/learningsData'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { ArrowLeft, BookOpen, ExternalLink, Lightbulb, AlertTriangle, GraduationCap, CheckCircle2, Video, GitBranch, Terminal, Zap, ShieldCheck } from 'lucide-react'
+import CodeTabs from '@/components/CodeTabs'
+import { ArrowLeft, BookOpen, ExternalLink, Lightbulb, GraduationCap, CheckCircle2, Video, GitBranch, Zap, ShieldCheck, Workflow, ArrowRight } from 'lucide-react'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -51,7 +52,7 @@ export default async function LearningDetailPage({ params }: Props) {
             href={tech.githubRepoLink || 'https://github.com/ahammed03'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 shadow-2xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3.5 py-1.5 text-xs font-bold text-zinc-700 shadow-2xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
           >
             <GitBranch className="h-3.5 w-3.5 text-indigo-500" /> Verify Code on GitHub <ExternalLink className="h-3 w-3 text-zinc-400" />
           </a>
@@ -94,7 +95,7 @@ export default async function LearningDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Production Metrics & Wins */}
+        {/* Real-World Production Impact & Metrics */}
         {tech.productionMetrics && tech.productionMetrics.length > 0 && (
           <div className="bento-card p-8 mb-8">
             <div className="flex items-center gap-2 mb-6">
@@ -103,15 +104,17 @@ export default async function LearningDetailPage({ params }: Props) {
                 Real-World Production Impact &amp; Metrics at Kipplo
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {tech.productionMetrics.map((m, i) => (
-                <div key={i} className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-5">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">
-                    {m.label}
-                  </span>
-                  <p className="text-2xl font-extrabold text-zinc-950 dark:text-white mb-2">
-                    {m.value}
-                  </p>
+                <div key={i} className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-5 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">
+                      {m.label}
+                    </span>
+                    <p className="text-xl font-extrabold text-zinc-950 dark:text-white mb-2">
+                      {m.value}
+                    </p>
+                  </div>
                   <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
                     {m.description}
                   </p>
@@ -121,32 +124,37 @@ export default async function LearningDetailPage({ params }: Props) {
           </div>
         )}
 
-        {/* Production Code Blueprint */}
-        {tech.codeBlueprint && (
+        {/* Architecture Flowchart Diagram */}
+        {tech.architectureDiagram && (
           <div className="bento-card p-8 mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <Terminal className="h-5 w-5 text-violet-500" />
+            <div className="flex items-center gap-2 mb-6">
+              <Workflow className="h-5 w-5 text-indigo-500" />
               <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white">
-                Production Code Blueprint
+                {tech.architectureDiagram.title}
               </h2>
             </div>
-            <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-4">
-              File: <code className="text-indigo-600 dark:text-indigo-400">{tech.codeBlueprint.filename}</code>
-            </p>
 
-            <div className="rounded-xl bg-zinc-950 text-zinc-100 p-5 overflow-x-auto font-mono text-xs leading-relaxed border border-zinc-800 shadow-inner mb-4">
-              <pre>{tech.codeBlueprint.code}</pre>
-            </div>
-
-            <div className="rounded-xl bg-violet-500/5 border border-violet-500/10 p-4">
-              <p className="text-xs font-bold text-violet-600 dark:text-violet-400 mb-1">
-                Architecture Breakdown:
-              </p>
-              <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {tech.codeBlueprint.explanation}
-              </p>
+            <div className="space-y-3">
+              {tech.architectureDiagram.steps.map((step, idx) => (
+                <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-zinc-200/80 bg-zinc-50/60 p-4 dark:border-zinc-800 dark:bg-zinc-900/40">
+                  <div className="shrink-0 font-bold text-xs text-indigo-600 dark:text-indigo-400 sm:w-48 flex items-center gap-1.5">
+                    <span>{step.step}</span>
+                    {idx < tech.architectureDiagram!.steps.length - 1 && (
+                      <ArrowRight className="h-3 w-3 text-zinc-400 hidden sm:inline" />
+                    )}
+                  </div>
+                  <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 flex-1">
+                    {step.detail}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
+        )}
+
+        {/* Tabbed Interactive Code Blueprint */}
+        {tech.codeTabs && tech.codeTabs.length > 0 && (
+          <CodeTabs tabs={tech.codeTabs} />
         )}
 
         {/* Top Recommended Learning Resources */}

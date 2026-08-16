@@ -12,6 +12,16 @@ export type TechLearning = {
     value: string
     description: string
   }[]
+  architectureDiagram?: {
+    title: string
+    steps: { step: string; detail: string }[]
+  }
+  codeTabs?: {
+    title: string
+    filename: string
+    code: string
+    explanation: string
+  }[]
   codeBlueprint?: {
     language: string
     filename: string
@@ -57,22 +67,37 @@ export const learningsData: Record<string, TechLearning> = {
         value: '35% Reduction',
         description: 'Migrated synchronous ORM calls to native AsyncPG connection pooling, drastically reducing database connection overhead under high concurrency.',
       },
+      {
+        label: 'Test Suite Coverage & CI/CD Safety',
+        value: '>85% Pytest Coverage',
+        description: 'Enforced >85% test coverage using pytest-asyncio and automated OpenAPI schema drift checks in GitHub Actions CI/CD pipelines.',
+      },
     ],
-    codeBlueprint: {
-      language: 'python',
-      filename: 'dependencies/database.py',
-      code: `from contextlib import asynccontextmanager
+    architectureDiagram: {
+      title: 'High-Concurrency FastAPI Request Architecture',
+      steps: [
+        { step: '1. Client Request', detail: 'HTTP/2 incoming request passes through Nginx reverse proxy & Redis sliding-window rate limiter.' },
+        { step: '2. FastAPI / Starlette Event Loop', detail: 'Single-threaded async event loop parses headers & matches route without thread allocation overhead.' },
+        { step: '3. Pydantic v2 Rust Engine', detail: 'C-level validation validates incoming JSON payload via pydantic-core at 5–10x speed over v1.' },
+        { step: '4. AsyncPG Connection Pool', detail: 'Leases non-blocking PostgreSQL connection from AsyncPG pool, committing transaction on yield return.' },
+        { step: '5. Workload Isolation (If Heavy)', detail: 'Offloads CPU-heavy tasks (e.g. 500MB CSV parsing) to Redis Streams / ProcessPool workers.' },
+      ],
+    },
+    codeTabs: [
+      {
+        title: '1. DB Dependency',
+        filename: 'dependencies/database.py',
+        code: `from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from fastapi import FastAPI, Depends, HTTPException, status
 
 DATABASE_URL = "postgresql+asyncpg://user:pass@localhost:5432/kipplo_db"
 
 engine = create_async_engine(DATABASE_URL, pool_size=20, max_overflow=10, pool_pre_ping=True)
 AsyncSessionFactory = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
-# Real-World Async DB Dependency with Automatic Transaction Rollback & Cleanup
-async function get_db_session() -> AsyncGenerator[AsyncSession, None]:
+# Async Context Manager for Database Session Leasing & Rollback
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionFactory() as session:
         try:
             yield session
@@ -80,9 +105,56 @@ async function get_db_session() -> AsyncGenerator[AsyncSession, None]:
         except Exception:
             await session.rollback()
             raise`,
-      explanation:
-        'This pattern uses FastAPI dependency injection with an async context manager. It automatically manages connection leasing from the AsyncPG pool, commits on success, and guarantees database rollback on exceptions — preventing connection leaks and keeping transaction boundaries strict.',
-    },
+        explanation:
+          'FastAPI dependency injection with an async context manager leases connections from the AsyncPG pool, commits on success, and guarantees database rollback on exceptions — preventing connection leaks and keeping transaction boundaries clean.',
+      },
+      {
+        title: '2. Pydantic v2 Schema',
+        filename: 'schemas/enrichment.py',
+        code: `from pydantic import BaseModel, EmailStr, Field, model_validator
+from typing import Self
+
+class EnrichRequestSchema(BaseModel):
+    email: EmailStr = Field(..., description="Target contact email address")
+    domain: str = Field(..., min_length=3, description="Company domain name")
+    include_phone: bool = Field(default=False)
+
+    @model_validator(mode='before')
+    @classmethod
+    def sanitize_input(cls, data: dict) -> dict:
+        if isinstance(data, dict):
+            if 'domain' in data and isinstance(data['domain'], str):
+                data['domain'] = data['domain'].lower().strip().replace('https://', '').replace('http://', '')
+        return data
+
+    class Config:
+        frozen = True`,
+        explanation:
+          'Utilizes Pydantic v2 Rust-backed `model_validator(mode="before")` for fast input sanitization before type parsing, ensuring strict data boundaries before database lookups.',
+      },
+      {
+        title: '3. FastAPI Route Handler',
+        filename: 'api/v1/enrich.py',
+        code: `from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
+from dependencies.database import get_db_session
+from schemas.enrichment import EnrichRequestSchema
+
+router = APIRouter(prefix="/v1", tags=["Enrichment"])
+
+@router.post("/enrich", status_code=status.HTTP_200_OK)
+async def enrich_contact(
+    payload: EnrichRequestSchema,
+    db: AsyncSession = Depends(get_db_session)
+):
+    result = await db.execute(...) # Non-blocking AsyncPG query
+    if not result:
+        raise HTTPException(status_code=404, detail="Contact record not found")
+    return {"status": "success", "data": result}`,
+        explanation:
+          'The route handler binds Pydantic v2 schema validation, dependency-injected AsyncPG DB sessions, and async exception handling into an end-to-end type-safe endpoint.',
+      },
+    ],
     topResources: [
       {
         title: 'FastAPI Official Documentation & Tutorial',
@@ -113,9 +185,14 @@ async function get_db_session() -> AsyncGenerator[AsyncSession, None]:
           'Async I/O in Python is single-threaded cooperative multitasking. You yield control back to the event loop using `await` during I/O operations (network, DB queries). Blocking synchronous functions block the thread and must be offloaded to worker pools.',
       },
       {
-        concept: 'Dependency Injection in FastAPI',
+        concept: 'Pydantic v2 Rust Core Validation (`pydantic-core`)',
         explanation:
-          'FastAPI `Depends()` allows request-scoped resource sharing (DB sessions, authentication tokens, Redis clients) with automatic cleanup and seamless unit testing mock overrides.',
+          'Pydantic v2 rewrote its internal validation engine in Rust (`pydantic-core`). Using `model_validator(mode="before")` allows raw dictionary transformation prior to type parsing, resulting in 5–10x faster JSON validation under high concurrency.',
+      },
+      {
+        concept: 'OpenAPI Schema Drift Checks in CI/CD',
+        explanation:
+          'Automated OpenAPI schema diffing inside CI/CD pipelines ensures that endpoint refactors never break consumer SDKs or external integration contracts.',
       },
       {
         concept: 'CPU-Bound vs I/O-Bound Workload Isolation',
@@ -125,7 +202,7 @@ async function get_db_session() -> AsyncGenerator[AsyncSession, None]:
       {
         concept: 'Testing Async APIs with Pytest & Httpx',
         explanation:
-          'Use `pytest-asyncio` combined with `httpx.AsyncClient` to execute end-to-end API tests against async routes in memory, mocking external third-party services with dependency overrides.',
+          'Enforce >85% test coverage using `pytest-asyncio` combined with `httpx.AsyncClient` to execute end-to-end API tests against async routes in memory, mocking external third-party services with dependency overrides.',
       },
     ],
     productionLessons: [
