@@ -5,6 +5,19 @@ export type TechLearning = {
   category: string
   iconName: string
   howILearned: string
+  tags?: string[]
+  githubRepoLink?: string
+  productionMetrics?: {
+    label: string
+    value: string
+    description: string
+  }[]
+  codeBlueprint?: {
+    language: string
+    filename: string
+    code: string
+    explanation: string
+  }
   topResources: {
     title: string
     authorOrPlatform: string
@@ -26,11 +39,50 @@ export const learningsData: Record<string, TechLearning> = {
   'python-fastapi': {
     slug: 'python-fastapi',
     title: 'Python, Async I/O & FastAPI',
-    subtitle: 'High-concurrency backend services, asynchronous task queues & Pydantic data validation',
+    subtitle: 'High-concurrency backend services, asynchronous task queues & Pydantic v2 validation',
     category: 'Backend Development',
     iconName: 'ServerCog',
+    tags: ['FastAPI', 'Python 3.12', 'AsyncPG', 'Pydantic v2', 'Redis', 'Docker', 'Pytest', 'OpenAPI / Swagger'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
-      'I transitioned from Mechanical Engineering into software engineering through self-directed learning — studying Python internals, async event loops, and REST API design patterns. I built hands-on projects, read primary documentation, and applied these learnings directly to build production backend microservices at Kipplo.',
+      'I transitioned from Mechanical Engineering into software engineering by studying Python internals, the asyncio event loop, and REST API architectural patterns. I built hands-on projects, read primary documentation, and applied these learnings directly to build production backend microservices at Kipplo.',
+    productionMetrics: [
+      {
+        label: 'API Throughput & P95 Latency',
+        value: '1,500+ RPS / <50ms P95',
+        description: 'Engineered non-blocking async FastAPI endpoints serving over 1,500 requests/sec with p95 response time under 50ms.',
+      },
+      {
+        label: 'DB Connection Overhead Reduction',
+        value: '35% Reduction',
+        description: 'Migrated synchronous ORM calls to native AsyncPG connection pooling, drastically reducing database connection overhead under high concurrency.',
+      },
+    ],
+    codeBlueprint: {
+      language: 'python',
+      filename: 'dependencies/database.py',
+      code: `from contextlib import asynccontextmanager
+from typing import AsyncGenerator
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from fastapi import FastAPI, Depends, HTTPException, status
+
+DATABASE_URL = "postgresql+asyncpg://user:pass@localhost:5432/kipplo_db"
+
+engine = create_async_engine(DATABASE_URL, pool_size=20, max_overflow=10, pool_pre_ping=True)
+AsyncSessionFactory = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+
+# Real-World Async DB Dependency with Automatic Transaction Rollback & Cleanup
+async function get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    async with AsyncSessionFactory() as session:
+        try:
+            yield session
+            await session.commit()
+        except Exception:
+            await session.rollback()
+            raise`,
+      explanation:
+        'This pattern uses FastAPI dependency injection with an async context manager. It automatically manages connection leasing from the AsyncPG pool, commits on success, and guarantees database rollback on exceptions — preventing connection leaks and keeping transaction boundaries strict.',
+    },
     topResources: [
       {
         title: 'FastAPI Official Documentation & Tutorial',
@@ -56,7 +108,7 @@ export const learningsData: Record<string, TechLearning> = {
     ],
     coreMentalModels: [
       {
-        concept: 'The asyncio Event Loop vs Threads',
+        concept: 'The asyncio Event Loop vs OS Threads',
         explanation:
           'Async I/O in Python is single-threaded cooperative multitasking. You yield control back to the event loop using `await` during I/O operations (network, DB queries). Blocking synchronous functions block the thread and must be offloaded to worker pools.',
       },
@@ -65,11 +117,25 @@ export const learningsData: Record<string, TechLearning> = {
         explanation:
           'FastAPI `Depends()` allows request-scoped resource sharing (DB sessions, authentication tokens, Redis clients) with automatic cleanup and seamless unit testing mock overrides.',
       },
+      {
+        concept: 'CPU-Bound vs I/O-Bound Workload Isolation',
+        explanation:
+          'Use `asyncio` for non-blocking network I/O (REST API calls, DB queries). For heavy CPU tasks (like parsing 500MB CSV files or image manipulation), delegate processing to `ProcessPoolExecutor` or background worker queues like Redis Streams / ARQ / Celery to prevent blocking the event loop.',
+      },
+      {
+        concept: 'Testing Async APIs with Pytest & Httpx',
+        explanation:
+          'Use `pytest-asyncio` combined with `httpx.AsyncClient` to execute end-to-end API tests against async routes in memory, mocking external third-party services with dependency overrides.',
+      },
     ],
     productionLessons: [
       {
         pitfall: 'Accidentally invoking synchronous blocking functions inside `async def` endpoints.',
         solution: 'Always use async native drivers (`asyncpg`, `httpx`, `aioredis`) or wrap sync functions in `starlette.concurrency.run_in_threadpool`.',
+      },
+      {
+        pitfall: 'Unrestricted endpoint access leading to API resource exhaustion from bots.',
+        solution: 'Implement Redis-backed sliding window rate limiters per IP/fingerprint to enforce strict quota bounds at the edge.',
       },
     ],
   },
@@ -80,8 +146,22 @@ export const learningsData: Record<string, TechLearning> = {
     subtitle: 'Event-driven job queues, consumer groups, pub/sub & mutex locks',
     category: 'Caching & Messaging',
     iconName: 'Workflow',
+    tags: ['Redis Streams', 'Redis Sentinel', 'Redlock', 'Pub/Sub', 'Python aioredis', 'In-Memory Cache'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
       'Learned in-memory architectures by studying Redis documentation, distributed systems papers, and online queue architecture tutorials, then applying them to implement high-throughput background enrichment pipelines at Kipplo — using Redis Streams for ordered worker queues and Redlock for distributed idempotency.',
+    productionMetrics: [
+      {
+        label: 'Message Delivery Guarantee',
+        value: 'At-Least-Once / Zero Loss',
+        description: 'Implemented Redis Streams consumer groups with pending entry tracking (PEL) and dead-letter retry logic for 100% job recovery on worker crashes.',
+      },
+      {
+        label: 'Duplicate Charge Prevention',
+        value: '0 Duplicate Webhooks',
+        description: 'Enforced Redis distributed locks with per-customer mutex keys during Stripe webhook callbacks.',
+      },
+    ],
     topResources: [
       {
         title: 'Redis Official Documentation & Data Types Guide',
@@ -126,8 +206,17 @@ export const learningsData: Record<string, TechLearning> = {
     subtitle: 'Relational data modeling, horizontal sharding across 300M+ rows, indexing & connection pooling',
     category: 'Database Systems',
     iconName: 'Database',
+    tags: ['PostgreSQL 16', 'Citus Sharding', 'PgBouncer', 'AsyncPG', 'B-Tree Indexes', 'EXPLAIN ANALYZE'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
       'Learned relational database internals by reading foundational database literature, studying EXPLAIN query plans, and migrating single-node PostgreSQL databases to sharded Citus clusters at Kipplo.',
+    productionMetrics: [
+      {
+        label: 'Query Latency Reduction',
+        value: '~40% Latency Cut',
+        description: 'Reduced p95 query latency under heavy concurrency on a 300M+ row dataset by sharding tables and tuning worker node affinity.',
+      },
+    ],
     topResources: [
       {
         title: 'Designing Data-Intensive Applications',
@@ -184,6 +273,8 @@ export const learningsData: Record<string, TechLearning> = {
     subtitle: 'Containerization, Nginx reverse proxying, GitLab CI/CD & zero-downtime deployments',
     category: 'DevOps & Cloud Systems',
     iconName: 'ShieldCheck',
+    tags: ['Docker', 'GitLab CI/CD', 'Nginx', 'Ubuntu VPS', 'Systemd', 'SSL / Certbot'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
       'Mastered containerization and VPS deployments through Docker documentation, Linux administration guides, hands-on building, and managing production services across Ubuntu VPS servers at Kipplo.',
     topResources: [
@@ -223,8 +314,17 @@ export const learningsData: Record<string, TechLearning> = {
     subtitle: 'Zero-copy arrow memory models, lazy evaluation & streaming CSV processing for 1M+ rows',
     category: 'Data Engineering',
     iconName: 'Table',
+    tags: ['Polars', 'Apache Arrow', 'Lazy Evaluation', 'CSV Streaming', 'Python Data Processing'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
       'Discovered Polars while fixing Out-of-Memory (OOM) crashes in Kipplo\'s lead import pipeline. Studied Apache Arrow memory concepts and Polars docs to replace Pandas eager memory allocation with Polars lazy streaming.',
+    productionMetrics: [
+      {
+        label: 'Memory Optimization',
+        value: '0 OOM Heap Crashes',
+        description: 'Replaced Pandas eager CSV parsing with Polars chunked streaming engine, ensuring flat memory consumption regardless of file size.',
+      },
+    ],
     topResources: [
       {
         title: 'Polars Official Book & User Guide',
@@ -255,6 +355,8 @@ export const learningsData: Record<string, TechLearning> = {
     subtitle: 'Inverted indices, custom analyzers, fuzzy text matching & sub-100ms document retrieval',
     category: 'Search Systems',
     iconName: 'Search',
+    tags: ['Elasticsearch 8', 'Inverted Index', 'Edge N-Gram', 'Lucene', 'Fuzzy Search', 'BM25 Scoring'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
       'Engineered Kipplo\'s B2B Data Tools search backend over 250M+ contact profiles and 60M+ company records — configuring custom n-gram tokenizers, edge-ngram analyzers, and multi-field scoring rules.',
     topResources: [
@@ -287,6 +389,8 @@ export const learningsData: Record<string, TechLearning> = {
     subtitle: 'Server Components, App Router, Redux async state management & Tailwind CSS systems',
     category: 'Frontend Engineering',
     iconName: 'Code2',
+    tags: ['Next.js 15', 'React 19', 'TypeScript', 'Redux Toolkit', 'Tailwind CSS', 'Server Components'],
+    githubRepoLink: 'https://github.com/ahammed03',
     howILearned:
       'Developed Kipplo\'s core B2B dashboard, Chrome Extension UI, and programmatic SEO Discover pages using React, Redux Toolkit, Next.js App Router, and Tailwind CSS. Learned modern full-stack web patterns through official Next.js documentation and online engineering tutorials.',
     topResources: [

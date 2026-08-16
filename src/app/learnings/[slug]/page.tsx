@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { learningsData } from '@/data/learningsData'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { ArrowLeft, BookOpen, ExternalLink, Lightbulb, AlertTriangle, GraduationCap, CheckCircle2, Youtube } from 'lucide-react'
+import { ArrowLeft, BookOpen, ExternalLink, Lightbulb, AlertTriangle, GraduationCap, CheckCircle2, Video, GitBranch, Terminal, Zap, ShieldCheck } from 'lucide-react'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!tech) return { title: 'Technology Not Found' }
 
   return {
-    title: `${tech.title} — How I Learnt It, Resources & Mental Models`,
+    title: `${tech.title} — How I Learnt It, Resources & Code Blueprint`,
     description: tech.subtitle,
   }
 }
@@ -38,25 +38,53 @@ export default async function LearningDetailPage({ params }: Props) {
       <Navbar />
 
       <main className="flex-1 px-4 py-12 md:px-8 max-w-5xl mx-auto w-full">
-        {/* Back link */}
-        <Link
-          href="/learnings"
-          className="inline-flex items-center gap-2 text-xs font-bold text-zinc-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 mb-8 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to Learnings Hub
-        </Link>
+        {/* Navigation Bar */}
+        <div className="flex items-center justify-between gap-4 mb-8">
+          <Link
+            href="/learnings"
+            className="inline-flex items-center gap-2 text-xs font-bold text-zinc-500 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Learnings Hub
+          </Link>
+
+          <a
+            href={tech.githubRepoLink || 'https://github.com/ahammed03'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-700 shadow-2xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <GitBranch className="h-3.5 w-3.5 text-indigo-500" /> Verify Code on GitHub <ExternalLink className="h-3 w-3 text-zinc-400" />
+          </a>
+        </div>
 
         {/* Header Banner */}
         <div className="bento-card p-8 md:p-10 mb-8">
-          <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-3">
-            <GraduationCap className="h-4 w-4" /> {tech.category}
-          </span>
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+              <GraduationCap className="h-4 w-4" /> {tech.category}
+            </span>
+          </div>
+
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-950 dark:text-white mb-2">
             {tech.title}
           </h1>
           <p className="text-base font-semibold text-zinc-500 dark:text-zinc-400 mb-6">
             {tech.subtitle}
           </p>
+
+          {/* Tech Stack Skill Pills */}
+          {tech.tags && tech.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-6">
+              {tech.tags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-lg border border-zinc-200/80 bg-zinc-50/80 px-3 py-1 text-xs font-bold text-zinc-700 dark:border-zinc-700/80 dark:bg-zinc-800/80 dark:text-zinc-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
 
           <div className="rounded-xl bg-zinc-100/80 p-5 dark:bg-zinc-800/60 border border-zinc-200/50 dark:border-zinc-700/50">
             <p className="bento-label mb-2">How I Learnt &amp; Mastered This Tech</p>
@@ -65,6 +93,61 @@ export default async function LearningDetailPage({ params }: Props) {
             </p>
           </div>
         </div>
+
+        {/* Production Metrics & Wins */}
+        {tech.productionMetrics && tech.productionMetrics.length > 0 && (
+          <div className="bento-card p-8 mb-8">
+            <div className="flex items-center gap-2 mb-6">
+              <Zap className="h-5 w-5 text-indigo-500" />
+              <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white">
+                Real-World Production Impact &amp; Metrics at Kipplo
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {tech.productionMetrics.map((m, i) => (
+                <div key={i} className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-5">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 block mb-1">
+                    {m.label}
+                  </span>
+                  <p className="text-2xl font-extrabold text-zinc-950 dark:text-white mb-2">
+                    {m.value}
+                  </p>
+                  <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+                    {m.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Production Code Blueprint */}
+        {tech.codeBlueprint && (
+          <div className="bento-card p-8 mb-8">
+            <div className="flex items-center gap-2 mb-4">
+              <Terminal className="h-5 w-5 text-violet-500" />
+              <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white">
+                Production Code Blueprint
+              </h2>
+            </div>
+            <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-4">
+              File: <code className="text-indigo-600 dark:text-indigo-400">{tech.codeBlueprint.filename}</code>
+            </p>
+
+            <div className="rounded-xl bg-zinc-950 text-zinc-100 p-5 overflow-x-auto font-mono text-xs leading-relaxed border border-zinc-800 shadow-inner mb-4">
+              <pre>{tech.codeBlueprint.code}</pre>
+            </div>
+
+            <div className="rounded-xl bg-violet-500/5 border border-violet-500/10 p-4">
+              <p className="text-xs font-bold text-violet-600 dark:text-violet-400 mb-1">
+                Architecture Breakdown:
+              </p>
+              <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+                {tech.codeBlueprint.explanation}
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* Top Recommended Learning Resources */}
         <div className="bento-card p-8 mb-8">
@@ -91,7 +174,7 @@ export default async function LearningDetailPage({ params }: Props) {
                         ? 'bg-red-50 text-red-600 dark:bg-red-950/60 dark:text-red-400 border border-red-200 dark:border-red-900/60'
                         : 'bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-900/60'
                     }`}>
-                      {res.type === 'YouTube' && <Youtube className="h-3 w-3 text-red-500" />}
+                      {res.type === 'YouTube' && <Video className="h-3 w-3 text-red-500" />}
                       {res.type}
                     </span>
                     <span className="text-xs font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -141,7 +224,7 @@ export default async function LearningDetailPage({ params }: Props) {
         {/* Production Lessons & Pitfalls */}
         <div className="bento-card p-8 mb-8">
           <div className="flex items-center gap-2 mb-6">
-            <AlertTriangle className="h-5 w-5 text-emerald-500" />
+            <ShieldCheck className="h-5 w-5 text-emerald-500" />
             <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white">
               Production Pitfalls &amp; Lessons Learned
             </h2>
