@@ -25,21 +25,16 @@ function getPreferredTheme(): Theme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('light')
-  const [mounted, setMounted] = useState(false)
+  const [theme, setTheme] = useState<Theme>(() => getPreferredTheme())
 
   useEffect(() => {
-    setTheme(getPreferredTheme())
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
     const root = document.documentElement
     root.classList.toggle('dark', theme === 'dark')
     root.style.colorScheme = theme
-    window.localStorage.setItem('theme', theme)
-  }, [theme, mounted])
+    try {
+      window.localStorage.setItem('theme', theme)
+    } catch (e) {}
+  }, [theme])
 
   const value = useMemo(
     () => ({

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, GraduationCap, Code2, Rocket } from 'lucide-react'
+import { TechLogo } from './TechLogos'
 
 const skillGroups = [
   {
@@ -10,7 +11,7 @@ const skillGroups = [
   },
   {
     title: 'Backend & DB',
-    items: ['FastAPI', 'Django', 'PostgreSQL (Citus)', 'Redis Streams', 'Elasticsearch', 'PgBouncer'],
+    items: ['FastAPI', 'Django', 'PostgreSQL', 'Citus Sharding', 'Redis Streams', 'Elasticsearch', 'PgBouncer'],
   },
   {
     title: 'Frontend & CMS',
@@ -21,8 +22,8 @@ const skillGroups = [
     items: ['Polars', 'Pandas', 'Playwright', 'Selenium', 'curl_cffi'],
   },
   {
-    title: 'Cloud & DevOps',
-    items: ['AWS (S3/EC2/RDS)', 'Docker', 'GitLab CI/CD', 'Nginx', 'Ubuntu VPS'],
+    title: 'DevOps & Cloud',
+    items: ['Cloudflare Hosting', 'AWS (S3/EC2/RDS)', 'Docker', 'GitLab CI/CD', 'Nginx', 'Ubuntu VPS'],
   },
   {
     title: 'Payments & Email',
@@ -50,7 +51,7 @@ const infoCards = [
   {
     label: 'Education',
     icon: GraduationCap,
-    color: 'text-violet-500 dark:text-violet-400',
+    color: 'text-indigo-500 dark:text-indigo-400',
     content: (
       <div>
         <p className="text-sm font-bold text-zinc-900 dark:text-white">BTech, Mech. Engineering</p>
@@ -64,14 +65,14 @@ const infoCards = [
   {
     label: 'Coding Profile',
     icon: Code2,
-    color: 'text-emerald-500 dark:text-emerald-400',
+    color: 'text-indigo-500 dark:text-indigo-400',
     content: (
       <a
         href="https://leetcode.com/u/ahammed03/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)"
-        className="text-sm font-bold text-zinc-900 underline decoration-zinc-200 underline-offset-4 transition-colors hover:text-indigo-600 dark:text-white dark:decoration-zinc-700 dark:hover:text-indigo-400"
+        className="text-sm font-bold text-zinc-900 underline decoration-zinc-200 underline-offset-4 transition-colors dark:text-white dark:decoration-zinc-700"
       >
         leetcode.com/u/ahammed03
       </a>
@@ -80,7 +81,7 @@ const infoCards = [
   {
     label: 'Currently Exploring',
     icon: Rocket,
-    color: 'text-pink-500 dark:text-pink-400',
+    color: 'text-indigo-500 dark:text-indigo-400',
     content: (
       <p className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">
         Rust for low-latency systems & AWS Serverless for scale-to-zero compute
@@ -174,7 +175,10 @@ export default function AboutSection() {
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {group.items.map((item) => (
-                      <span key={item} className="badge-pill">{item}</span>
+                      <span key={item} className="badge-pill inline-flex items-center gap-1.5">
+                        <TechLogo name={item} className="h-3.5 w-3.5 shrink-0" />
+                        <span>{item}</span>
+                      </span>
                     ))}
                   </div>
                 </div>

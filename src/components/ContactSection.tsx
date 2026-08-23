@@ -67,8 +67,8 @@ function EmailCopyBadge({ email }: { email: string }) {
     >
       {copied ? (
         <>
-          <Check className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
-          <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
+          <Check className="h-3.5 w-3.5 text-indigo-500" aria-hidden="true" />
+          <span className="text-indigo-600 dark:text-indigo-400">Copied</span>
         </>
       ) : (
         <>
@@ -128,9 +128,6 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="relative px-4 py-24 bg-zinc-50/40 dark:bg-zinc-950 overflow-hidden border-t border-zinc-200/60 dark:border-zinc-800/40">
-      {/* Decorative background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-zinc-200/30 dark:bg-zinc-900/20 rounded-full blur-[120px] pointer-events-none -z-10" />
-
       <div className="mx-auto max-w-5xl relative">
         {/* Animated header section */}
         <motion.div 
@@ -159,9 +156,9 @@ export default function ContactSection() {
           <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/90 select-none">
             {/* macOS control dots */}
             <div className="flex gap-1.5 items-center">
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-rose-400" />
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-amber-400" />
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-emerald-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-indigo-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-indigo-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-indigo-600" />
             </div>
             
             {/* Centered Calendar Status */}

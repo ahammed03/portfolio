@@ -2,15 +2,18 @@
 
 import { motion } from 'framer-motion'
 import { Building2, CalendarDays } from 'lucide-react'
+import { TechLogo } from './TechLogos'
 
 const skills = [
   'Python (FastAPI/Django)',
   'JavaScript/TypeScript',
   'React.js (Redux)',
   'Next.js (Payload CMS)',
-  'PostgreSQL (Citus)',
+  'PostgreSQL',
+  'Citus Sharding',
   'Redis Streams & Cache',
   'Elasticsearch',
+  'Cloudflare Hosting',
   'AWS (S3/EC2/Route53)',
   'Playwright Scrapers',
   'Stripe Integration',
@@ -52,8 +55,8 @@ const pillars = [
   },
   {
     title: 'Data Pipelines & Web Scraping',
-    accentText: 'text-violet-600 dark:text-violet-400',
-    accentDot: 'bg-violet-400/60 dark:bg-violet-400/50',
+    accentText: 'text-indigo-600 dark:text-indigo-400',
+    accentDot: 'bg-indigo-400/60 dark:bg-indigo-400/50',
     points: [
       {
         star: true,
@@ -74,8 +77,8 @@ const pillars = [
   },
   {
     title: 'Product Engineering, Testing & Operations',
-    accentText: 'text-pink-600 dark:text-pink-400',
-    accentDot: 'bg-pink-400/60 dark:bg-pink-400/50',
+    accentText: 'text-indigo-600 dark:text-indigo-400',
+    accentDot: 'bg-indigo-400/60 dark:bg-indigo-400/50',
     points: [
       {
         star: true,
@@ -165,7 +168,10 @@ export default function ExperienceSection() {
             <p className="bento-label mb-4">Core Stack Used</p>
             <div className="flex flex-wrap gap-1.5">
               {skills.map((skill) => (
-                <span key={skill} className="badge-pill shadow-sm">{skill}</span>
+                <span key={skill} className="badge-pill shadow-sm inline-flex items-center gap-1.5">
+                  <TechLogo name={skill} className="h-3.5 w-3.5 shrink-0" />
+                  <span>{skill}</span>
+                </span>
               ))}
             </div>
 

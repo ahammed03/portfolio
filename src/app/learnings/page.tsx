@@ -5,10 +5,52 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { BookOpen, ArrowRight, Lightbulb, Server, Database, Workflow, Table, Search, ShieldCheck, Code2 } from 'lucide-react'
 
+const BASE_URL = 'https://ahammed.xyz'
+
 export const metadata: Metadata = {
   title: 'Engineering Learnings, Resources & Tech Deep Dives | Ahammed Ali Shaik',
   description:
     'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+  alternates: {
+    canonical: `${BASE_URL}/learnings`,
+  },
+  openGraph: {
+    title: 'Engineering Learnings, Resources & Tech Deep Dives | Ahammed Ali Shaik',
+    description:
+      'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+    url: `${BASE_URL}/learnings`,
+    siteName: 'Ahammed Ali Shaik — Software Engineer',
+    type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Engineering Knowledge Base | Ahammed Ali Shaik',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Engineering Learnings, Resources & Tech Deep Dives | Ahammed Ali Shaik',
+    description:
+      'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+    images: ['/og-image.jpg'],
+  },
+}
+
+const collectionJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Engineering Knowledge Base | Ahammed Ali Shaik',
+  description:
+    'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+  url: `${BASE_URL}/learnings`,
+  author: {
+    '@type': 'Person',
+    name: 'Ahammed Ali Shaik',
+    url: BASE_URL,
+  },
 }
 
 const iconMap: Record<string, React.ElementType> = {
@@ -26,6 +68,10 @@ export default function LearningsHubPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <Navbar />
 
       <main className="flex-1 px-4 py-14 md:px-8 max-w-6xl mx-auto w-full">
@@ -63,7 +109,7 @@ export default function LearningsHubPage() {
                     </span>
                   </div>
 
-                  <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors mb-2">
+                  <h2 className="text-lg font-extrabold text-zinc-950 dark:text-white transition-colors mb-2">
                     {tech.title}
                   </h2>
                   <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 mb-6">
