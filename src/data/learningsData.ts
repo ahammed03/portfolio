@@ -1,3 +1,5 @@
+import { socialLinks } from './siteConfig'
+
 export type TechLearning = {
   slug: string
   title: string
@@ -53,7 +55,7 @@ export const learningsData: Record<string, TechLearning> = {
     category: 'Backend Development',
     iconName: 'ServerCog',
     tags: ['FastAPI', 'Python 3.12', 'AsyncPG', 'Pydantic v2', 'Redis', 'Docker', 'Pytest', 'OpenAPI / Swagger'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'I transitioned from Mechanical Engineering into software engineering by studying Python internals, the asyncio event loop, and REST API architectural patterns. I built hands-on projects, read primary documentation, and applied these learnings directly to build production backend microservices at Kipplo.',
     productionMetrics: [
@@ -224,7 +226,7 @@ async def enrich_contact(
     category: 'Caching & Messaging',
     iconName: 'Workflow',
     tags: ['Redis Streams', 'Redis Sentinel', 'Redlock', 'Pub/Sub', 'Python aioredis', 'In-Memory Cache'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Learned in-memory architectures by studying Redis documentation, distributed systems papers, and online queue architecture tutorials, then applying them to implement high-throughput background enrichment pipelines at Kipplo — using Redis Streams for ordered worker queues and Redlock for distributed idempotency.',
     productionMetrics: [
@@ -284,7 +286,7 @@ async def enrich_contact(
     category: 'Database Systems',
     iconName: 'Database',
     tags: ['PostgreSQL 16', 'Citus Sharding', 'PgBouncer', 'AsyncPG', 'B-Tree Indexes', 'EXPLAIN ANALYZE'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Learned relational database internals by reading foundational database literature, studying EXPLAIN query plans, and migrating single-node PostgreSQL databases to sharded Citus clusters at Kipplo.',
     productionMetrics: [
@@ -351,7 +353,7 @@ async def enrich_contact(
     category: 'DevOps & Cloud Systems',
     iconName: 'ShieldCheck',
     tags: ['Docker', 'GitLab CI/CD', 'Nginx', 'Ubuntu VPS', 'Systemd', 'SSL / Certbot'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Mastered containerization and VPS deployments through Docker documentation, Linux administration guides, hands-on building, and managing production services across Ubuntu VPS servers at Kipplo.',
     topResources: [
@@ -392,7 +394,7 @@ async def enrich_contact(
     category: 'Data Engineering',
     iconName: 'Table',
     tags: ['Polars', 'Apache Arrow', 'Lazy Evaluation', 'CSV Streaming', 'Python Data Processing'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Discovered Polars while fixing Out-of-Memory (OOM) crashes in Kipplo\'s lead import pipeline. Studied Apache Arrow memory concepts and Polars docs to replace Pandas eager memory allocation with Polars lazy streaming.',
     productionMetrics: [
@@ -433,7 +435,7 @@ async def enrich_contact(
     category: 'Search Systems',
     iconName: 'Search',
     tags: ['Elasticsearch 8', 'Inverted Index', 'Edge N-Gram', 'Lucene', 'Fuzzy Search', 'BM25 Scoring'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Engineered Kipplo\'s B2B Data Tools search backend over 250M+ contact profiles and 60M+ company records — configuring custom n-gram tokenizers, edge-ngram analyzers, and multi-field scoring rules.',
     topResources: [
@@ -467,7 +469,7 @@ async def enrich_contact(
     category: 'Frontend Engineering',
     iconName: 'Code2',
     tags: ['React 19', 'Virtual DOM', 'Fiber Engine', 'Redux Toolkit', 'Hydration', 'Custom Hooks', 'TypeScript'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Mastered React internals by building Kipplo\'s interactive dashboard, Chrome extension popups, and state-heavy web interfaces. Studied React Fiber reconciliation, Virtual DOM diffing, Redux Toolkit async thunks, and solved complex client-side hydration mismatch bugs.',
     productionMetrics: [
@@ -664,7 +666,7 @@ export function UserThemeDisplay() {
     category: 'Frontend Engineering',
     iconName: 'Code2',
     tags: ['Next.js 15', 'App Router', 'SSG', 'ISR', 'SSR', 'CSR', 'Server Components', 'Cloudflare'],
-    githubRepoLink: 'https://github.com/ahammed03',
+    githubRepoLink: socialLinks.github,
     howILearned:
       'Architected Kipplo\'s high-performance web platform, SEO directory pages, and interactive dashboards by mastering rendering trade-offs: SSG for static pages, ISR for 10,000+ programmatic SEO routes, SSR for dynamic real-time data, and Cloudflare edge caching.',
     productionMetrics: [

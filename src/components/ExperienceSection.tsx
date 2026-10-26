@@ -142,7 +142,7 @@ export default function ExperienceSection() {
                   Kipplo Technologies
                 </h2>
                 <p className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
-                  Software Engineer — Backend, Full-Stack &amp; Infrastructure
+                  Software Engineer @ Kipplo
                 </p>
               </div>
             </div>

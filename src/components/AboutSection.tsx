@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { MapPin, GraduationCap, Code2, Rocket } from 'lucide-react'
 import { TechLogo } from './TechLogos'
+import { socialLinks } from '@/data/siteConfig'
 
 const skillGroups = [
   {
@@ -68,7 +69,7 @@ const infoCards = [
     color: 'text-indigo-500 dark:text-indigo-400',
     content: (
       <a
-        href="https://leetcode.com/u/ahammed03/"
+        href={socialLinks.leetcode}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit Ahammed's LeetCode profile (opens in a new tab)"
@@ -118,7 +119,7 @@ export default function AboutSection() {
               Building reliable systems that solve business problems and scale under production load.
             </h2>
             <p className="mb-4 text-sm leading-8 text-zinc-600 dark:text-zinc-400">
-              I'm Ahammed, a Backend / Full-Stack Engineer based in Bengaluru with 2+ years of production-scale experience at Kipplo Technologies — a B2B account intelligence startup. I build systems that are correct under concurrency, observable in real-time, and scale with direct business value.
+              I'm Ahammed, a Software Engineer based in Bengaluru with 2+ years of production-scale experience at Kipplo Technologies — a B2B account intelligence startup. I build systems that are correct under concurrency, observable in real-time, and scale with direct business value.
             </p>
             <p className="mb-4 text-sm leading-8 text-zinc-600 dark:text-zinc-400">
               After graduating with a BTech in Mechanical Engineering (CGPA 8.65, May 2023), I spent a year doing intensive self-directed learning in backend systems, distributed architectures, and system design — building projects, solving DSA on LeetCode, and studying production engineering patterns before joining Kipplo in May 2024.

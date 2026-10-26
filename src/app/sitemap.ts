@@ -1,11 +1,12 @@
 import type { MetadataRoute } from 'next'
 import { projectsData } from '@/data/projectsData'
 import { learningsData } from '@/data/learningsData'
+import { siteConfig } from '@/data/siteConfig'
 
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const BASE_URL = 'https://ahammed.xyz'
+  const BASE_URL = siteConfig.url
   const now = new Date()
 
   const projectRoutes = Object.keys(projectsData).map((slug) => ({

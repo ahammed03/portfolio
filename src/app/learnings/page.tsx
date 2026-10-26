@@ -1,54 +1,51 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { learningsData } from '@/data/learningsData'
+import { siteConfig, author, seoData } from '@/data/siteConfig'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { BookOpen, ArrowRight, Lightbulb, Server, Database, Workflow, Table, Search, ShieldCheck, Code2 } from 'lucide-react'
 
-const BASE_URL = 'https://ahammed.xyz'
+const BASE_URL = siteConfig.url
 
 export const metadata: Metadata = {
-  title: 'Engineering Learnings, Resources & Tech Deep Dives | Ahammed Ali Shaik',
-  description:
-    'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+  title: seoData.learnings.title,
+  description: seoData.learnings.description,
   alternates: {
     canonical: `${BASE_URL}/learnings`,
   },
   openGraph: {
-    title: 'Engineering Learnings, Resources & Tech Deep Dives | Ahammed Ali Shaik',
-    description:
-      'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+    title: seoData.learnings.title,
+    description: seoData.learnings.description,
     url: `${BASE_URL}/learnings`,
-    siteName: 'Ahammed Ali Shaik — Software Engineer',
+    siteName: siteConfig.siteName,
     type: 'website',
     images: [
       {
-        url: '/og-image.jpg',
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Engineering Knowledge Base | Ahammed Ali Shaik',
+        alt: `Engineering Knowledge Base | ${author.name}`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Engineering Learnings, Resources & Tech Deep Dives | Ahammed Ali Shaik',
-    description:
-      'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
-    images: ['/og-image.jpg'],
+    title: seoData.learnings.title,
+    description: seoData.learnings.description,
+    images: [siteConfig.ogImage],
   },
 }
 
 const collectionJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Engineering Knowledge Base | Ahammed Ali Shaik',
-  description:
-    'Detailed engineering learnings, mental models, curated learning resources, and real production lessons across Python, FastAPI, PostgreSQL, Citus, Redis Streams, Polars, Docker, and React.',
+  name: `Engineering Knowledge Base | ${author.name}`,
+  description: seoData.learnings.description,
   url: `${BASE_URL}/learnings`,
   author: {
     '@type': 'Person',
-    name: 'Ahammed Ali Shaik',
+    name: author.name,
     url: BASE_URL,
   },
 }

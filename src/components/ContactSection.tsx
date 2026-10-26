@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { useTheme } from './theme'
 import { Mail, UserRound, GitBranch, Code2, ExternalLink, Copy, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { author, socialLinks as configSocialLinks } from '@/data/siteConfig'
 
 // Dynamic import with loading state skeleton to prevent layout shift
 const Cal = dynamic(() => import('@calcom/embed-react'), {
@@ -16,29 +17,29 @@ const Cal = dynamic(() => import('@calcom/embed-react'), {
   ),
 })
 
-// Social Links array matching the resume information
+// Social Links array matching the site configuration
 const socialLinks = [
   {
     label: 'Email',
-    href: 'mailto:ahammeddev03@gmail.com',
-    value: 'ahammeddev03@gmail.com',
+    href: configSocialLinks.email,
+    value: author.email,
     icon: Mail,
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/ahammed03/',
-    value: 'linkedin.com/in/ahammed03',
+    href: configSocialLinks.linkedin,
+    value: 'linkedin.com/in/ahammed-ali-shaik',
     icon: UserRound,
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/ahammed03',
+    href: configSocialLinks.github,
     value: 'github.com/ahammed03',
     icon: GitBranch,
   },
   {
     label: 'LeetCode',
-    href: 'https://leetcode.com/u/ahammed03/',
+    href: configSocialLinks.leetcode,
     value: 'leetcode.com/u/ahammed03',
     icon: Code2,
   },

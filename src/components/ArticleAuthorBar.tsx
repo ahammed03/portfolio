@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Calendar, Clock, UserCheck } from 'lucide-react'
+import { author, socialLinks } from '@/data/siteConfig'
 
 type ArticleAuthorBarProps = {
   readTime?: string
@@ -14,18 +15,18 @@ export function ArticleAuthorBar({ readTime = '6 min read', lastUpdated = 'Augus
       {/* Author Info Header */}
       <div className="flex items-center gap-3 mb-3.5 pb-3 border-b border-zinc-100 dark:border-zinc-800">
         <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-white font-extrabold text-xs shadow-md ring-2 ring-indigo-500/20">
-          AS
+          {author.initials}
           <span className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-emerald-500 ring-2 ring-white dark:ring-zinc-900" />
         </div>
         <div>
           <div className="flex items-center gap-1.5">
-            <h4 className="text-xs font-bold text-zinc-950 dark:text-white">Ahammed Ali Shaik</h4>
+            <h4 className="text-xs font-bold text-zinc-950 dark:text-white">{author.name}</h4>
             <span className="inline-flex items-center gap-1 rounded-md bg-indigo-500/10 px-1.5 py-0.5 text-[9px] font-bold text-indigo-600 dark:text-indigo-400">
               <UserCheck className="h-2.5 w-2.5" /> Author
             </span>
           </div>
           <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
-            Backend &amp; Systems Engineer @ Kipplo
+            {author.roleAtCompany}
           </p>
         </div>
       </div>
@@ -44,7 +45,7 @@ export function ArticleAuthorBar({ readTime = '6 min read', lastUpdated = 'Augus
 
         <div className="flex items-center gap-1">
           <a
-            href="https://github.com/ahammed03"
+            href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-md p-1 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white transition-colors"
@@ -55,7 +56,7 @@ export function ArticleAuthorBar({ readTime = '6 min read', lastUpdated = 'Augus
             </svg>
           </a>
           <a
-            href="https://linkedin.com/in/ahammed-ali-shaik-ba0175228"
+            href={socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-md p-1 text-zinc-500 hover:bg-zinc-100 hover:text-indigo-600 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-indigo-400 transition-colors"

@@ -3,10 +3,11 @@ import Link from 'next/link'
 import { Home, BookOpen, Layers, AlertCircle } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { seoData } from '@/data/siteConfig'
 
 export const metadata = {
-  title: '404 - Page Not Found | Ahammed Ali Shaik',
-  description: 'The requested engineering case study or learning page could not be found.',
+  title: seoData.notFound.title,
+  description: seoData.notFound.description,
 }
 
 export default function NotFound() {

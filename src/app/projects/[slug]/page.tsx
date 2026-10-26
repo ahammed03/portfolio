@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { projectsData } from '@/data/projectsData'
+import { siteConfig, author } from '@/data/siteConfig'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { ArticleAuthorBar } from '@/components/ArticleAuthorBar'
@@ -16,7 +17,7 @@ export async function generateStaticParams() {
   return Object.keys(projectsData).map((slug) => ({ slug }))
 }
 
-const BASE_URL = 'https://ahammed.xyz'
+const BASE_URL = siteConfig.url
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       type: 'article',
-      siteName: 'Ahammed Ali Shaik — Software Engineer',
+      siteName: siteConfig.siteName,
       images: [
         {
           url: '/og-image.jpg',
@@ -80,12 +81,12 @@ export default async function ProjectCaseStudyPage({ params }: Props) {
     url: `${BASE_URL}/projects/${slug}`,
     author: {
       '@type': 'Person',
-      name: 'Ahammed Ali Shaik',
+      name: author.name,
       url: BASE_URL,
     },
     publisher: {
       '@type': 'Person',
-      name: 'Ahammed Ali Shaik',
+      name: author.name,
     },
     dependencies: project.tags.join(', '),
   }

@@ -6,6 +6,7 @@ export type Theme = 'light' | 'dark'
 
 type ThemeContextValue = {
   theme: Theme
+  mounted: boolean
   toggleTheme: () => void
 }
 
@@ -25,23 +26,32 @@ function getPreferredTheme(): Theme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => getPreferredTheme())
+  const [theme, setTheme] = useState<Theme>('light')
+  const [mounted, setMounted] = useState(false)
+
+  // Sync to stored/system preference after mount to avoid hydration mismatch
+  useEffect(() => {
+    setTheme(getPreferredTheme())
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
+    if (!mounted) return
     const root = document.documentElement
     root.classList.toggle('dark', theme === 'dark')
     root.style.colorScheme = theme
     try {
       window.localStorage.setItem('theme', theme)
     } catch (e) {}
-  }, [theme])
+  }, [theme, mounted])
 
   const value = useMemo(
     () => ({
       theme,
+      mounted,
       toggleTheme: () => setTheme((currentTheme) => (currentTheme === 'dark' ? 'light' : 'dark')),
     }),
-    [theme],
+    [theme, mounted],
   )
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

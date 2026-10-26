@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { learningsData } from '@/data/learningsData'
+import { siteConfig, author, socialLinks } from '@/data/siteConfig'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import CodeTabs from '@/components/CodeTabs'
@@ -17,7 +18,7 @@ export async function generateStaticParams() {
   return Object.keys(learningsData).map((slug) => ({ slug }))
 }
 
-const BASE_URL = 'https://ahammed.xyz'
+const BASE_URL = siteConfig.url
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url,
       type: 'article',
-      siteName: 'Ahammed Ali Shaik — Software Engineer',
+      siteName: siteConfig.siteName,
       images: [
         {
           url: '/og-image.jpg',
@@ -83,12 +84,12 @@ export default async function LearningDetailPage({ params }: Props) {
     url: `${BASE_URL}/learnings/${slug}`,
     author: {
       '@type': 'Person',
-      name: 'Ahammed Ali Shaik',
+      name: author.name,
       url: BASE_URL,
     },
     publisher: {
       '@type': 'Person',
-      name: 'Ahammed Ali Shaik',
+      name: author.name,
     },
     dependencies: tech.tags ? tech.tags.join(', ') : '',
   }
@@ -112,7 +113,7 @@ export default async function LearningDetailPage({ params }: Props) {
           </Link>
 
           <a
-            href={tech.githubRepoLink || 'https://github.com/ahammed03'}
+            href={tech.githubRepoLink || socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-white px-3.5 py-1.5 text-xs font-bold text-zinc-700 shadow-2xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 transition-colors"

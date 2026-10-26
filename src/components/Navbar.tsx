@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Code2, Moon, Sun, Menu, X, GitBranch, ChevronDown, BookOpen, Layers, Terminal, Search, Puzzle, Globe, Database, Workflow, Table, ShieldCheck } from 'lucide-react'
 import { useTheme } from './theme'
 import { motion, AnimatePresence } from 'framer-motion'
+import { socialLinks } from '@/data/siteConfig'
 
 const projectItems = [
   { label: 'Kipplo B2B Data Tools', desc: 'Full-stack Next.js, FastAPI, Elasticsearch & Redis', href: '/projects/kipplo-b2b-data-tools', icon: Search },
@@ -25,7 +26,7 @@ const learningItems = [
 ]
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, mounted, toggleTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<'projects' | 'learnings' | null>(null)
   const [mobileSection, setMobileSection] = useState<'projects' | 'learnings' | null>(null)
@@ -202,7 +203,7 @@ export default function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           {/* GitHub Link */}
           <a
-            href="https://github.com/ahammed03"
+            href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Ahammed's GitHub profile"
@@ -218,7 +219,13 @@ export default function Navbar() {
             onClick={toggleTheme}
             aria-label="Toggle color theme"
           >
-            {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+            {!mounted ? (
+              <span className="h-4 w-4" />
+            ) : theme === 'dark' ? (
+              <Sun className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Moon className="h-4 w-4" aria-hidden="true" />
+            )}
           </button>
 
           {/* Desktop Schedule Button */}
