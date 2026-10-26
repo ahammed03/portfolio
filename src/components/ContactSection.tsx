@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { useTheme } from './theme'
 import { Mail, UserRound, GitBranch, Code2, ExternalLink, Copy, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { author, socialLinks as configSocialLinks } from '@/data/siteConfig'
 
 // Dynamic import with loading state skeleton to prevent layout shift
 const Cal = dynamic(() => import('@calcom/embed-react'), {
@@ -16,29 +17,29 @@ const Cal = dynamic(() => import('@calcom/embed-react'), {
   ),
 })
 
-// Social Links array matching the resume information
+// Social Links array matching the site configuration
 const socialLinks = [
   {
     label: 'Email',
-    href: 'mailto:ahammeddev03@gmail.com',
-    value: 'ahammeddev03@gmail.com',
+    href: configSocialLinks.email,
+    value: author.email,
     icon: Mail,
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/ahammed03/',
-    value: 'linkedin.com/in/ahammed03',
+    href: configSocialLinks.linkedin,
+    value: 'linkedin.com/in/ahammed-ali-shaik',
     icon: UserRound,
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/ahammed03',
+    href: configSocialLinks.github,
     value: 'github.com/ahammed03',
     icon: GitBranch,
   },
   {
     label: 'LeetCode',
-    href: 'https://leetcode.com/u/ahammed03/',
+    href: configSocialLinks.leetcode,
     value: 'leetcode.com/u/ahammed03',
     icon: Code2,
   },
@@ -67,8 +68,8 @@ function EmailCopyBadge({ email }: { email: string }) {
     >
       {copied ? (
         <>
-          <Check className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
-          <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
+          <Check className="h-3.5 w-3.5 text-indigo-500" aria-hidden="true" />
+          <span className="text-indigo-600 dark:text-indigo-400">Copied</span>
         </>
       ) : (
         <>
@@ -128,9 +129,6 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="relative px-4 py-24 bg-zinc-50/40 dark:bg-zinc-950 overflow-hidden border-t border-zinc-200/60 dark:border-zinc-800/40">
-      {/* Decorative background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-zinc-200/30 dark:bg-zinc-900/20 rounded-full blur-[120px] pointer-events-none -z-10" />
-
       <div className="mx-auto max-w-5xl relative">
         {/* Animated header section */}
         <motion.div 
@@ -159,9 +157,9 @@ export default function ContactSection() {
           <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/90 select-none">
             {/* macOS control dots */}
             <div className="flex gap-1.5 items-center">
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-rose-400" />
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-amber-400" />
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-emerald-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-indigo-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-indigo-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700/80 transition-colors group-hover:bg-indigo-600" />
             </div>
             
             {/* Centered Calendar Status */}

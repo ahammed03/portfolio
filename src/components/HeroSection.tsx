@@ -3,19 +3,21 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, MapPin, GitBranch, Link2, ServerCog, Database, Workflow, Mail, Copy, Check } from 'lucide-react'
+import { TechLogo } from './TechLogos'
+import { author, socialLinks, experience, education } from '@/data/siteConfig'
 
 const metrics = [
   { value: '2+', label: 'Years Experience', color: 'text-indigo-600 dark:text-indigo-400' },
-  { value: '~40%', label: 'Query Latency Cut', color: 'text-violet-600 dark:text-violet-400' },
-  { value: 'Event-Driven', label: 'Queue Architecture', color: 'text-pink-600 dark:text-pink-400' },
-  { value: '10+', label: 'Microservices Deployed', color: 'text-emerald-600 dark:text-emerald-400' },
+  { value: '~40%', label: 'Query Latency Cut', color: 'text-indigo-600 dark:text-indigo-400' },
+  { value: 'Event-Driven', label: 'Queue Architecture', color: 'text-indigo-600 dark:text-indigo-400' },
+  { value: '10+', label: 'Microservices Deployed', color: 'text-indigo-600 dark:text-indigo-400' },
 ]
 
 // ATS-friendly keywords included deliberately
 const coreStack = [
   'Python', 'FastAPI', 'Django', 'REST APIs', 'Async I/O',
-  'PostgreSQL', 'Citus', 'Redis Streams', 'Elasticsearch',
-  'Microservices', 'React.js', 'Next.js', 'Docker',
+  'PostgreSQL', 'Citus Sharding', 'Redis Streams', 'Elasticsearch',
+  'Microservices', 'React.js', 'Next.js', 'Cloudflare Hosting', 'Docker',
   'AWS', 'CI/CD', 'System Design', 'Playwright', 'Stripe',
 ]
 
@@ -42,90 +44,70 @@ function CopyEmailButton({ email }: { email: string }) {
       await navigator.clipboard.writeText(email)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy: ', err)
+    } catch {
+      // fallback
     }
   }
 
   return (
     <button
-      onClick={handleCopy}
       type="button"
-      className="inline-flex shrink-0 items-center gap-1 rounded-lg border border-zinc-200/80 bg-white px-2.5 py-1 text-xs font-bold text-zinc-700 shadow-2xs transition-colors hover:bg-zinc-50 hover:text-zinc-950 dark:border-zinc-700/80 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700 dark:hover:text-white focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none"
-      aria-label="Copy email address to clipboard"
-      title="Copy email address"
+      onClick={handleCopy}
+      aria-label="Copy email address"
+      className="flex h-7 w-7 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-500 hover:text-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:text-white transition-colors shrink-0"
     >
-      {copied ? (
-        <>
-          <Check className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
-          <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
-        </>
-      ) : (
-        <>
-          <Copy className="h-3.5 w-3.5 text-zinc-400" aria-hidden="true" />
-          <span>Copy</span>
-        </>
-      )}
+      {copied ? <Check className="h-3.5 w-3.5 text-indigo-500" /> : <Copy className="h-3.5 w-3.5" />}
     </button>
   )
 }
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative px-4 py-16 md:px-8 md:py-20 bg-zinc-50 dark:bg-zinc-950 overflow-hidden">
-      {/* Ambient glow */}
-      <div className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full bg-indigo-500/5 blur-3xl dark:bg-indigo-500/8" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-violet-500/5 blur-3xl dark:bg-violet-500/8" />
+    <section id="hero" className="px-4 pt-28 pb-12 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid grid-cols-12 gap-4">
 
-      <div className="relative mx-auto max-w-7xl">
-        <div className="grid grid-cols-12 gap-3">
-
-          {/* ── Card 1: Hero ───────────────────────────────── */}
+          {/* ── Card 1: Main Introduction ────────────────────── */}
           <motion.div
             {...fadeUp(0)}
-            className="bento-card relative col-span-12 overflow-hidden p-7 md:col-span-8 md:p-9"
+            className="bento-card col-span-12 flex flex-col justify-between p-8 md:col-span-8 md:p-10"
           >
-            <div className="pointer-events-none absolute right-0 top-0 h-48 w-48 rounded-full bg-indigo-500/5 blur-2xl dark:bg-indigo-500/10" />
+            <div>
+              {/* Status indicator */}
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-3.5 py-1">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-500" />
+                </span>
+                <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                  {author.availability}
+                </span>
+              </div>
 
-            {/* Availability badge */}
-            <div className="mb-5 flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-              </span>
-              <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                Open to Senior Backend / Full-Stack roles
-              </span>
+              {/* Role-specific headline for ATS + recruiters */}
+              <h1 className="mb-2 text-3xl font-extrabold leading-tight text-zinc-950 dark:text-white md:text-4xl lg:text-5xl">
+                <span className="text-indigo-600 dark:text-indigo-400">
+                  {author.role}
+                </span>
+              </h1>
+              <p className="mb-4 text-base font-semibold text-zinc-500 dark:text-zinc-400 md:text-lg">
+                Building high-performance distributed systems, cloud-native APIs, and scalable data pipelines.
+              </p>
+
+              <p className="mb-6 max-w-xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                Software Engineer with 2+ years of production experience at Kipplo Technologies. Specialising in Python (FastAPI/Django), PostgreSQL with Citus sharding, Redis Streams, Docker, and Cloudflare.
+              </p>
             </div>
 
-            <p className="mb-2 text-[11px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
-              Ahammed Ali Shaik · Bengaluru, India
-            </p>
-
-            {/* Role-specific headline for ATS + recruiters */}
-            <h1 className="mb-2 text-3xl font-extrabold leading-tight text-zinc-950 dark:text-white md:text-4xl lg:text-5xl">
-              <span className="bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
-                Backend / Full-Stack Engineer
-              </span>
-            </h1>
-            <p className="mb-4 text-base font-semibold text-zinc-500 dark:text-zinc-400 md:text-lg">
-              Python · React · PostgreSQL · Distributed Systems &amp; Scale
-            </p>
-
-            <p className="mb-7 max-w-xl text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 md:text-base">
-              I design distributed backend architectures, high-performance REST APIs, and scalable microservices using Python (FastAPI), React, Next.js, and PostgreSQL — optimized for concurrency, Async I/O, and production reliability.
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-3 pt-4">
               <a
                 href="#contact"
-                className="inline-flex h-10 items-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-semibold text-white outline-none transition-colors hover:bg-indigo-500 focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="inline-flex h-10 items-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-indigo-500 outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
               >
                 Book a Call <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
-                href="https://github.com/ahammed03"
+                href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit Ahammed's GitHub profile (opens in a new tab)"
@@ -146,17 +128,17 @@ export default function HeroSection() {
                 <p className="bento-label mb-2">Based in</p>
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-indigo-500 dark:text-indigo-400" aria-hidden="true" />
-                  <p className="text-base font-bold text-zinc-950 dark:text-white">Bengaluru, India</p>
+                  <p className="text-base font-bold text-zinc-950 dark:text-white">{author.location}</p>
                 </div>
               </div>
 
               <div className="rounded-xl bg-zinc-100/70 p-4 dark:bg-zinc-800/60">
                 <p className="bento-label mb-1.5">Current Role</p>
-                <p className="text-sm font-bold text-zinc-900 dark:text-white">Software Engineer</p>
+                <p className="text-sm font-bold text-zinc-900 dark:text-white">{author.role}</p>
                 <p className="mt-0.5 text-xs font-semibold text-indigo-500 dark:text-indigo-400">
-                  @ Kipplo Technologies
+                  @ {author.company}
                 </p>
-                <p className="mt-1 text-[10px] text-zinc-400 dark:text-zinc-500">May 2024 – Present</p>
+                <p className="mt-1 text-[10px] text-zinc-400 dark:text-zinc-500">{experience.period}</p>
               </div>
 
               {/* Direct Email with copy button */}
@@ -164,40 +146,40 @@ export default function HeroSection() {
                 <p className="bento-label mb-1.5">Direct Email</p>
                 <div className="flex items-center justify-between gap-2">
                   <a
-                    href="mailto:ahammeddev03@gmail.com"
-                    className="flex items-center gap-2 text-sm font-bold text-zinc-900 transition-colors hover:text-indigo-600 dark:text-white dark:hover:text-indigo-400 min-w-0"
+                    href={socialLinks.email}
+                    className="flex items-center gap-2 text-sm font-bold text-zinc-900 transition-colors dark:text-white min-w-0"
                     aria-label="Send email to Ahammed"
                   >
                     <Mail className="h-3.5 w-3.5 text-indigo-400 shrink-0" aria-hidden="true" />
-                    <span className="truncate">ahammeddev03@gmail.com</span>
+                    <span className="truncate">{author.email}</span>
                   </a>
-                  <CopyEmailButton email="ahammeddev03@gmail.com" />
+                  <CopyEmailButton email={author.email} />
                 </div>
               </div>
 
               <div className="rounded-xl bg-zinc-100/70 p-4 dark:bg-zinc-800/60">
                 <p className="bento-label mb-1.5">Education</p>
-                <p className="text-sm font-bold text-zinc-900 dark:text-white">BTech, Mech. Engineering</p>
-                <p className="mt-0.5 text-[10px] text-zinc-400 dark:text-zinc-500">MITS · CGPA 8.65 · May 2023</p>
+                <p className="text-sm font-bold text-zinc-900 dark:text-white">{education.degree}</p>
+                <p className="mt-0.5 text-[10px] text-zinc-400 dark:text-zinc-500">MITS · CGPA {education.cgpa} · {education.graduationDate}</p>
               </div>
             </div>
 
             <div className="flex gap-2 pt-1">
               <a
-                href="https://github.com/ahammed03"
+                href={socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub profile"
-                className="flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 text-xs font-semibold text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+                className="flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 text-xs font-semibold text-zinc-600 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
               >
                 <GitBranch className="h-3.5 w-3.5" aria-hidden="true" /> GitHub
               </a>
               <a
-                href="https://www.linkedin.com/in/ahammed03/"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn profile"
-                className="flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 text-xs font-semibold text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
+                className="flex h-9 flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 text-xs font-semibold text-zinc-600 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800"
               >
                 <Link2 className="h-3.5 w-3.5" aria-hidden="true" /> LinkedIn
               </a>
@@ -248,14 +230,15 @@ export default function HeroSection() {
             {...fadeUp(0.38)}
             className="bento-card col-span-12 p-6 md:col-span-7"
           >
-            <p className="bento-label mb-4">Core Stack &amp; Skills</p>
+            <p className="bento-label mb-4">Core Stack & Skills</p>
             <div className="flex flex-wrap gap-2">
               {coreStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-lg border border-zinc-200/80 bg-zinc-50 px-3 py-1.5 text-xs font-semibold text-zinc-700 dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300"
+                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/80 bg-zinc-50 px-3 py-1.5 text-xs font-semibold text-zinc-700 dark:border-zinc-700/60 dark:bg-zinc-800/60 dark:text-zinc-300"
                 >
-                  {tech}
+                  <TechLogo name={tech} className="h-4 w-4 shrink-0" />
+                  <span>{tech}</span>
                 </span>
               ))}
             </div>

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Code2, Moon, Sun, Menu, X, GitBranch, ChevronDown, BookOpen, Layers, Terminal, Search, Puzzle, Globe, Database, Workflow, Table, ShieldCheck } from 'lucide-react'
 import { useTheme } from './theme'
 import { motion, AnimatePresence } from 'framer-motion'
+import { socialLinks } from '@/data/siteConfig'
 
 const projectItems = [
   { label: 'Kipplo B2B Data Tools', desc: 'Full-stack Next.js, FastAPI, Elasticsearch & Redis', href: '/projects/kipplo-b2b-data-tools', icon: Search },
@@ -20,11 +21,12 @@ const learningItems = [
   { label: 'Polars Streaming Engine', desc: 'Zero-copy Arrow memory & lazy chunking', href: '/learnings/polars-data', icon: Table },
   { label: 'Elasticsearch Search', desc: 'Inverted document indices & sub-100ms queries', href: '/learnings/elasticsearch', icon: Search },
   { label: 'Docker & DevOps', desc: 'Multi-stage builds, Ubuntu VPS & GitLab CI/CD', href: '/learnings/docker-devops', icon: ShieldCheck },
-  { label: 'React & Next.js', desc: 'App Router, Server Components & Tailwind CSS', href: '/learnings/react-nextjs', icon: Code2 },
+  { label: 'React.js & Redux Architecture', desc: 'Virtual DOM reconciliation, Fiber engine & Redux Toolkit', href: '/learnings/react-js', icon: Code2 },
+  { label: 'Next.js & App Router Systems', desc: 'SSG, ISR, SSR, Server Components & Cloudflare CDN', href: '/learnings/nextjs', icon: Layers },
 ]
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme()
+  const { theme, mounted, toggleTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<'projects' | 'learnings' | null>(null)
   const [mobileSection, setMobileSection] = useState<'projects' | 'learnings' | null>(null)
@@ -56,7 +58,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/#home"
-              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               Home
             </Link>
@@ -64,7 +66,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/#about"
-              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               About
             </Link>
@@ -72,7 +74,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/#experience"
-              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               Experience
             </Link>
@@ -86,7 +88,7 @@ export default function Navbar() {
           >
             <Link
               href="/#projects"
-              className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               <span>Projects</span>
               <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeDropdown === 'projects' ? 'rotate-180' : ''}`} />
@@ -138,7 +140,7 @@ export default function Navbar() {
           >
             <Link
               href="/learnings"
-              className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               <span>Learnings</span>
               <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${activeDropdown === 'learnings' ? 'rotate-180' : ''}`} />
@@ -190,7 +192,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/#contact"
-              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
+              className="rounded-lg px-3 py-1.5 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               Schedule
             </Link>
@@ -201,11 +203,11 @@ export default function Navbar() {
         <div className="flex items-center gap-2 sm:gap-3">
           {/* GitHub Link */}
           <a
-            href="https://github.com/ahammed03"
+            href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Visit Ahammed's GitHub profile"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-white text-zinc-700 shadow-xs hover:bg-zinc-50 hover:text-zinc-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none transition-colors"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-200 bg-white text-zinc-700 shadow-xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-indigo-500 outline-none transition-colors"
           >
             <GitBranch className="h-4 w-4" aria-hidden="true" />
           </a>
@@ -217,7 +219,13 @@ export default function Navbar() {
             onClick={toggleTheme}
             aria-label="Toggle color theme"
           >
-            {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
+            {!mounted ? (
+              <span className="h-4 w-4" />
+            ) : theme === 'dark' ? (
+              <Sun className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Moon className="h-4 w-4" aria-hidden="true" />
+            )}
           </button>
 
           {/* Desktop Schedule Button */}
@@ -277,7 +285,7 @@ export default function Navbar() {
                 {mobileSection === 'projects' && (
                   <div className="pl-4 mt-2 space-y-1 border-l-2 border-indigo-500/20 ml-4">
                     {projectItems.map((p) => (
-                      <Link key={p.href} href={p.href} onClick={closeMenu} className="block py-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-600">
+                      <Link key={p.href} href={p.href} onClick={closeMenu} className="block py-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
                         {p.label}
                       </Link>
                     ))}
@@ -301,7 +309,7 @@ export default function Navbar() {
                       Explore All Learnings Hub →
                     </Link>
                     {learningItems.map((l) => (
-                      <Link key={l.href} href={l.href} onClick={closeMenu} className="block py-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400 hover:text-indigo-600">
+                      <Link key={l.href} href={l.href} onClick={closeMenu} className="block py-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-400">
                         {l.label}
                       </Link>
                     ))}

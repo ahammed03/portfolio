@@ -52,8 +52,8 @@ const projects: Project[] = [
     linkLabel: 'Open Platform',
     tags: ['FastAPI', 'PostgreSQL', 'Redis Streams', 'Polars', 'Stripe'],
     icon: Terminal,
-    accentText: 'text-violet-600 dark:text-violet-400',
-    accentBadge: 'bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400 border-violet-100 dark:border-violet-900/60',
+    accentText: 'text-indigo-600 dark:text-indigo-400',
+    accentBadge: 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/60',
   },
   {
     slug: 'kipplo-chrome-extension',
@@ -69,8 +69,8 @@ const projects: Project[] = [
     linkLabel: 'Chrome Web Store',
     tags: ['React.js', 'Redux', 'TypeScript', 'Chrome APIs'],
     icon: Puzzle,
-    accentText: 'text-emerald-600 dark:text-emerald-400',
-    accentBadge: 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-900/60',
+    accentText: 'text-indigo-600 dark:text-indigo-400',
+    accentBadge: 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/60',
   },
   {
     slug: 'kipplo-discover',
@@ -86,8 +86,8 @@ const projects: Project[] = [
     linkLabel: 'Open Directory',
     tags: ['Next.js', 'Payload CMS', 'FastAPI', 'Nginx Cache'],
     icon: Globe,
-    accentText: 'text-pink-600 dark:text-pink-400',
-    accentBadge: 'bg-pink-50 dark:bg-pink-950/50 text-pink-600 dark:text-pink-400 border-pink-100 dark:border-pink-900/60',
+    accentText: 'text-indigo-600 dark:text-indigo-400',
+    accentBadge: 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/60',
   },
 ]
 
@@ -136,7 +136,7 @@ export default function ProjectsSection() {
                   </div>
 
                   <div>
-                    <h3 className={`mb-2 text-lg font-extrabold text-zinc-950 transition-colors dark:text-white group-hover:${project.accentText.split(' ')[0]}`}>
+                    <h3 className="mb-2 text-lg font-extrabold text-zinc-950 dark:text-white">
                       {project.title}
                     </h3>
                     <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 md:text-sm">

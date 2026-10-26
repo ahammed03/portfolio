@@ -26,7 +26,7 @@ export default function CodeTabs({ tabs }: { tabs: CodeTab[] }) {
     <div className="bento-card p-6 md:p-8 mb-8 overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <Terminal className="h-5 w-5 text-violet-500" />
+          <Terminal className="h-5 w-5 text-indigo-500" />
           <h2 className="text-xl font-extrabold text-zinc-950 dark:text-white">
             Production Code Blueprint (End-to-End Flow)
           </h2>
@@ -42,7 +42,7 @@ export default function CodeTabs({ tabs }: { tabs: CodeTab[] }) {
               className={`rounded-lg px-3 py-1.5 text-xs font-bold transition-all ${
                 activeTab === idx
                   ? 'bg-white text-indigo-600 shadow-2xs dark:bg-zinc-800 dark:text-indigo-400'
-                  : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
+                  : 'text-zinc-600 dark:text-zinc-400'
               }`}
             >
               {tab.title}
@@ -61,11 +61,11 @@ export default function CodeTabs({ tabs }: { tabs: CodeTab[] }) {
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-1 text-[11px] font-bold text-zinc-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-1 text-[11px] font-bold text-zinc-400 transition-colors"
         >
           {copied ? (
             <>
-              <Check className="h-3.5 w-3.5 text-emerald-400" /> Copied!
+              <Check className="h-3.5 w-3.5 text-indigo-400" /> Copied!
             </>
           ) : (
             'Copy Snippet'
@@ -79,8 +79,8 @@ export default function CodeTabs({ tabs }: { tabs: CodeTab[] }) {
       </div>
 
       {/* Architectural Breakdown */}
-      <div className="rounded-xl bg-violet-500/5 border border-violet-500/10 p-4">
-        <p className="text-xs font-bold text-violet-600 dark:text-violet-400 mb-1">
+      <div className="rounded-xl bg-indigo-500/5 border border-indigo-500/10 p-4">
+        <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">
           Architecture Breakdown:
         </p>
         <p className="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">

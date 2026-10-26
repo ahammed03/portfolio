@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme'
+import { siteConfig, author, socialLinks, seoData } from '@/data/siteConfig'
 import './globals.css'
 
 const inter = Inter({
@@ -10,37 +11,20 @@ const inter = Inter({
   display: 'swap', // prevents FOUT blocking render
 })
 
-const BASE_URL = 'https://ahammed.xyz'
+const BASE_URL = siteConfig.url
 
 export const metadata: Metadata = {
   // ── Core ───────────────────────────────────────────────────────
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Ahammed Ali Shaik | Software Engineer',
-    template: '%s | Ahammed Ali Shaik',
+    default: siteConfig.title,
+    template: `%s | ${author.name}`,
   },
-  description:
-    'Ahammed Ali Shaik is a Software Engineer based in Bengaluru building high-performance distributed backend systems, cloud-native APIs, and scalable data pipelines with Python (FastAPI), PostgreSQL, Redis, and AWS.',
-  keywords: [
-    'Ahammed Ali Shaik',
-    'Software Engineer Bengaluru',
-    'Backend Engineer India',
-    'Python FastAPI Developer',
-    'Distributed Systems Engineer',
-    'PostgreSQL Citus Sharding',
-    'Redis Streams Developer',
-    'Elasticsearch Engineer',
-    'React Next.js Developer',
-    'AWS Cloud Engineer',
-    'Full Stack Engineer India',
-    'Kipplo Technologies',
-    'Stripe Integration Developer',
-    'Docker DevOps Engineer',
-    'Web Scraping Playwright',
-  ],
-  authors: [{ name: 'Ahammed Ali Shaik', url: BASE_URL }],
-  creator: 'Ahammed Ali Shaik',
-  publisher: 'Ahammed Ali Shaik',
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: author.name, url: BASE_URL }],
+  creator: author.name,
+  publisher: author.name,
   category: 'Technology',
 
   // ── Canonical ──────────────────────────────────────────────────
@@ -52,17 +36,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: BASE_URL,
-    siteName: 'Ahammed Ali Shaik — Software Engineer',
+    siteName: siteConfig.siteName,
     locale: 'en_US',
-    title: 'Ahammed Ali Shaik | Software Engineer',
-    description:
-      'Software Engineer building high-performance distributed systems, cloud-native APIs, and scalable data pipelines. 2+ years at Kipplo Technologies — 300M+ record PostgreSQL systems, Redis Streams, FastAPI, React.',
+    title: siteConfig.title,
+    description: seoData.home.description,
     images: [
       {
-        url: '/og-image.jpg',
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'Ahammed Ali Shaik — Software Engineer Portfolio',
+        alt: `${author.name} — ${author.role} Portfolio`,
         type: 'image/jpeg',
       },
     ],
@@ -71,10 +54,9 @@ export const metadata: Metadata = {
   // ── Twitter Card ───────────────────────────────────────────────
   twitter: {
     card: 'summary_large_image',
-    title: 'Ahammed Ali Shaik | Software Engineer',
-    description:
-      'Software Engineer building distributed systems, cloud-native APIs, and scalable data pipelines. FastAPI · PostgreSQL · Redis · React · AWS.',
-    images: ['/og-image.jpg'],
+    title: siteConfig.title,
+    description: seoData.home.description,
+    images: [siteConfig.ogImage],
   },
 
   // ── Robots ─────────────────────────────────────────────────────
@@ -89,12 +71,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-
-  // ── Verification placeholders ──────────────────────────────────
-  // Uncomment and fill in once you verify ownership
-  // verification: {
-  //   google: 'YOUR_GOOGLE_SEARCH_CONSOLE_TOKEN',
-  // },
 }
 
 // ── Theme init script (runs before paint to avoid flash) ─────────
@@ -120,13 +96,12 @@ const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': `${BASE_URL}/#person`,
-  name: 'Ahammed Ali Shaik',
+  name: author.name,
   url: BASE_URL,
-  image: `${BASE_URL}/og-image.jpg`,
-  jobTitle: 'Software Engineer',
-  description:
-    'Software Engineer specialising in distributed systems, high-performance APIs, data pipelines, and cloud-native backend infrastructure.',
-  email: 'ahammeddev03@gmail.com',
+  image: `${BASE_URL}${siteConfig.ogImage}`,
+  jobTitle: author.role,
+  description: author.bio,
+  email: author.email,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Bengaluru',
@@ -140,20 +115,20 @@ const personJsonLd = {
   },
   worksFor: {
     '@type': 'Organization',
-    name: 'Kipplo Technologies',
-    url: 'https://www.kipplo.com',
+    name: author.company,
+    url: author.companyUrl,
   },
   knowsAbout: [
     'Python', 'FastAPI', 'Django', 'JavaScript', 'TypeScript',
     'React', 'Next.js', 'PostgreSQL', 'Citus', 'Redis Streams',
     'Elasticsearch', 'AWS', 'Docker', 'GitLab CI/CD', 'Playwright',
     'Stripe API', 'Distributed Systems', 'Web Scraping',
-    'Chrome Extensions', 'Nginx', 'Ubuntu Server',
+    'Chrome Extensions', 'Nginx', 'Cloudflare Hosting',
   ],
   sameAs: [
-    'https://github.com/ahammed03',
-    'https://www.linkedin.com/in/ahammed03/',
-    'https://leetcode.com/u/ahammed03/',
+    socialLinks.github,
+    socialLinks.linkedin,
+    socialLinks.leetcode,
   ],
 }
 
@@ -163,8 +138,8 @@ const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': `${BASE_URL}/#website`,
   url: BASE_URL,
-  name: 'Ahammed Ali Shaik — Software Engineer',
-  description: 'Portfolio of Ahammed Ali Shaik, a Software Engineer based in Bengaluru.',
+  name: siteConfig.siteName,
+  description: siteConfig.description,
   author: { '@id': `${BASE_URL}/#person` },
   inLanguage: 'en-US',
 }
@@ -175,11 +150,10 @@ const webPageJsonLd = {
   '@type': 'ProfilePage',
   '@id': `${BASE_URL}/#webpage`,
   url: BASE_URL,
-  name: 'Ahammed Ali Shaik | Software Engineer Portfolio',
+  name: siteConfig.title,
   isPartOf: { '@id': `${BASE_URL}/#website` },
   about: { '@id': `${BASE_URL}/#person` },
-  description:
-    'Portfolio website of Ahammed Ali Shaik — Software Engineer building distributed systems and cloud-native APIs.',
+  description: siteConfig.description,
   inLanguage: 'en-US',
   dateModified: new Date().toISOString(),
 }
